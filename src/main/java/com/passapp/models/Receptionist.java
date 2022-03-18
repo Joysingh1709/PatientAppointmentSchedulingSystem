@@ -17,7 +17,7 @@ public class Receptionist {
 	
 	@Id
 	@GeneratedValue
-	private Integer receptionistId;
+	private Long receptionistId;
 	private String email;
 	private String password;
 	
@@ -32,17 +32,17 @@ public class Receptionist {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Receptionist(Integer receptionistId, String email, String password) {
-		this.receptionistId = receptionistId;
+	public Receptionist(String email, String password) {
+		
 		this.email = email;
 		this.password = password;
 	}
 
-	public Integer getReceptionistId() {
+	public Long getReceptionistId() {
 		return receptionistId;
 	}
 
-	public void setReceptionistId(Integer receptionistId) {
+	public void setReceptionistId(Long receptionistId) {
 		this.receptionistId = receptionistId;
 	}
 

@@ -19,7 +19,7 @@ public class Doctor {
 	
 	@Id
 	@GeneratedValue
-	private Integer doctorId;
+	private Long doctorId;
 	private String email;
 	private String password;
 	private String name;
@@ -44,9 +44,9 @@ public class Doctor {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Doctor(Integer doctorId, String email, String password, String name, String specialization, String gender,
+	public Doctor(String email, String password, String name, String specialization, String gender,
 			String about, String experience, Double fee, Boolean isASpecialist, Date dob, String status) {
-		this.doctorId = doctorId;
+		
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -60,11 +60,11 @@ public class Doctor {
 		this.status = status;
 	}
 
-	public Integer getDoctorId() {
+	public Long getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(Integer doctorId) {
+	public void setDoctorId(Long doctorId) {
 		this.doctorId = doctorId;
 	}
 

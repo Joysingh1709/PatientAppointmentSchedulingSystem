@@ -17,7 +17,7 @@ public class Admin {
 	
 	@Id
 	@GeneratedValue
-	private Integer adminId;
+	private Long adminId;
 	private String name;
 	private String userName;
 	private String password;
@@ -33,18 +33,18 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(Integer adminId, String name, String userName, String password) {
-		this.adminId = adminId;
+	public Admin(String name, String userName, String password) {
+		
 		this.name = name;
 		this.userName = userName;
 		this.password = password;
 	}
 
-	public Integer getAdminId() {
+	public Long getAdminId() {
 		return adminId;
 	}
 
-	public void setAdminId(Integer adminId) {
+	public void setAdminId(Long adminId) {
 		this.adminId = adminId;
 	}
 

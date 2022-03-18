@@ -18,7 +18,7 @@ public class Appointments {
 	
 	@Id
 	@GeneratedValue
-	private Integer appointmentId;
+	private Long appointmentId;
 	private Date createdDate;
 	private Date updatedDate;
 	//private Doctor doctorId;
@@ -42,9 +42,9 @@ public class Appointments {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Appointments(Integer appointmentId, Date createdDate, Date updatedDate,
+	public Appointments(Date createdDate, Date updatedDate,
 			String problem, String status, LocalDate appointmentTime) {
-		this.appointmentId = appointmentId;
+		
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		//this.doctorId = doctorId;
@@ -54,11 +54,11 @@ public class Appointments {
 		this.appointmentTime = appointmentTime;
 	}
 
-	public Integer getAppointmentId() {
+	public Long getAppointmentId() {
 		return appointmentId;
 	}
 
-	public void setAppointmentId(Integer appointmentId) {
+	public void setAppointmentId(Long appointmentId) {
 		this.appointmentId = appointmentId;
 	}
 

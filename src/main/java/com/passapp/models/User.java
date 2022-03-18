@@ -18,7 +18,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue
-	private Integer userId;
+	private Long userId;
 	private String email;
 	private String password;
 	private String name;
@@ -34,9 +34,9 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-		public User(Integer userId, String email, String password, String name, String gender, Date dob,
+		public User(String email, String password, String name, String gender, Date dob,
 				List<Appointments> appointments) {
-			this.userId = userId;
+			
 			this.email = email;
 			this.password = password;
 			this.name = name;
@@ -44,10 +44,10 @@ public class User {
 			this.dob = dob;
 			this.appointments = appointments;
 		}
-		public Integer getUserId() {
+		public Long getUserId() {
 			return userId;
 		}
-		public void setUserId(Integer userId) {
+		public void setUserId(Long userId) {
 			this.userId = userId;
 		}
 		public String getEmail() {
