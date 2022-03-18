@@ -89,7 +89,7 @@ function onRegister() {
 			"status": true
 		}).then(data => {
 			if(data.status){
-				
+
 			}
 		})
 	}
