@@ -24,13 +24,19 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(DoctorNotFoundException.class)
-	public String doctorNotFoundHandler(DoctorNotFoundException dx) {
-		return dx.getMessage();
+	public ResponseEntity<Map<String, Object>> doctorNotFoundHandler(DoctorNotFoundException dx) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", false);
+		res.put("message", dx.getMessage());
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(AppointmentNotConfirmException.class)
-	public String AppointmentNotConfirmHaldler(AppointmentNotConfirmException ax) {
-		return ax.getMessage();
+	public ResponseEntity<Map<String, Object>> AppointmentNotConfirmHanldler(AppointmentNotConfirmException ax) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", false);
+		res.put("message", ax.getMessage());
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
 	}
 
 }
