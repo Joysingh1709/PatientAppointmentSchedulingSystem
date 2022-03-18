@@ -34,6 +34,7 @@ public class AdminController {
 		return new ModelAndView("admin");
 	}
 
+	// http://localhost:8080/admin/saveDoctor
 	@PostMapping("/saveDoctor")
 	public ResponseEntity<Map<String, Object>> addDoctor(@RequestBody Doctor doctor) {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -43,6 +44,7 @@ public class AdminController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 	}
 
+	// http://localhost:8080/admin/saveReceptionist
 	@PostMapping("/saveReceptionist")
 	public ResponseEntity<Map<String, Object>> addReceptionist(@RequestBody Receptionist receptionist) {
 		Map<String, Object> res = new HashMap<String, Object>();
