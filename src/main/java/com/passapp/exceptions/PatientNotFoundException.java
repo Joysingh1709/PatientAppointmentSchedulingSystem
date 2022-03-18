@@ -2,7 +2,7 @@ package com.passapp.exceptions;
 
 public class PatientNotFoundException extends Exception {
 	String message;
-	int userId;
+	Long userId;
 	public PatientNotFoundException() {
 		// TODO Auto-generated constructor stub
 	}
@@ -24,7 +24,7 @@ public class PatientNotFoundException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public PatientNotFoundException(int userId) {
+	public PatientNotFoundException(Long userId) {
 		super("Patient not found with id ---"+ userId);
 		// TODO Auto-generated constructor stub
 	}

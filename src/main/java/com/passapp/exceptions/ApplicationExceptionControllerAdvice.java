@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 		public String doctorNotFoundHandler(DoctorNotFoundException dx) {
 			return dx.getMessage();
 		}
+		
+		
+		@ExceptionHandler(AppointmentNotConfirmException.class)
+		public String AppointmentNotConfirmHaldler(AppointmentNotConfirmException ax) {
+			return ax.getMessage();
+		}
 	}
 
 
