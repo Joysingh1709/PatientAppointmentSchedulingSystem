@@ -105,3 +105,36 @@
 				receppassword.classList.add("is-invalid");
 			}
 	}
+	 function onPatRegister(){
+		var patname = document.getElementById("patName");
+		var patemail = document.getElementById("patEmail");
+		var patpassword = document.getElementById("patPassword");
+		
+		
+		//Receptionist name validation	
+		if(patname.value.length < 4 || patname.value.length > 100)
+		{
+		patname.classList.add("is-invalid");
+		}else{
+			patname.classList.remove("is-invalid");
+		}
+		
+		//Receptionist email validation
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(patemail.value.match(mailformat))
+		{
+			patemail.classList.remove("is-invalid");
+			}else{
+				patemail.classList.add("is-invalid");
+			}
+			
+		//Receptionist password validation
+		var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+		if(patpassword.value.match(decimal)) 
+		{
+			patpassword.classList.remove("is-invalid");
+			}else{
+				patpassword.classList.add("is-invalid");
+			}
+		
+	}
