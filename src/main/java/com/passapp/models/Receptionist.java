@@ -1,14 +1,8 @@
 package com.passapp.models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,12 +15,8 @@ public class Receptionist {
 	private String email;
 	private String password;
 	
-	@OneToOne
-	@JoinColumn(name = "adminId")
-	private Admin admin;
 	
-	@OneToMany(targetEntity = Appointments.class, mappedBy = "receptionist", cascade = CascadeType.ALL) 
-	private List<Appointments> appointments;
+	
 	
 	public Receptionist() {
 		// TODO Auto-generated constructor stub

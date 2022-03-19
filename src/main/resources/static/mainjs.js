@@ -12,7 +12,12 @@ function onRegister() {
 	var fees = document.getElementById("docFees");
 	var experience = document.getElementById("docExp");
 	var about = document.getElementById("docAbout");
-	var docDob = document.getElementById("docDob");
+	var docdob = document.getElementById("docDob");
+	var isaspecialist = document.getElementsByName("Specialist");
+	var gender = document.getElementById("docGender")
+	var specialization = document.getElementById("docSpecialization");
+
+
 
 	//Doctor's name validation	
 	if (name.value.length < 4 || name.value.length > 100) {
@@ -75,21 +80,22 @@ function onRegister() {
 	}
 
 	if (canSubmit) {
+		var selectedSpecialist = Array.from(isaspecialist).find(val => val.checked)
 		postData('http://localhost:8080/admin/saveDoctor', {
+			"name": name.value,
 			"email": email.value,
 			"password": password.value,
-			"name": name.value,
-			"specialization": "sacascasasc",
-			"gender": "male",
-			"about": "xcsacascascsaasc",
-			"experience": 24,
-			"fee": 1234,
-			"isASpecialist": true,
-			"dob": docDob.value,
+			"specialization": specialization.value,
+			"gender": gender.value,
+			"about": about.value,
+			"experience": experience.value,
+			"fee": fees.value,
+			"isASpecialist": selectedSpecialist.value ? true : false,
+			"dob": docdob.value,
 			"status": true
 		}).then(data => {
-			if(data.status){
-				
+			if (data.status) {
+				alert(data.message)
 			}
 		})
 	}
@@ -111,6 +117,7 @@ function onRecepRegister() {
 	//Receptionist name validation	
 	if (recepname.value.length < 4 || recepname.value.length > 100) {
 		recepname.classList.add("is-invalid");
+
 	} else {
 		recepname.classList.remove("is-invalid");
 	}
@@ -131,6 +138,36 @@ function onRecepRegister() {
 		receppassword.classList.add("is-invalid");
 	}
 }
+function onPatRegister() {
+	var patname = document.getElementById("patName");
+	var patemail = document.getElementById("patEmail");
+	var patpassword = document.getElementById("patPassword");
+
+
+	//Receptionist name validation	
+	if (patname.value.length < 4 || patname.value.length > 100) {
+		patname.classList.add("is-invalid");
+	} else {
+		patname.classList.remove("is-invalid");
+	}
+
+	//Receptionist email validation
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if (patemail.value.match(mailformat)) {
+		patemail.classList.remove("is-invalid");
+	} else {
+		patemail.classList.add("is-invalid");
+	}
+
+	//Receptionist password validation
+	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if (patpassword.value.match(decimal)) {
+		patpassword.classList.remove("is-invalid");
+	} else {
+		patpassword.classList.add("is-invalid");
+	}
+
+}
 
 async function postData(url = '', data = {}) {
 	const response = await fetch(url, {
@@ -143,3 +180,4 @@ async function postData(url = '', data = {}) {
 	});
 	return response.json(); // parses JSON response into native JavaScript objects
 }
+
