@@ -31,9 +31,7 @@ public class Appointments {
     @JoinColumn(name = "doctorId")
 	private Doctor doctor;
 	
-	@ManyToOne
-    @JoinColumn(name = "receptionistId")
-	private Receptionist receptionist;
+	
 	
 	@ManyToMany(mappedBy="appointments")
 	private List<User> user;
@@ -47,8 +45,6 @@ public class Appointments {
 		
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
-		//this.doctorId = doctorId;
-		//this.userId = userId;
 		this.problem = problem;
 		this.status = status;
 		this.appointmentTime = appointmentTime;
@@ -77,22 +73,6 @@ public class Appointments {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
-	/*public Doctor getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(Doctor doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
-	}*/
 
 	public String getProblem() {
 		return problem;
