@@ -95,7 +95,11 @@ function onRegister() {
 			"status": true
 		}).then(data => {
 			if(data.status){
+<<<<<<< HEAD
 				alert (data.message)
+=======
+
+>>>>>>> 649303c59953922c205f91b14a7aacc916d12481
 			}
 		})
 	}

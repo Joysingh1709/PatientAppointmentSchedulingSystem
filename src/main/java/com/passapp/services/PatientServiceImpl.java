@@ -15,7 +15,7 @@ public class PatientServiceImpl implements PatientService{
 
 	@Override
 	public User addPatietnt(User user) {
-		// TODO Auto-generated method stub
+		
 		return patientRepository.save(user);
 	}
 
