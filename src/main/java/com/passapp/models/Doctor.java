@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,9 +30,6 @@ public class Doctor {
 	private Date dob;
 	private String status;
 	
-	@ManyToOne
-    @JoinColumn(name = "adminId")
-	private Admin admin;
 	
 	@OneToMany(targetEntity = Appointments.class, mappedBy = "doctor", cascade = CascadeType.ALL) 
 	private List<Appointments> appointments;
