@@ -16,9 +16,9 @@ function onRegister() {
 	var isaspecialist = document.getElementsByName("Specialist");
 	var gender = document.getElementById("docGender")
 	var specialization = document.getElementById("docSpecialization");
-	
-	
-	
+
+
+
 	//Doctor's name validation	
 	if (name.value.length < 4 || name.value.length > 100) {
 		name.classList.add("is-invalid");
@@ -90,16 +90,12 @@ function onRegister() {
 			"about": about.value,
 			"experience": experience.value,
 			"fee": fees.value,
-			"isASpecialist": selectedSpecialist.value ? true:false,
+			"isASpecialist": selectedSpecialist.value ? true : false,
 			"dob": docdob.value,
 			"status": true
 		}).then(data => {
-			if(data.status){
-<<<<<<< HEAD
-				alert (data.message)
-=======
-
->>>>>>> 649303c59953922c205f91b14a7aacc916d12481
+			if (data.status) {
+				alert(data.message)
 			}
 		})
 	}
