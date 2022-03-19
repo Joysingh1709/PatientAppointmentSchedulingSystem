@@ -12,8 +12,13 @@ function onRegister() {
 	var fees = document.getElementById("docFees");
 	var experience = document.getElementById("docExp");
 	var about = document.getElementById("docAbout");
-	var docDob = document.getElementById("docDob");
-
+	var docdob = document.getElementById("docDob");
+	var isaspecialist = document.getElementsByName("Specialist");
+	var gender = document.getElementById("docGender")
+	var specialization = document.getElementById("docSpecialization");
+	
+	
+	
 	//Doctor's name validation	
 	if (name.value.length < 4 || name.value.length > 100) {
 		name.classList.add("is-invalid");
@@ -75,21 +80,22 @@ function onRegister() {
 	}
 
 	if (canSubmit) {
+		var selectedSpecialist = Array.from(isaspecialist).find(val => val.checked)
 		postData('http://localhost:8080/admin/saveDoctor', {
+			"name": name.value,
 			"email": email.value,
 			"password": password.value,
-			"name": name.value,
-			"specialization": "sacascasasc",
-			"gender": "male",
-			"about": "xcsacascascsaasc",
-			"experience": 24,
-			"fee": 1234,
-			"isASpecialist": true,
-			"dob": docDob.value,
+			"specialization": specialization.value,
+			"gender": gender.value,
+			"about": about.value,
+			"experience": experience.value,
+			"fee": fees.value,
+			"isASpecialist": selectedSpecialist.value ? true:false,
+			"dob": docdob.value,
 			"status": true
 		}).then(data => {
 			if(data.status){
-
+				alert (data.message)
 			}
 		})
 	}
