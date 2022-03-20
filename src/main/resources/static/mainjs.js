@@ -98,6 +98,7 @@ function onRegister() {
 				alert(data.message)
 			}
 		})
+		
 	}
 
 }
@@ -109,64 +110,115 @@ function onRegister() {
 
 
 function onRecepRegister() {
+	var canSubmit = false;
 	var recepname = document.getElementById("recepName");
 	var recepemail = document.getElementById("recepEmail");
 	var receppassword = document.getElementById("recepPassword");
+	var recepdob = document.getElementById("recepDob");
+	var recepgender = document.getElementById("recepGender");
 
 
 	//Receptionist name validation	
 	if (recepname.value.length < 4 || recepname.value.length > 100) {
 		recepname.classList.add("is-invalid");
-
+		canSubmit = false;
 	} else {
 		recepname.classList.remove("is-invalid");
+		canSubmit = true;
 	}
 
 	//Receptionist email validation
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	if (recepemail.value.match(mailformat)) {
 		recepemail.classList.remove("is-invalid");
+		canSubmit = true;
 	} else {
 		recepemail.classList.add("is-invalid");
+		canSubmit = false;
 	}
 
 	//Receptionist password validation
 	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
 	if (receppassword.value.match(decimal)) {
 		receppassword.classList.remove("is-invalid");
+		canSubmit = true;
 	} else {
 		receppassword.classList.add("is-invalid");
+		canSubmit = false;
+	}
+	
+	if (canSubmit) {
+		postData('http://localhost:8080/admin/saveReceptionist', {
+			"name": recepname.value,
+			"email": recepemail.value,
+			"password": receppassword.value,
+			"gender": recepgender.value,
+			"dob": recepdob.value,
+		}).then(data => {
+			if (data.status) {
+				alert(data.message)
+			}
+		})
 	}
 }
+
+/**
+ * Patient's Registration form validattions
+ */
+
 function onPatRegister() {
+
+	var canSubmit = false;
 	var patname = document.getElementById("patName");
 	var patemail = document.getElementById("patEmail");
 	var patpassword = document.getElementById("patPassword");
+	var patdob = document.getElementById("patDob");
+	var patgender = document.getElementById("patGender");
 
 
-	//Receptionist name validation	
+
+	//Patient's name validation	
 	if (patname.value.length < 4 || patname.value.length > 100) {
 		patname.classList.add("is-invalid");
+		canSubmit = false;
 	} else {
 		patname.classList.remove("is-invalid");
+		canSubmit = true;
 	}
 
-	//Receptionist email validation
+	//Patient's email validation
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	if (patemail.value.match(mailformat)) {
 		patemail.classList.remove("is-invalid");
+		canSubmit = true;
 	} else {
 		patemail.classList.add("is-invalid");
+		canSubmit = false;
 	}
 
-	//Receptionist password validation
+	//Patient's password validation
 	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
 	if (patpassword.value.match(decimal)) {
 		patpassword.classList.remove("is-invalid");
+		canSubmit = true;
 	} else {
 		patpassword.classList.add("is-invalid");
+		canSubmit = false;
 	}
 
+	if (canSubmit) {
+		postData('http://localhost:8080/admin/saveDoctor', {
+			"name": patname.value,
+			"email": patemail.value,
+			"password": patpassword.value,
+			"gender": patgender.value,
+			"dob": patdob.value,
+		}).then(data => {
+			if (data.status) {
+				alert(data.message)
+			}
+		})
+	}
 }
 
 async function postData(url = '', data = {}) {
