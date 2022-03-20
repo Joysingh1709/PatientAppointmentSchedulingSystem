@@ -2,13 +2,10 @@ package com.passapp.models;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,8 +18,6 @@ public class Appointments {
 	private Long appointmentId;
 	private Date createdDate;
 	private Date updatedDate;
-	//private Doctor doctorId;
-	//private User userId;
 	private String problem;
 	private String status;
 	private LocalDate appointmentTime;
@@ -31,17 +26,20 @@ public class Appointments {
     @JoinColumn(name = "doctorId")
 	private Doctor doctor;
 	
+	@ManyToOne
+    @JoinColumn(name = "userId")
+	private User user;
 	
 	
-	@ManyToMany(mappedBy="appointments")
-	private List<User> user;
+	/*@ManyToMany(mappedBy="appointments")
+	private List<User> user;*/
 	
 	public Appointments() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Appointments(Date createdDate, Date updatedDate,
-			String problem, String status, LocalDate appointmentTime) {
+			String problem,User userId, String status, LocalDate appointmentTime) {
 		
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
@@ -101,9 +99,11 @@ public class Appointments {
 	@Override
 	public String toString() {
 		return "Appointments [appointmentId=" + appointmentId + ", createdDate=" + createdDate + ", updatedDate="
-				+ updatedDate + ", doctorId=" +  ", userId=" + ", problem=" + problem + ", status="
-				+ status + ", appointmentTime=" + appointmentTime + "]";
+				+ updatedDate + ", problem=" + problem + ", status=" + status + ", appointmentTime=" + appointmentTime
+				+ ", doctor=" + doctor + ", user=" + user + "]";
 	}
+
+	
 	
 	
 	
