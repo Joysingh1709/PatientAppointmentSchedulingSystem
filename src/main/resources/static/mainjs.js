@@ -1,4 +1,3 @@
-const postData = require('./PostData');
 
 /**
  * Doctor's Registration form validattions
@@ -119,7 +118,6 @@ function onRecepRegister() {
 	var recepdob = document.getElementById("recepDob");
 	var recepgender = document.getElementById("recepGender");
 
-
 	//Receptionist name validation	
 	if (recepname.value.length < 4 || recepname.value.length > 100) {
 		recepname.classList.add("is-invalid");
@@ -155,7 +153,7 @@ function onRecepRegister() {
 			"email": recepemail.value,
 			"password": receppassword.value,
 			"gender": recepgender.value,
-			"dob": recepdob.value,
+			"dob": recepdob.value
 		}).then(data => {
 			if (data.status) {
 				alert(data.message)
@@ -209,7 +207,8 @@ function onPatRegister() {
 	}
 
 	if (canSubmit) {
-		postData('http://localhost:8080/admin/saveDoctor', {
+		
+		postData('http://localhost:8080/admin/savePatient', {
 			"name": patname.value,
 			"email": patemail.value,
 			"password": patpassword.value,
@@ -223,3 +222,15 @@ function onPatRegister() {
 	}
 }
 
+
+async function postData(url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'POST', // *GET, POST, PUT, DELETE, etc.
+		headers: {
+			'Content-Type': 'application/json'
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	return response.json(); // parses JSON response into native JavaScript objects
+}
