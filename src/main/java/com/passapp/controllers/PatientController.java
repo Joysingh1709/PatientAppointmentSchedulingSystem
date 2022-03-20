@@ -38,11 +38,7 @@ public class PatientController {
 		return modelAndView;
 		
 	}
-	@GetMapping("/user")
-	public ModelAndView getPatientForm(@ModelAttribute User user) {
-		ModelAndView modelAndView = new ModelAndView("patientform");
-		return modelAndView;
-	}
+	
 
 
 }
