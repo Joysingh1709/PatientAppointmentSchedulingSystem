@@ -1,5 +1,7 @@
 package com.passapp.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,20 +14,24 @@ public class Receptionist {
 	@Id
 	@GeneratedValue
 	private Long receptionistId;
+	private String name;
 	private String email;
 	private String password;
-	
-	
-	
+	private Date dob;
+	private String gender;
 	
 	public Receptionist() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Receptionist(String email, String password) {
-		
+
+
+	public Receptionist(Long receptionistId, String name, String email, String password, Date dob, String gender) {
+		this.receptionistId = receptionistId;
+		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.dob = dob;
+		this.gender = gender;
 	}
 
 	public Long getReceptionistId() {
@@ -34,6 +40,14 @@ public class Receptionist {
 
 	public void setReceptionistId(Long receptionistId) {
 		this.receptionistId = receptionistId;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -51,12 +65,29 @@ public class Receptionist {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 
 
 	@Override
 	public String toString() {
-		return "Receptionist [receptionistId=" + receptionistId + ", email=" + email + ", password=" + password + "]";
+		return "Receptionist [receptionistId=" + receptionistId + ", name=" + name + ", email=" + email + ", password="
+				+ password + ", dob=" + dob + ", gender=" + gender + "]";
 	}
 	
 	
