@@ -11,6 +11,7 @@ import com.passapp.models.Doctor;
 import com.passapp.repository.DoctorRepository;
 
 @Service
+
 public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired

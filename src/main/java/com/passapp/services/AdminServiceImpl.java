@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.models.Admin;
 import com.passapp.repository.AdminRepository;
 
@@ -18,8 +19,17 @@ public class AdminServiceImpl implements AdminService {
 	AdminRepository adminRepository;
 
 	@Override
-	public Admin addAdmin(Admin admin) {
-		
+	public Admin getAdmin(String username, String password) throws AdminNotFoundException {
+		Admin ad = adminRepository.getAdminByEmailAndPass(username, password);
+		if(ad != null)
+		{ 
+			return ad;
+		}
+		throw new AdminNotFoundException("Username or password is incorrect..!");
+  }
+  
+  @Override
+	public Admin addAdmin(Admin admin) {		
 		return adminRepository.save(admin);
 	}
 
