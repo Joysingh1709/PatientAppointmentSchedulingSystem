@@ -188,7 +188,7 @@ nav .profile-details i{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100% / 4 - 15px);
+  width: auto;
   background: #fff;
   padding: 15px 14px;
   border-radius: 12px;
@@ -261,7 +261,7 @@ nav .profile-details i{
 
 /* left box */
 .home-content .sales-boxes .recent-sales{
-  width: 65%;
+  width: 50%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px;
@@ -313,7 +313,7 @@ nav .profile-details i{
 
 /* Right box */
 .home-content .sales-boxes .top-sales{
-  width: 35%;
+  width: 50%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px 0 0;
