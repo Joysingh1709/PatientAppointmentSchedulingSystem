@@ -7,8 +7,12 @@ import com.passapp.models.User;
 
 public interface PatientService {
     
-	public User addPatietnt(User user);
+
+
+	
+	
 	public User getPatient(String email, String password ) throws PatientNotFoundException;
+
 	
 	//CRUD Operations
 	public User addPatient(User user);
@@ -20,4 +24,5 @@ public interface PatientService {
 	public boolean deletePatient(User patient);
 			
 	public boolean updateUser(User user);
+
 }

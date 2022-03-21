@@ -7,7 +7,8 @@ import org.springframework.data.repository.query.Param;
 import com.passapp.models.User;
 
 public interface PatientRepository extends JpaRepository<User,Long> {
-  @Query ("From User p WHERE p.email =:pEmail AND p.password =:pPassword")
+  
+	@Query ("From User p WHERE p.email =:pEmail AND p.password =:pPassword")
   User getPatientByEmailAndPassword(@Param("pEmail") String email, @Param("pPass") String password);
 	
 }

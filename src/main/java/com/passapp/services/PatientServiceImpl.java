@@ -18,19 +18,32 @@ public class PatientServiceImpl implements PatientService{
 
 
 	@Override
+
+
+	
+
+	
+
+
 	public User addPatient(User user) {
+
 		return patientRepository.save(user);
 	}
 
 	@Override
+
 	public User getPatient(String email, String password) throws PatientNotFoundException {
 		User pa = patientRepository.getPatientByEmailAndPassword(email, password);
 		if(pa != null)
 			return pa;
 		throw new PatientNotFoundException("Email or Password is incorrect!...");
-  }
+
+	}
+
+  
   
   @Override
+
 	public List<User> getAllPatients() {
 		return patientRepository.findAll();
 	}
@@ -71,6 +84,9 @@ public class PatientServiceImpl implements PatientService{
 			}
 		}
 		return false;
+
 	}
+
+	
 
 }
