@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.passapp.exceptions.PatientNotFoundException;
+import com.passapp.models.Appointments;
 import com.passapp.models.User;
 import com.passapp.repository.PatientRepository;
 
@@ -85,6 +86,12 @@ public class PatientServiceImpl implements PatientService{
 		}
 		return false;
 
+	}
+
+	@Override
+	public List<Appointments> getPatientAppointments(Long patientId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
