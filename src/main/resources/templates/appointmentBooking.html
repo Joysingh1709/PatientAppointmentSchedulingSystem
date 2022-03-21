@@ -16,13 +16,14 @@
 <title>Appointment Form</title>
 </head>
 <body>
+		<div class="container">
 		<div class="col">
 			<div class="signup-form">
-				<form name="form1" action="javascript:void(0)" onsubmit="onPatRegister()">
+				<form name="form2" action="javascript:void(0)" onsubmit="onPatRegister()">
 					<h2>Appointment Booking</h2>
 					<p>Please fill in this form to book an appointment!</p>
 					<hr>
-				<label style="color: black">Doctor's ID</label><br>
+				<label style="color: black" >Doctor</label><br>
 					<div class="form-group">
 						<select class="form-control" name="specialization"
 								id="docSpecialization">
@@ -32,23 +33,27 @@
 								<option value="Radiologists">Radiologists</option>
 							</select>
 					</div>
-					<label style="color: black">Email</label><br>
-					<div class="form-group">
-						<input type="email" class="form-control" id="patEmail"
-							name="email" placeholder="Email" required="required">
-						<div id="validationServer03Feedback" class="invalid-feedback">
-							Please provide a valid Email.</div>
-					</div>
+					
+                                       
+ 							<label style="color: black">Problem</label><br>
+							<div class="form-group">
+							<div>
+							<input type="text" class="form-control" id="problem" name="problem"
+								placeholder="Problem" required="required">
+							<div id="validationServer03Feedback" class="invalid-feedback">
+								Please provide a valid Problem.</div>
+							</div>
+					
                                         <label style="color: black">Date Of Appointment</label><br>
 					<div class="form-group">
 						<div>
 							<input type="date" class="form-control" name="dob">
 						</div>
 					</div>
-                                        <label style="color: black">Name</label><br>
+                                        <label style="color: black">Patient's Name</label><br>
 					<div class="form-group">
 						<div>
-							<input type="text" class="form-control" id="docName" name="name"
+							<input type="text" class="form-control" id="patName" name="name"
 								placeholder="Name" required="required">
 							<div id="validationServer03Feedback" class="invalid-feedback">
 								Please provide a valid Name.</div>
@@ -61,39 +66,19 @@
 					</div>
                                         
 					<div class="form-group">
-						<label style="color: black">Gender</label><br> <input
-							type="radio" name="gender" id="html" value="male"><label>Male</label><br>
+						<label style="color: black">Gender</label><br> 
+						<input type="radio" name="gender" id="html" value="male"><label>Male</label><br>
 						<input type="radio" name="gender" id="html" value="female"><label>Female</label><br>
 						<input type="radio" name="gender" id="html" value="other"><label>Other</label>
 					</div>
-                                        <marquee behavior="scroll" bgcolor="yellow" loop="-1" width="30%">
-   					<i>
-      					<font color="blue">
-        				Today's date is : 
-					<script type="text/javascript">
-  var today = new Date();
-  var day = today.getDay();
-  var daylist = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date+' '+time;
-   
-  document.getElementById("displayDateTime").innerHTML = dateTime + ' <br> Day :- ' + daylist[day];
- 
-  </script>
-        				<strong>
-         				<span id="time"></span>
-        				</strong>           
-     					 </font>
-   					</i>
-					</marquee> 
+            			
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg">Sign
-							Up</button>
+						<button type="submit" class="btn btn-primary btn-lg">Book</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	
+		</div>
 </body>
