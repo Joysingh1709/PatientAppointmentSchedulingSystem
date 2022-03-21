@@ -34,6 +34,11 @@ public class AdminController {
 		return new ModelAndView("admin");
 	}
 
+	@GetMapping("/register")
+	public ModelAndView adminRegisterationForms() {
+		return new ModelAndView("adminRegistration");
+	}
+
 	// http://localhost:8080/admin/saveDoctor
 	@PostMapping("/saveDoctor")
 	public ResponseEntity<Map<String, Object>> addDoctor(@RequestBody Doctor doctor) {
