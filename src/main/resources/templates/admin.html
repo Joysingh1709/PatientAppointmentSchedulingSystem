@@ -55,12 +55,14 @@
 							<input type="date" class="form-control" id="docDob" name="dob">
 						</div>
 					</div>
-
+					<label style="color: black">Is Specialist</label><br>
 					<div class="form-group">
-						<label style="color: black">Is Specialist</label><br> <input
-							type="radio" name="Specialist" id="IsASpecialist" value="true"><label>Yes</label><br>
-						<input type="radio" name="Specialist" id="IsASpecialist"
-							value="false"><label>No</label>
+						<div>
+							<select class="form-control" name="Specialist" id="IsASpecialist">
+								<option value="true">Yes</option>
+								<option value="false">No</option>
+							</select>
+						</div>
 					</div>
 					<label style="color: black">Specialization</label><br>
 					<div class="form-group">
@@ -181,8 +183,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="module" src="../static/PostData.js"
-		th:src="@{/PostData.js}"></script>
 	<script type="text/javascript" src="../static/mainjs.js"
 		th:src="@{/mainjs.js}">
 		

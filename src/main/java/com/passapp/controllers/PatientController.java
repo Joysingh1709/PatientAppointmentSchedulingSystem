@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,30 +17,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.passapp.models.User;
 import com.passapp.services.PatientService;
 
-
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
+
 	@Autowired
 	PatientService patientService;
-	
-	@PostMapping("/savepatient")
-	public ModelAndView  addpatient(@RequestBody User user)
-	{   
-		User us= patientService.addPatietnt(user);
-		ModelAndView modelAndView;
-		Map messageModel =new HashMap();
-		if (us != null) {
-			messageModel.put("usData", us);
-			modelAndView = new ModelAndView("success", messageModel);
-		} else {
-			messageModel.put("error", "Unable to add employee");
-			modelAndView = new ModelAndView("error", messageModel);
-		}
-		return modelAndView;
-		
-	}
-	
 
+	@PostMapping("/savePatient")
+	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "data inserted successfully!");
+		res.put("data", patientService.addPatietnt(user));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+
+	}
 
 }

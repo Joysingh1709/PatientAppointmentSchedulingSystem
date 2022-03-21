@@ -14,7 +14,7 @@ function onRegister() {
 	var experience = document.getElementById("docExp");
 	var about = document.getElementById("docAbout");
 	var docdob = document.getElementById("docDob");
-	var isaspecialist = document.getElementsByName("Specialist");
+	var isaspecialist = document.getElementById("IsASpecialist");
 	var gender = document.getElementById("docGender")
 	var specialization = document.getElementById("docSpecialization");
 
@@ -81,7 +81,6 @@ function onRegister() {
 	}
 
 	if (canSubmit) {
-		var selectedSpecialist = Array.from(isaspecialist).find(val => val.checked)
 		postData('http://localhost:8080/admin/saveDoctor', {
 			"name": name.value,
 			"email": email.value,
@@ -91,7 +90,7 @@ function onRegister() {
 			"about": about.value,
 			"experience": experience.value,
 			"fee": fees.value,
-			"isASpecialist": selectedSpecialist.value ? true : false,
+			"isASpecialist": isaspecialist.value,
 			"dob": docdob.value,
 			"status": true
 		}).then(data => {
@@ -208,7 +207,7 @@ function onPatRegister() {
 
 	if (canSubmit) {
 		
-		postData('http://localhost:8080/admin/savePatient', {
+		postData('http://localhost:8080/patient/savePatient', {
 			"name": patname.value,
 			"email": patemail.value,
 			"password": patpassword.value,
@@ -234,3 +233,97 @@ async function postData(url = '', data = {}) {
 	});
 	return response.json(); // parses JSON response into native JavaScript objects
 }
+
+
+
+
+//Login Page validation
+function docDisFunction(){
+    document.getElementById("docDIV").style.display = "block";
+    document.getElementById("patDIV").style.display = "none";
+    document.getElementById("resDIV").style.display = "none";
+}
+function patDisFunction(){
+    document.getElementById("patDIV").style.display = "block";
+    document.getElementById("docDIV").style.display = "none";
+    document.getElementById("resDIV").style.display = "none";
+}
+function resDisFunction(){
+    document.getElementById("resDIV").style.display = "block";
+    document.getElementById("docDIV").style.display = "none";
+    document.getElementById("patDIV").style.display = "none";
+}
+function patLogin(){
+	
+	var email = document.getElementById("typeEmailX-1");
+	var password = document.getElementById("typePasswordX-1");
+	
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(email.value.match(mailformat))
+	{
+		email.classList.remove("is-invalid");
+	}else{
+		email.classList.add("is-invalid");
+	}
+		
+	
+	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if(password.value.match(decimal)) 
+	{
+		password.classList.remove("is-invalid");
+	}else{
+		password.classList.add("is-invalid");
+	}
+	
+	document.forms['patForm'].reset();
+	
+}
+function docLogin(){
+	
+	var email = document.getElementById("typeEmailX-2");
+	var password = document.getElementById("typePasswordX-2");
+	
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(email.value.match(mailformat))
+	{
+		email.classList.remove("is-invalid");
+	}else{
+		email.classList.add("is-invalid");
+	}
+		
+	
+	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if(password.value.match(decimal)) 
+	{
+		password.classList.remove("is-invalid");
+	}else{
+		password.classList.add("is-invalid");
+	}
+	document.forms['docForm'].reset();
+	
+}
+function resLogin(){
+	
+	var email = document.getElementById("typeEmailX-3");
+	var password = document.getElementById("typePasswordX-3");
+	
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(email.value.match(mailformat))
+	{
+		email.classList.remove("is-invalid");
+	}else{
+		email.classList.add("is-invalid");
+	}
+		
+	
+	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if(password.value.match(decimal)) 
+	{
+		password.classList.remove("is-invalid");
+	}else{
+		password.classList.add("is-invalid");
+	}
+	document.forms['resForm'].reset();
+	
+}
+
