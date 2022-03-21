@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.exceptions.AppointmentNotConfirmException;
 import com.passapp.exceptions.AppointmentNotFoundException;
 import com.passapp.exceptions.DoctorNotFoundException;
@@ -56,6 +57,14 @@ public class ApplicationExceptionControllerAdvice {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", rx.getMessage());
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(AdminNotFoundException.class)
+	public ResponseEntity<Map<String, Object>> AdminNotFoundHandler(AdminNotFoundException adx) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", false);
+		res.put("message", adx.getMessage());
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_FOUND);
 	}
 
