@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.models.Doctor;
 import com.passapp.models.User;
 import com.passapp.services.PatientService;
 
@@ -24,12 +25,17 @@ public class PatientController {
 	@Autowired
 	PatientService patientService;
 
+	@GetMapping()
+	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
+		return new ModelAndView("patientDashboard");
+	}
+
 	@PostMapping("/savePatient")
 	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
-		res.put("data", patientService.addPatietnt(user));
+		res.put("data", patientService.addPatient(user));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
