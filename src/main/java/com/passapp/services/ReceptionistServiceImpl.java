@@ -22,7 +22,7 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		return receptionistRepository.save(receptionist);
 	}
 	
-	
+	@Override
 	public Receptionist getReceptionist(String email, String password) throws ReceptionistNotFoundException
 	{ 
 		 Receptionist recptn = receptionistRepository.getReceptionistByEmailAndPass(email, password);

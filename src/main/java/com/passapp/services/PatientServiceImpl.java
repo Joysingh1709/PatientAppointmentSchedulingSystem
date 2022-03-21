@@ -9,17 +9,21 @@ import org.springframework.stereotype.Service;
 import com.passapp.exceptions.PatientNotFoundException;
 import com.passapp.models.User;
 import com.passapp.repository.PatientRepository;
-@Service
 
+@Service
 public class PatientServiceImpl implements PatientService{
  
-	@Autowired
+  @Autowired
  PatientRepository patientRepository;
 
 
 	@Override
 
+
 	
+
+	
+
 
 	public User addPatient(User user) {
 
@@ -33,7 +37,13 @@ public class PatientServiceImpl implements PatientService{
 		if(pa != null)
 			return pa;
 		throw new PatientNotFoundException("Email or Password is incorrect!...");
+
 	}
+
+  
+  
+  @Override
+
 	public List<User> getAllPatients() {
 		return patientRepository.findAll();
 	}
