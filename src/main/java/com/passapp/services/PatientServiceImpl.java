@@ -90,7 +90,11 @@ public class PatientServiceImpl implements PatientService{
 
 	@Override
 	public List<Appointments> getPatientAppointments(Long patientId) {
-		// TODO Auto-generated method stub
+		
+		Optional<User> user = patientRepository.findById(patientId);
+		if(user.isPresent()) {
+			return patientRepository.getPatientAppointments(patientId) ;
+		}
 		return null;
 	}
 
