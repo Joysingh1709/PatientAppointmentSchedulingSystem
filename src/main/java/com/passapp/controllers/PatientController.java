@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.models.Doctor;
 import com.passapp.models.User;
 import com.passapp.services.PatientService;
 
@@ -23,6 +24,11 @@ public class PatientController {
 
 	@Autowired
 	PatientService patientService;
+
+	@GetMapping()
+	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
+		return new ModelAndView("patientDashboard");
+	}
 
 	@PostMapping("/savePatient")
 	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) {
