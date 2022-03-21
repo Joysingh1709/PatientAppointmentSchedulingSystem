@@ -1,11 +1,23 @@
 package com.passapp.services;
 
+import java.util.List;
+
 import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Doctor;
 
 public interface DoctorService {
-
-	public Doctor addDoctor(Doctor doctor);
+	
+	//CRUD Operations
+		public Doctor addDoctor(Doctor doctor);
+				
+		public List<Doctor> getAllDoctors();
+	    public Doctor getDoctorById(Long doctorId);
+				
+		public boolean deleteDoctorById(Long doctorId);
+		public boolean deleteDoctor(Doctor doctor);
+				
+		public boolean updateDoctor(Doctor doctor);
+	
 
 	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException;
 
