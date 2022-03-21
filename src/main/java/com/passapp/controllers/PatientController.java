@@ -29,7 +29,7 @@ public class PatientController {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
-		res.put("data", patientService.addPatietnt(user));
+		res.put("data", patientService.addPatient(user));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}

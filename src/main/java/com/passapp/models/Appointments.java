@@ -21,11 +21,15 @@ public class Appointments {
 	private String problem;
 	private String status;
 	private LocalDate appointmentTime;
+	private String patientName;
+	private String patientGender;
+	private Date patientDOB;
 	
 	@ManyToOne
     @JoinColumn(name = "doctorId")
 	private Doctor doctor;
 	
+	//ManyToMany
 	@ManyToOne
     @JoinColumn(name = "userId")
 	private User user;
@@ -95,11 +99,53 @@ public class Appointments {
 	public void setAppointmentTime(LocalDate appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
+	
+
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	public String getPatientGender() {
+		return patientGender;
+	}
+
+	public void setPatientGender(String patientGender) {
+		this.patientGender = patientGender;
+	}
+
+	public Date getPatientDOB() {
+		return patientDOB;
+	}
+
+	public void setPatientDOB(Date patientDOB) {
+		this.patientDOB = patientDOB;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
 		return "Appointments [appointmentId=" + appointmentId + ", createdDate=" + createdDate + ", updatedDate="
 				+ updatedDate + ", problem=" + problem + ", status=" + status + ", appointmentTime=" + appointmentTime
+				+ ", patientName=" + patientName + ", patientGender=" + patientGender + ", patientDOB=" + patientDOB
 				+ ", doctor=" + doctor + ", user=" + user + "]";
 	}
 
