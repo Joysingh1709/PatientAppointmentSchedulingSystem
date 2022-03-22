@@ -39,37 +39,56 @@ public class AppointmentController {
 	
 	@DeleteMapping("/appointmentdel/{appointmentId}")
 	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) {
-		appointmentService.deleteAppointmentsById(appointmentId);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointment deleted successfully!");
+		res.put("data", appointmentService.deleteAppointmentsById(appointmentId));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@DeleteMapping("/appointmentdelete")
 	public ResponseEntity<Void> deleteAppointment(Appointments appointments) {
-		appointmentService.deleteAppointment(appointments);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointment deleted successfully!");
+		res.put("data", appointmentService.deleteAppointment(appointments));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@PutMapping("/appointmentupdate")
 	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments) {
-		appointmentService.updateAppointments(newAppointments);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointment updated successfully!");
+		res.put("data", appointmentService.updateAppointments(newAppointments));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@GetMapping("/appointments/{appointmentId}")
 	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId){
-    	return new ResponseEntity<>(appointmentService.getAppointmentsById(appointmentId),HttpStatus.FOUND);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointments with Id!");
+		res.put("data",appointmentService.getAppointmentsById(appointmentId) );
+    	return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 	@GetMapping("/appointments/{doctorId}")
 	public ResponseEntity<Appointments> getAllAppointmentsByDocId(@PathVariable Long doctorId){
-		appointmentService.getAllAppointmentsByDocId(doctorId);
-    	return new ResponseEntity<>(HttpStatus.FOUND);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointments with Doctor Id!");
+		res.put("data",appointmentService.getAllAppointmentsByDocId(doctorId));
+    	return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 	@GetMapping("/appointments/{doctorName}")
 	public ResponseEntity<Appointments> getAllAppointmentsByDocName(@PathVariable String name){
-		appointmentService.getAllAppointmentsByDocName(name);
-    	return new ResponseEntity<>(HttpStatus.FOUND);
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointments with Doctor Name!");
+		res.put("data",appointmentService.getAllAppointmentsByDocName(name));
+    	return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 

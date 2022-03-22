@@ -1,5 +1,6 @@
 package com.passapp.services;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -97,6 +98,15 @@ public class PatientServiceImpl implements PatientService{
 		}
 		return null;
 	}
+
+	/*@Override
+	public List<Appointments> getRecentAppointments(Long patientId) {
+		Optional<User> user = patientRepository.findById(patientId);
+		if(user.isPresent()) {
+			return patientRepository.getRecentAppointments(patientId) ;
+		}
+		return null;
+	}*/
 
 	
 	
