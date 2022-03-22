@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Patient Dashboard | PASS App</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous">
+            <link rel="stylesheet" href="../static/patientDash.css" th:href="@{/patientDash.css}">
+		<!-- <link rel="stylesheet" href="style2.css" th:href="@{style2.css}"> -->
+        <!-- <link rel="stylesheet" href="style.css"th:href="@{style.css}"> -->
+		<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="sidebar">
+            <div class="logo-details">
+                <i class='bx bx-plus-medical'></i> <span class="logo_name">PASS App</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/patientDashboard.html" class="active" > <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">Dashboard</span>
+                </a></li>
+                <li><a href="/patientBookAppointment.html" > <i class='bx bx-user'></i> <span
+                    class="links_name">Book Appointment</span>
+                </a></li>
+                <li><a href="/patientTotalAppointment.html" > <i class='bx bx-book-alt'></i> <span
+                        class="links_name">Total Appointments</span>
+                </a></li>
+                <li><a href="/patientReview.html"> <i class='bx bx-message'></i> <span
+                        class="links_name">Review</span>
+                </a></li>
+                <li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
+                        <span class="links_name">Log out</span>
+                </a></li>
+            </ul>
+        </div>
+        <section class="home-section">
+            <nav>
+                <div id="sidebutton" class="sidebar-button">
+                    <i class='bx bx-menu sidebarBtn'></i> <span class="dashboard">Dashboard</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Search..."> <i
+                        class='bx bx-search'></i>
+                </div>
+                <div class="profile-details">
+                    <img src="image/Aasaf.jpg" alt=""> <span class="admin_name">Prem
+                        Shahi</span> <i class='bx bx-chevron-down'></i>
+                </div>
+            </nav>
+
+            <div id="dash" class="home-content" style="display: block;">
+                <div class="overview-boxes">
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total No. of Appointments Booked uptill now.</div>
+                            <div class="number">876</div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">No. of Family Member you have registerd</div>
+                            <div class="number">8</div>
+                        </div>
+                    </div>
+                    <!-- <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total money wasted for the treatment</div>
+                            <div class="number">Rs.1,12,876</div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="right-side">
+                            <div class="box-topic">Total money Saved from the treatment</div>
+                            <div class="number">Rs.1</div>
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="sales-boxes">
+                    <div class="recent-sales box">
+                        <div class="title">Recent Appontments Booked</div>
+                        <div class="sales-details">
+                            <table class="details" >
+                                <tr onsubmit="addRowHandlers()">
+                                    <th class="topic">Appointment ID</th>
+                                    <th class="topic">Doctor Name</th>
+                                    <th class="topic">Doctor Speciality</th>
+                                    <th class="topic">Appointment Date/Time</th>
+                                    <th class="topic">For Whom</th>
+                                    <th class="topic">Problem</th>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>876</td>
+                                    <td>Dr Joy</td>
+                                    <td>Dermatologist</td>
+                                    <td>12/3/22 3:00pm</td>
+                                    <td>Mother</td>
+                                    <td>Suryosis</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>875</td>
+                                    <td>Dr Nikhar</td>
+                                    <td>Rheumatologist</td>
+                                    <td>1/3/22 4:00pm</td>
+                                    <td>Father</td>
+                                    <td>Leg Arthritis</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>874</td>
+                                    <td>Dr Fatima</td>
+                                    <td>Child Specilist</td>
+                                    <td>1/2/22 6:00pm</td>
+                                    <td>Daughter</td>
+                                    <td>Child Fever</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>873</td>
+                                    <td>Dr Nidhi</td>
+                                    <td>Gastroenterologist</td>
+                                    <td>25/1/22 12:00pm</td>
+                                    <td>Wife</td>
+                                    <td>Constant Stomach Pain</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>872</td>
+                                    <td>Dr Aasaf</td>
+                                    <td>Cardiologist</td>
+                                    <td>17/12/21 1:00pm</td>
+                                    <td>Self</td>
+                                    <td>Routin Heart Check-up</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>871</td>
+                                    <td>Dr Piyusha</td>
+                                    <td>Psychiatrist</td>
+                                    <td>1/11/21 2:00pm</td>
+                                    <td>Servet</td>
+                                    <td>Servent got mad after hitting his head</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>870</td>
+                                    <td>Dr Jayesh</td>
+                                    <td>General Physician</td>
+                                    <td>25/9/21 6:00pm</td>
+                                    <td>GrandMother</td>
+                                    <td>Chorona</td>
+                                </tr>
+                                <tr onsubmit="addRowHandlers()">
+                                    <td>869</td>
+                                    <td>Dr Krutika</td>
+                                    <td>General Physician</td>
+                                    <td>20/7/21 5:00pm</td>
+                                    <td>GrandFather</td>
+                                    <td>Chorona</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="button">
+                            <a href="#">See All</a>
+                        </div>
+                    </div>
+                    <div class="top-sales box">
+                        <div class="title">Top Doctors</div>
+                        <table class="top-sales-details" onclick="dashboard()">
+                            <tr>
+                                <th class="product">Doctors</th>
+                                <th class="product">Speciality</th>
+                                <th class="product">Fees</th>
+                            </tr>
+                            <tr>
+                                <td>Dr Joy</td>
+                                <td>Dermatologist</td>
+                                <td class="price">Rs.876</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Nikhar</td>
+                                <td>Rheumatologist</td>
+                                <td class="price">Rs.875</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Fatima</td>
+                                <td>Child Specilist</td>
+                                <td class="price">Rs.874</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Nidhi</td>
+                                <td>Gastroenterologist</td>
+                                <td class="price">Rs.873</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Aasaf</td>
+                                <td>Cardiologist</td>
+                                <td class="price">Rs.872</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Piyusha</td>
+                                <td>Psychiatrist</td>
+                                <td class="price">Rs.871</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Jayesh</td>
+                                <td>General Physician</td>
+                                <td class="price">Rs.870</td>
+                            </tr>
+                            <tr>
+                                <td>Dr Krutika</td>
+                                <td>General Physician</td>
+                                <td class="price">Rs.869</td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appoBook" class="home-content" style="display: block;">
+                <div class="patientAppo">
+                    <div class="signup-form2">
+                    <form name="form3" action="javascript:void(0)">
+                        <h2>Appointment Booking</h2>
+                        <table class="Appodetails" >
+                            <tr>
+                                <th class="topic">Appointment ID</th>
+                                <th class="topic">Doctor Name</th>
+                                <th class="topic">Doctor Speciality</th>
+                                <th class="topic">Appointment Date/Time</th>
+                                <th class="topic">For Whom</th>
+                                <th class="topic">Problem</th>
+                            </tr>
+                            <tr>
+                                <td>876</td>
+                                <td>Dr Joy</td>
+                                <td>Dermatologist</td>
+                                <td>12/3/22 3:00pm</td>
+                                <td>Mother</td>
+                                <td>Suryosis</td>
+                            </tr>
+                        </table>    
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            let sidebar = document.querySelector(".sidebar");
+            let sidebarBtn = document.querySelector(".sidebarBtn");
+            sidebarBtn.onclick = function() {
+                sidebar.classList.toggle("active");
+                if (sidebar.classList.contains("active")) {
+                    sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+                } else
+                    sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+            }
+        </script>
+        <script>
+            function addRowHandlers() {
+                var table = document.getElementById("details");
+                var rows = table.getElementsByTagName("tr");
+                for (i = 0; i < rows.length; i++) {
+                    var currentRow = table.rows[i];
+                    var createClickHandler = function(row) {
+                        return function() {
+                            var cell = row.getElementsByTagName("td")[0];
+                            var id = cell.innerHTML;
+                            document.getElementById("appoBook").style.display = "block";
+                            // alert("id:" + id);
+                            };
+                        };
+                    currentRow.onclick = createClickHandler(currentRow);
+                    }
+                }
+            // function dashboard(){
+            //     document.getElementById("dash").style.display = "block";
+            //     document.getElementById("appoBook").style.display = "none";
+            //     // document.getElementById("sidebutton").getElementsByClassName("dashboard").classList.replace("Book Appointment","Dashboard");
+            // }
+            // function bookAppo(){
+            //     document.getElementById("appoBook").style.display = "block";
+            //     document.getElementById("dash").style.display = "none";
+            //     // document.getElementById("sidebutton").getElementsByClassName("dashboard").classList.replace("Dashboard","Book Appointment");
+            // }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous">
+        </script>
+		
+	</body>
+</html>
