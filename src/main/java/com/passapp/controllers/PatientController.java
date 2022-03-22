@@ -33,6 +33,21 @@ public class PatientController {
 		return new ModelAndView("patientDashboard");
 	}
 
+	@GetMapping("/patientReview")
+	public ModelAndView getPatientReview(@ModelAttribute User patient) {
+		return new ModelAndView("patientReview");
+	}
+
+	@GetMapping("/patientTotalAppointment")
+	public ModelAndView getPatientTotalAppointment(@ModelAttribute User patient) {
+		return new ModelAndView("patientTotalAppointment");
+	}
+
+	@GetMapping("/patientBookAppointment")
+	public ModelAndView getPatientBookAppointment(@ModelAttribute User patient) {
+		return new ModelAndView("patientBookAppointment");
+	}
+
 	@PostMapping("/savePatient")
 	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -42,7 +57,7 @@ public class PatientController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Map<String, Object>> getPatientAppointments(@RequestParam Long patientId) {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -51,7 +66,7 @@ public class PatientController {
 		res.put("data", patientService.getPatientAppointments(patientId));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.FOUND);
 	}
-	
+
 	@PostMapping("/bookAppointments")
 	public ResponseEntity<Map<String, Object>> addAppointments(@RequestBody Appointments appointments) {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -61,11 +76,5 @@ public class PatientController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
-	
-	
-	
-	
-	
-	
 
 }
