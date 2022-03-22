@@ -12,7 +12,7 @@ import com.passapp.models.Receptionist;
 @RequestMapping("/receptionist")
 public class ReceptionistController {
 
-	@GetMapping(value = "/")
+	@GetMapping()
 	public ModelAndView getReceptionistDashboard(@ModelAttribute Receptionist receptionist) {
 		return new ModelAndView("receptionistDashboard");
 	}
