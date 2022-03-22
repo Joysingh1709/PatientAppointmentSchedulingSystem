@@ -16,6 +16,7 @@ import com.passapp.services.PatientService;
 @RequestMapping("/appointment")
 public class AppointmentController {
 
+	private static final Long Long = null;
 	@Autowired
 	private PatientService patientService;
 
