@@ -6,6 +6,10 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+ol,ul{
+	padding-left:0 !important;
+}
 .sidebar{
   position: fixed;
   height: 100%;
@@ -261,7 +265,7 @@ nav .profile-details i{
 
 /* left box */
 .home-content .sales-boxes .recent-sales{
-  width: 50%;
+  width: 65%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px;
@@ -313,7 +317,7 @@ nav .profile-details i{
 
 /* Right box */
 .home-content .sales-boxes .top-sales{
-  width: 50%;
+  width: 35%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px 0 0;

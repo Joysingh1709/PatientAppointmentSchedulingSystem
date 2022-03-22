@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.models.Appointments;
 import com.passapp.models.Doctor;
 import com.passapp.models.User;
+import com.passapp.services.AppointmentService;
 import com.passapp.services.PatientService;
 
 @RestController
@@ -24,8 +26,9 @@ public class PatientController {
 
 	@Autowired
 	PatientService patientService;
+	AppointmentService appointmentService;
 
-	@GetMapping(value = "/")
+	@GetMapping()
 	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
 		return new ModelAndView("patientDashboard");
 	}
@@ -36,6 +39,16 @@ public class PatientController {
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
 		res.put("data", patientService.addPatient(user));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
+
+	}
+	
+	@PostMapping("/saveAppointments")
+	public ResponseEntity<Map<String, Object>> addAppointments(@RequestBody Appointments appointments) {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Appointment saved successfully!");
+		res.put("data", appointmentService.addAppointments(appointments));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
