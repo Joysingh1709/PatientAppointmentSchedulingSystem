@@ -1,5 +1,6 @@
 package com.passapp.services;
 
+
 import java.util.List;
 
 import com.passapp.exceptions.PatientNotFoundException;
@@ -16,6 +17,7 @@ public interface PatientService {
 	
 	public List<Appointments> getPatientAppointments(Long patientId);
 
+	//public List<Appointments> getRecentAppointments(Long patientId);
 	
 	//CRUD Operations
 	public User addPatient(User user);
