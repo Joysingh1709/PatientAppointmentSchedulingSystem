@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Delete Appointment</title>
+<title>Receptionist Dashboard</title>
 <link rel="stylesheet" href="../static/style2.css"
 	th:href="@{/style2.css}">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
@@ -34,7 +34,7 @@
 					class="links_name">Reschedule  </span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-pie-chart-alt-2'></i> <span
-					class="links_name"> Print Reciept</span>
+					class="links_name"> Print Receipt</span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-coin-stack'></i> <span
 					class="links_name">Specialization</span>
@@ -63,7 +63,8 @@
 					class='bx bx-search'></i>
 			</div>
 			<div class="profile-details">
-				<img src="images/profile.jpg" alt=""> <span class="admin_name">Receptionist</span> <i class='bx bx-chevron-down'></i>
+				<img src="images/profile.jpg" alt=""> <span class="admin_name">Prem
+					Shahi</span> <i class='bx bx-chevron-down'></i>
 			</div>
 		</nav>
 
@@ -103,52 +104,64 @@
 				</div>
 			</div>
 
-
-<div class="container">
-		<div class="col">
-			<div class="signup-form">
-				<form name="form2" action="javascript:void(0)" onsubmit="onPatRegister()">
-					<h2>Delete Appointment</h2>
-					<p>Please fill in this form to Delete an appointment!</p>
-					<hr>
-					
-					<label style="color: black">Appointment Id</label><br>
-							<div class="form-group">
-							<div>
-							<input type="number" class="form-control" id="appointmentId" name="problemappointmentId"
-								placeholder="ApointmentId" required="required">
-							<div id="validationServer03Feedback" class="invalid-feedback">
-								Please provide a valid AppointmentID</div>
-							</div>
-					
-                                       
-                                        <label style="color: black">Patient's Name</label><br>
-					<div class="form-group">
-						<div>
-							<input type="text" class="form-control" id="patName" name="name"
-								placeholder="Name" required="required">
-							<div id="validationServer03Feedback" class="invalid-feedback">
-								Please provide a valid Name.</div>
-						</div>
-					
-                                        
-					
-            			
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg">Delete Appointment</button>
+			<div class="sales-boxes">
+				<div class="recent-sales box">
+					<div class="title">Appointments for the day</div>
+					<div class="sales-details">
+						<ul class="details">
+							<li class="topic">Date</li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+							<li><a href="#">02 Jan 2021</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Patient's Name</li>
+							<li><a href="#">Alex Doe</a></li>
+							<li><a href="#">David Mart</a></li>
+							<li><a href="#">Roe Parter</a></li>
+							<li><a href="#">Diana Penty</a></li>
+							<li><a href="#">Martin Paw</a></li>
+							<li><a href="#">Doe Alex</a></li>
+							<li><a href="#">Aiana Lexa</a></li>
+							<li><a href="#">Rexel Mags</a></li>
+							<li><a href="#">Tiana Loths</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Status</li>
+							<li><a href="#">Pending</a></li>
+							<li><a href="#">Confirm</a></li>
+							<li><a href="#">Pending</a></li>
+							<li><a href="#">Confirm</a></li>
+							<li><a href="#">Pending</a></li>
+							<li><a href="#">Confirm</a></li>
+							<li><a href="#">Confirm</a></li>
+							<li><a href="#">Confirm</a></li>
+							<li><a href="#">Pending</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Fees</li>
+							<li><a href="#">600</a></li>
+							<li><a href="#">465</a></li>
+							<li><a href="#">950</a></li>
+							<li><a href="#">290</a></li>
+							<li><a href="#">1000</a></li>
+							<li><a href="#">500</a></li>
+							<li><a href="#">680</a></li>
+							<li><a href="#">1050</a></li>
+							<li><a href="#">300</a></li>
+						</ul>
+						
 					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-		</div>
-		
-		
-		
-		
-				
-				
+					<div class="button">
+						<a href="#">See All</a>
+					</div>
+				</div>
 				<div class="top-sales box">
 					<div class="title">Doctor Available</div>
 					<ul class="top-sales-details">
@@ -168,7 +181,7 @@
 			</div>
 		</div>
 	</section>
-
+ 
 	<script>
 		let sidebar = document.querySelector(".sidebar");
 		let sidebarBtn = document.querySelector(".sidebarBtn");
