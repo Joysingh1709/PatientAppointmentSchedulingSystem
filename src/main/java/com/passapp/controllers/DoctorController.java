@@ -30,6 +30,24 @@ public class DoctorController {
 		return modelAndView;
 	}
 
+	@GetMapping("/doctorAppointmentList")
+	public ModelAndView getDoctorAppointmentList(@ModelAttribute Doctor doctor) {
+		ModelAndView modelAndView = new ModelAndView("doctorAppointmentList");
+		return modelAndView;
+	}
+
+	@GetMapping("/doctorPatientList")
+	public ModelAndView getDoctorPatientList(@ModelAttribute Doctor doctor) {
+		ModelAndView modelAndView = new ModelAndView("doctorPatientList");
+		return modelAndView;
+	}
+
+	@GetMapping("/doctorProfile")
+	public ModelAndView getDoctorProfile(@ModelAttribute Doctor doctor) {
+		ModelAndView modelAndView = new ModelAndView("doctorProfile");
+		return modelAndView;
+	}
+
 	@GetMapping("/getDoctor")
 	public ResponseEntity<Map<String, Object>> getDoctor(@RequestBody Map<String, Object> body)
 			throws DoctorNotFoundException {
