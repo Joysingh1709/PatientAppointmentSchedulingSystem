@@ -27,5 +27,7 @@ public interface PatientService {
 	public boolean deletePatient(User patient);
 
 	public boolean updateUser(User user);
+	
+	
 
 }
