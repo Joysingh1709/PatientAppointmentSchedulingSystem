@@ -19,7 +19,7 @@
   position: absolute;
   height: 40%;
   width: 100%;
-  background: #7d2ae8;
+  background: #4070f4;
   border-radius: 20px 20px 0 0;
 }
 
@@ -37,7 +37,7 @@ section .card .image{
   width: 140px;
   border-radius: 50%;
   padding: 3px;
-  background: #7d2ae8;
+  background: #4070f4;
 }
 
 section .card .image img{
@@ -106,7 +106,7 @@ section .card .image img{
 }
 
 .card .button button{
-  background: #7d2ae8;
+  background: #4070f4;
   outline: none;
   border: none;
   color: #fff;

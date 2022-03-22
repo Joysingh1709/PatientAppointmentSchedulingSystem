@@ -3,12 +3,16 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="../static/mainjs.js"
+	th:src="@{/mainjs.js}">
+	
+</script>
 <!--<title> Website with Customize Color Theme | CodingLab </title>-->
 <link rel="stylesheet" href="../static/homeStyle.css"
 	th:href="@{/homeStyle.css}">
 <link rel="stylesheet" href="../static/swipe.css"
 	th:href="@{/swipe.css}">
-	<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'
 	rel='stylesheet'>
 <!-- ===== Link Swiper's CSS ===== -->
 <link rel="stylesheet"
@@ -22,11 +26,13 @@
 .swiper-pagination {
 	top: 176%;
 }
-.swiper-button-next{
-top: 140%
+
+.swiper-button-next {
+	top: 140%
 }
-.swiper-button-prev{
-top: 140%
+
+.swiper-button-prev {
+	top: 140%
 }
 </style>
 </head>
@@ -34,7 +40,9 @@ top: 140%
 	<nav>
 		<div class="navbar">
 			<div class="logo">
-				<i class='bx bx-plus-medical'></i><a href="#">PASS APP</a>
+				<i
+					style="font-size: 28px; font-weight: 500; color: #fff; min-width: 60px; text-align: center;"
+					class='bx bx-plus-medical'></i><a href="#">PASS APP</a>
 			</div>
 			<ul class="nav-links">
 				<li><a href="#">Home</a></li>
@@ -43,7 +51,7 @@ top: 140%
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<div class="button">
-				<a href="#">Login/Signin <i class="fas fa-sign-in-alt"></i></a>
+				<a href="/login">Login/Signin <i class="fas fa-sign-in-alt"></i></a>
 			</div>
 		</div>
 	</nav>
@@ -80,21 +88,27 @@ top: 140%
 		<div class="swiper mySwiper container">
 			<div class="swiper-wrapper content">
 
-				<div class="swiper-slide card">
+				<div class="swiper-slide card" th:each="doc : ${doctors}">
 					<div class="card-content">
 						<div class="image">
-							<img src="images/img1.jpg" alt="">
+							<img src="https://picsum.photos/200/300/?blur" alt="">
 						</div>
 
 
 						<div class="name-profession">
-							<span class="name">Dr. Nidhi Tiwari</span> <span class="profession">Radiologist</span>
+
+							<span th:text="${'Dr. '+doc.name}" class="name"></span> <span
+								th:text="${doc.specialization}" class="profession"></span>
 						</div>
 
 						<div class="rating">
-							<span class="profession">Experience 28 years</span>
+							Experience : &nbsp; <span th:text="${doc.experience}"
+								class="profession"></span>&nbsp;years
 						</div>
-
+						<div class="rating">
+							Fees : &#8377;&nbsp; <span th:text="${doc.fee}"
+								class="profession"></span>
+						</div>
 						<div class="button">
 							<button class="aboutMe">About</button>
 							<button class="hireMe">Appointment</button>
@@ -190,4 +204,3 @@ top: 140%
  </script>
 </body>
 </html>
-
