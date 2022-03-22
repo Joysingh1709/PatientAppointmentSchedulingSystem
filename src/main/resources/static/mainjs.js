@@ -1,3 +1,47 @@
+var toast = $("#myToast");
+var toastMessage = document.getElementById("toast-body-message");
+
+document.addEventListener('DOMContentLoaded', function(e) {
+	var patient = localStorage.getItem("patient");
+	var doctor = localStorage.getItem("doctor");
+	var receptionist = localStorage.getItem("receptionist");
+	var adminData = localStorage.getItem("admin");
+
+	let path = window.location.pathname;
+
+	if (adminData) {
+		!path.includes("admin") ? window.location.href = "/admin" : null;
+	}
+	else if (receptionist) {
+		!path.includes("receptionist") ? window.location.href = "/receptionist" : null;
+	}
+	else if (doctor) {
+		!path.includes("doctor") ? window.location.href = "/doctor" : null;
+	}
+	else if (patient) {
+		!path.includes("patient") ? window.location.href = "/patient" : null;
+	}
+	else if (path.includes("registration") && !patient && !doctor && !receptionist && !adminData) {
+		!path.includes("registration") ? window.location.href = "/registration" : null;
+	}
+	else {
+		if (!path.includes("login")) {
+			window.location.href = "/login";
+		}
+		localStorage.removeItem("patient");
+		localStorage.removeItem("doctor");
+		localStorage.removeItem("receptionist");
+		localStorage.removeItem("admin");
+	}
+});
+
+function logout() {
+	localStorage.removeItem("patient");
+	localStorage.removeItem("doctor");
+	localStorage.removeItem("receptionist");
+	localStorage.removeItem("admin");
+	window.location.href = "/login";
+}
 
 /**
  * Doctor's Registration form validattions
@@ -98,7 +142,7 @@ function onRegister() {
 				alert(data.message)
 			}
 		})
-		
+
 	}
 
 }
@@ -145,7 +189,7 @@ function onRecepRegister() {
 		receppassword.classList.add("is-invalid");
 		canSubmit = false;
 	}
-	
+
 	if (canSubmit) {
 		postData('http://localhost:8080/admin/saveReceptionist', {
 			"name": recepname.value,
@@ -206,7 +250,7 @@ function onPatRegister() {
 	}
 
 	if (canSubmit) {
-		
+
 		postData('http://localhost:8080/patient/savePatient', {
 			"name": patname.value,
 			"email": patemail.value,
@@ -234,96 +278,215 @@ async function postData(url = '', data = {}) {
 	return response.json(); // parses JSON response into native JavaScript objects
 }
 
+async function getData(url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'GET', // *GET, POST, PUT, DELETE, etc.
+		headers: {
+			'Content-Type': 'application/json'
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function putData(url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+		headers: {
+			'Content-Type': 'application/json'
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function deleteData(url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+		headers: {
+			'Content-Type': 'application/json'
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	return response.json(); // parses JSON response into native JavaScript objects
+}
+
 
 
 
 //Login Page validation
-function docDisFunction(){
-    document.getElementById("docDIV").style.display = "block";
-    document.getElementById("patDIV").style.display = "none";
-    document.getElementById("resDIV").style.display = "none";
+function docDisFunction() {
+	document.getElementById("docDIV").style.display = "block";
+	document.getElementById("patDIV").style.display = "none";
+	document.getElementById("resDIV").style.display = "none";
 }
-function patDisFunction(){
-    document.getElementById("patDIV").style.display = "block";
-    document.getElementById("docDIV").style.display = "none";
-    document.getElementById("resDIV").style.display = "none";
+function patDisFunction() {
+	document.getElementById("patDIV").style.display = "block";
+	document.getElementById("docDIV").style.display = "none";
+	document.getElementById("resDIV").style.display = "none";
 }
-function resDisFunction(){
-    document.getElementById("resDIV").style.display = "block";
-    document.getElementById("docDIV").style.display = "none";
-    document.getElementById("patDIV").style.display = "none";
+function resDisFunction() {
+	document.getElementById("resDIV").style.display = "block";
+	document.getElementById("docDIV").style.display = "none";
+	document.getElementById("patDIV").style.display = "none";
 }
-function patLogin(){
-	
+function patLogin() {
+
+	var canLogin = false;
 	var email = document.getElementById("typeEmailX-1");
 	var password = document.getElementById("typePasswordX-1");
-	
+
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if(email.value.match(mailformat))
-	{
+	if (email.value.match(mailformat)) {
 		email.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		email.classList.add("is-invalid");
+		canLogin = false;
 	}
-		
-	
-	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
-	if(password.value.match(decimal)) 
-	{
+
+
+	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if (password.value.match(decimal)) {
 		password.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		password.classList.add("is-invalid");
+		canLogin = false;
 	}
-	
+
+	if (canLogin) {
+		postData('http://localhost:8080/patient/login', {
+			"email": email.value,
+			"password": password.value,
+		}).then(data => {
+			if (data.status) {
+				console.log(data.message);
+				localStorage.setItem("patient", JSON.stringify(data.data));
+				window.location.href = "/patient";
+			} else {
+				console.log(data);
+				toastMessage.innerHTML = data.message;
+				toast.toast("show");
+			}
+		}).catch(err => {
+			console.log(err);
+			localStorage.removeItem("patient");
+		})
+	}
+
 	document.forms['patForm'].reset();
-	
+
 }
-function docLogin(){
-	
+function docLogin() {
+
+	var canLogin = false;
 	var email = document.getElementById("typeEmailX-2");
 	var password = document.getElementById("typePasswordX-2");
-	
+
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if(email.value.match(mailformat))
-	{
+	if (email.value.match(mailformat)) {
 		email.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		email.classList.add("is-invalid");
+		canLogin = false;
 	}
-		
-	
-	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
-	if(password.value.match(decimal)) 
-	{
+
+
+	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if (password.value.match(decimal)) {
 		password.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		password.classList.add("is-invalid");
+		canLogin = false;
 	}
+
+
+	if (canLogin) {
+		postData('http://localhost:8080/doctor/login', {
+			"email": email.value,
+			"password": password.value,
+		}).then(data => {
+			if (data.status) {
+				console.log(data.message);
+				localStorage.setItem("doctor", JSON.stringify(data.data));
+				window.location.href = "/doctor";
+			}
+		}).catch(err => {
+			console.log(err);
+			localStorage.removeItem("doctor");
+		})
+	}
+
+
 	document.forms['docForm'].reset();
-	
+
 }
-function resLogin(){
-	
+function resLogin() {
+
+	var canLogin = false;
 	var email = document.getElementById("typeEmailX-3");
 	var password = document.getElementById("typePasswordX-3");
-	
+
 	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if(email.value.match(mailformat))
-	{
+	if (email.value.match(mailformat)) {
 		email.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		email.classList.add("is-invalid");
+		canLogin = false;
 	}
-		
-	
-	var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
-	if(password.value.match(decimal)) 
-	{
+
+
+	var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+	if (password.value.match(decimal)) {
 		password.classList.remove("is-invalid");
-	}else{
+		canLogin = true;
+	} else {
 		password.classList.add("is-invalid");
+		canLogin = false;
 	}
+
+
+	if (canLogin) {
+		postData('http://localhost:8080/receptionist/login', {
+			"email": email.value,
+			"password": password.value,
+		}).then(data => {
+			if (data.status) {
+				console.log(data.message);
+				localStorage.setItem("receptionist", JSON.stringify(data.data));
+				window.location.href = "/receptionist";
+			}
+		}).catch(err => {
+			console.log(err);
+			localStorage.removeItem("receptionist");
+		})
+	}
+
+
 	document.forms['resForm'].reset();
-	
+
+}
+
+function adminLoginPage() {
+
+	var canLogin = false;
+	var email = document.getElementById("adminEmail").value;
+	var password = document.getElementById("adminPassword").value;
+
+	if (email === "joy@capg.com" && password === "@qwerty") {
+		alert("Login Successful");
+		window.location.href = "/admin", true;
+		document.forms['adminLoginForm'].reset();
+		return false;
+	} else {
+		alert("email or password incorrect, please try again");
+	}
 }
 
