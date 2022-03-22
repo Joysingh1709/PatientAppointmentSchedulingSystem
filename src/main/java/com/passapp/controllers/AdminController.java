@@ -29,7 +29,7 @@ public class AdminController {
 	@Autowired
 	private ReceptionistService receptionistService;
 
-	@GetMapping(value = "/")
+	@GetMapping()
 	public ModelAndView adminHome() {
 		return new ModelAndView("admin");
 	}

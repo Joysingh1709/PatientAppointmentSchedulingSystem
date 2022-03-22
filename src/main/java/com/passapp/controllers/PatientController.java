@@ -25,7 +25,7 @@ public class PatientController {
 	@Autowired
 	PatientService patientService;
 
-	@GetMapping(value = "/")
+	@GetMapping()
 	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
 		return new ModelAndView("patientDashboard");
 	}
