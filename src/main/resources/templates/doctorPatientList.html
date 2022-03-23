@@ -39,18 +39,18 @@
 				APP</span>
 		</div>
 		<ul class="nav-links">
-			<li><a th:href="@{/doctor}" class="active"> <i
-					class='bx bx-grid-alt'></i> <span class="links_name">Dashboard</span>
+			<li><a th:href="@{/doctor}"> <i class='bx bx-grid-alt'></i>
+					<span class="links_name">Dashboard</span>
 			</a></li>
 			<li><a th:href="@{/doctor/doctorAppointmentList}"> <i
 					class='bx bx-box'></i>Appointment List <span class="links_name"></span>
 			</a></li>
-			<li><a th:href="@{/doctor/doctorPatientList}"> <i
-					class='bx bx-box'></i>Patient List <span class="links_name"></span>
+			<li><a class="active" th:href="@{/doctor/doctorPatientList}">
+					<i class='bx bx-box'></i>Patient List <span class="links_name"></span>
 			</a></li>
 			<li><a th:href="@{/doctor/doctorProfile}"> <i
 					class='bx bx-box'></i>Profile <span class="links_name"></span>
-      </a></li>
+			</a></li>
 			<li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
 					<span class="links_name">Log out</span>
 			</a></li>
@@ -64,7 +64,7 @@
 
 			<div class="profile-details">
 				<img src="static/images/profile.jpg" alt=""> <span
-					class="admin_name">Dr Gulati</span> <i></i>
+					class="admin_name">Dr. Gulati</span> <i></i>
 			</div>
 		</nav>
 
@@ -72,8 +72,8 @@
 			<div class="overview-boxes">
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Total Appointments</div>
-						<div class="number">50</div>
+						<div class="box-topic">Appointments With</div>
+						<div class="number">Dr.Gulati</div>
 
 
 					</div>
@@ -81,62 +81,56 @@
 				</div>
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Appointment Scheduled</div>
-						<div class="number">38</div>
+						<div class="box-topic">Total Appointments</div>
+						<div class="number">06</div>
 
 					</div>
-				
-
 
 				</div>
-				<!--  <div class="box">
-					<div class="right-side">
-						<div class="box-topic">Appointment Cancelled</div>
-						<div class="number">12</div>
-
-						</div>  -->
 			</div>
 
-			 <div class="sales-boxes">
-				<!-- <div class="recent-sales box">
-					<div class="title">Today's Appointments</div>
-					<div class="sales-details"></div>
-					<div class="button"></div>
-					
-            
-						<a href="#">See All</a>
-					
-				</div>  -->
-				<div class="top-sales box">
+			<div class="sales-boxes">
+				<div class="recent-sales box">
+					<div class="title">Patient List</div>
+					<div class="sales-details">
+						<ul class="details">
+							<li class="topic">Name</li>
+							<li><a href="#">Mrs.Verma</a></li>
+							<li><a href="#">Mr.Gupta</a></li>
+							<li><a href="#">Mr.Rawat</a></li>
+							<li><a href="#">Mrs.Shukla</a></li>
+							<li><a href="#">Mr.Singh</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Age/Gender</li>
+							<li><a href="#">54/F</a></li>
+							<li><a href="#">34/M</a></li>
+							<li><a href="#">45/M</a></li>
+							<li><a href="#">30/F</a></li>
+							<li><a href="#">29/M</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Status</li>
+							<li><a href="#">Diagnosed</a></li>
+							<li><a href="#">Diagnosed</a></li>
+							<li><a href="#">Pending</a></li>
+							<li><a href="#">Diagnosed</a></li>
+							<li><a href="#">Diagnosed</a></li>
+						</ul>
+						<ul class="details">
+							<li class="topic">Fees</li>
+							<li><a href="#">Rs.750</a></li>
+							<li><a href="#">Rs.650</a></li>
+							<li><a href="#">Rs.750</a></li>
+							<li><a href="#">Rs.750</a></li>
+							<li><a href="#">Rs.750</a></li>
+						</ul>
+					</div>
 
-
-					<div class="title">Today's Appointment</div>
-					<ul class="details">
-              <li class="topic"></li>
-              <li><a href="#">Mrs.Anshika</a></li>
-              <li><a href="#">Mrs.Piya</a></li>
-              <li><a href="#">Mr.Akash</a></li>
-              <li><a href="#">Mr.Jay</a></li>
-            </ul>
 					
 				</div>
 
-				<!-- <div class="title">Top Doctors</div>
-					<ul class="top-sales-details">
-						<li><span class="product">Dr Gulati</span> </a> <span
-							class="price"><div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch"
-										id="flexSwitchCheckChecked" checked> <label
-										class="form-check-label" for="flexSwitchCheckChecked"></label>
-								</div></span></li>
-						<li><a href="#"> <span class="product">Dr Nidhi</span>
-						</a> <span class="price"><div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch"
-										id="flexSwitchCheckChecked" checked> <label
-										class="form-check-label" for="flexSwitchCheckChecked"></label>
-								</div></span></li>
-					</ul>
-				</div> -->
+			
 			</div>
 		</div>
 	</section>
