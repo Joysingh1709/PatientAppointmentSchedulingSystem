@@ -11,6 +11,9 @@ public interface DoctorService {
 		public Doctor addDoctor(Doctor doctor);
 				
 		public List<Doctor> getAllDoctors();
+		
+		public List<Doctor> getAllDoctorsByFee();
+		
 	    public Doctor getDoctorById(Long doctorId);
 				
 		public boolean deleteDoctorById(Long doctorId);

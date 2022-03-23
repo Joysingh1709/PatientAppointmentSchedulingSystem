@@ -31,7 +31,7 @@
 					class="links_name">Delete </span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-list-ul'></i> <span
-					class="links_name">Reschedule  </span>
+					class="links_name">Reschedule </span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-pie-chart-alt-2'></i> <span
 					class="links_name"> Print Reciept</span>
@@ -48,9 +48,10 @@
 			<li><a href="#"> <i class='bx bx-cog'></i> <span
 					class="links_name">Setting</span>
 			</a></li>
-			<li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
-					<span class="links_name">Log out</span>
-			</a></li>
+			<li class="log_out"><button
+					style="outline: none; border: none; background: transparent; color: white; margin-left: 25px; padding-right: 4px;"
+					class="links_name" onclick="logout()">Log out</button> <i
+				style="min-width: 33px;" class='bx bx-log-out'></i></li>
 		</ul>
 	</div>
 	<section class="home-section">
@@ -133,7 +134,7 @@
 							<li><a href="#">Tiana Loths</a></li>
 						</ul>
 						<ul class="details">
-							<li class="topic">Prescription </li>
+							<li class="topic">Prescription</li>
 							<li><a href="#">6</a></li>
 							<li><a href="#">4</a></li>
 							<li><a href="#">9</a></li>
@@ -144,7 +145,7 @@
 							<li><a href="#">1</a></li>
 							<li><a href="#">3</a></li>
 						</ul>
-						
+
 					</div>
 					<div class="button">
 						<a href="#">See All</a>
@@ -155,21 +156,31 @@
 					<ul class="top-sales-details">
 						<li><a href="#"><img
 								src="https://img.icons8.com/office/40/000000/administrator-male--v1.png" />
-								<span class="product">Dr Gulati</span> </a> <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-  <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-</div></li>
+								<span class="product">Dr Gulati</span> </a>
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch"
+									id="flexSwitchCheckChecked" checked> <label
+									class="form-check-label" for="flexSwitchCheckChecked"></label>
+							</div></li>
 						<li><a href="#"><i class="fa-solid fa-user-tie-hair-long"></i>
-								<span class="product">Dr Nidhi</span> </a> <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-  <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-</div></li>
+								<span class="product">Dr Nidhi</span> </a>
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" role="switch"
+									id="flexSwitchCheckChecked" checked> <label
+									class="form-check-label" for="flexSwitchCheckChecked"></label>
+							</div></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
- 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/mainjs.js"
+		th:src="@{/mainjs.js}">
+		
+	</script>
 	<script>
 		let sidebar = document.querySelector(".sidebar");
 		let sidebarBtn = document.querySelector(".sidebarBtn");
