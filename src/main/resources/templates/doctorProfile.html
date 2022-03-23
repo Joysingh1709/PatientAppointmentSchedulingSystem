@@ -39,17 +39,17 @@
 				APP</span>
 		</div>
 		<ul class="nav-links">
-			<li><a th:href="@{/doctor}" class="active"> <i
-					class='bx bx-grid-alt'></i> <span class="links_name">Dashboard</span>
+			<li><a  th:href="@{/doctor}" > <i class='bx bx-grid-alt'></i>
+					<span class="links_name">Dashboard</span>
 			</a></li>
-			<li><a th:href="@{/doctor/doctorAppointmentList}"> <i
-					class='bx bx-box'></i>Appointment List <span class="links_name"></span>
+			<li><a th:href="@{/doctor/doctorAppointmentList}"> <i class='bx bx-box'></i>Appointment
+					List <span class="links_name"></span>
 			</a></li>
-			<li><a th:href="@{/doctor/doctorPatientList}"> <i
-					class='bx bx-box'></i>Patient List <span class="links_name"></span>
+			<li><a th:href="@{/doctor/doctorPatientList}"> <i class='bx bx-box'></i>Patient
+					List <span class="links_name"></span>
 			</a></li>
-			<li><a th:href="@{/doctor/doctorProfile}"> <i
-					class='bx bx-box'></i>Profile <span class="links_name"></span>
+			<li><a class="active" th:href="@{/doctor/doctorProfile}"> <i class='bx bx-box'></i>Profile
+					<span class="links_name"></span>
 			</a></li>
 			<li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
 					<span class="links_name">Log out</span>
@@ -72,8 +72,8 @@
 			<div class="overview-boxes">
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Total Appointments</div>
-						<div class="number">50</div>
+						<div class="box-topic">Name</div>
+						<div class="number">Dr.Gulati</div>
 
 
 					</div>
@@ -81,69 +81,56 @@
 				</div>
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Appointment Scheduled</div>
-						<div class="number">38</div>
+						<div class="box-topic">Experiance</div>
+						<div class="number">12 years</div>
 
 					</div>
-				
-
 
 				</div>
-				<!--  <div class="box">
+				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Appointment Cancelled</div>
-						<div class="number">12</div>
+						<div class="box-topic">Speciality</div>
+						<div class="number">Physician</div>
 
-						</div>  -->
+					</div>
+
+				</div>
 			</div>
+			
+			<div class="sales-boxes">
+				<div class="recent-sales box">
+					<div class="title">About</div>
+					<div class="sales-details">
+					<ul class="top-sales-details">
+					<p>
+				    <br> Name: Dr. Gulati</br>
+					<br> Email:Drgulati@gmail.com</br>
+					<br> Specialization: Physician</br>
+					<br> DOB: 12/09/1992</br>
+					<br> Gender: Male</br>
+					<br> Fees: 750/-</br>
+					<br> Experiance: 12 years</br>
+					</p>
+						
+				
+						
+					</ul>
+					</div>
 
-			 <div class="sales-boxes">
-				<!-- <div class="recent-sales box">
-					<div class="title">Today's Appointments</div>
-					<div class="sales-details"></div>
-					<div class="button"></div>
 					
-            
-						<a href="#">See All</a>
-					
-				</div>  -->
-				<div class="top-sales box">
-
-					<div class="title">Today's Appointment</div>
-					<ul class="details">
-              <li class="topic"></li>
-              <li><a href="#">Mrs.Anshika</a></li>
-              <li><a href="#">Mrs.Piya</a></li>
-              <li><a href="#">Mr.Akash</a></li>
-              <li><a href="#">Mr.Jay</a></li>
-            </ul>
-					<!-- <ul class="top-sales-details">
-						<li><i class="fa-solid fa-user-doctor"></i> <span
-							class="product">Dr Gulati</span> </a> <span class="price">Active</span></li>
-						<li><a href="#"> <span class="product">Dr Nidhi</span>
-						</a> <span class="price">In-Active</span></li>
-
-
-					</ul> -->
 				</div>
 
-				<!-- <div class="title">Top Doctors</div>
-					<ul class="top-sales-details">
-						<li><span class="product">Dr Gulati</span> </a> <span
-							class="price"><div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch"
-										id="flexSwitchCheckChecked" checked> <label
-										class="form-check-label" for="flexSwitchCheckChecked"></label>
-								</div></span></li>
-						<li><a href="#"> <span class="product">Dr Nidhi</span>
-						</a> <span class="price"><div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" role="switch"
-										id="flexSwitchCheckChecked" checked> <label
-										class="form-check-label" for="flexSwitchCheckChecked"></label>
-								</div></span></li>
-					</ul>
-				</div> -->
+			
 			</div>
+
+			<!-- <div class="sales-boxes">
+				<div class="recent-sales box">
+				<div class="title">About</div>
+					
+				</div/>-->
+
+
+			</div> 
 		</div>
 	</section>
 	<script type="text/javascript" src="../static/mainjs.js"
