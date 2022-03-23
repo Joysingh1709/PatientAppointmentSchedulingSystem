@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.models.Appointments;
 import com.passapp.models.User;
 import com.passapp.services.AppointmentService;
@@ -49,7 +52,7 @@ public class PatientController {
 	}
 
 	@PostMapping("/savePatient")
-	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) {
+	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) throws PatientNotAddedException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
@@ -59,12 +62,12 @@ public class PatientController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> getPatientAppointments(@RequestParam Long patientId) {
+	public ResponseEntity<Map<String, Object>> getPatientAppointments(@RequestParam Long patientId) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "data found!");
 		res.put("data", patientService.getPatientAppointments(patientId));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.FOUND);
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
 	}
 
 	@PostMapping("/bookAppointments")
@@ -76,5 +79,14 @@ public class PatientController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
+	
+	@GetMapping("/recentappointments/{patientId}")
+	public ResponseEntity<Appointments> getRecentAppointments(@PathVariable Long patientId) throws AppointmentNotFoundException{
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "Recent Appointments!");
+		res.put("data",patientService.getRecentAppointments(patientId));
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

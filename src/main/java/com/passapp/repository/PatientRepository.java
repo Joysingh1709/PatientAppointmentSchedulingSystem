@@ -17,7 +17,7 @@ public interface PatientRepository extends JpaRepository<User, Long> {
 	@Query("From Appointments a WHERE a.user.userId = :aUserId")
 	List<Appointments> getPatientAppointments(@Param("aUserId") Long userId);
 
-	/*@Query("From Appointments a WHERE a.user.userId=:aUserId ORDER BY appointmentTime DESC LIMIT 5")
-	List<Appointments> getRecentAppointments(@Param("aUserId") Long userId);*/
+	@Query(value="From Appointments a WHERE a.user.userId=:aUserId ORDER BY appointmentTime LIMIT 5",nativeQuery = true)
+	List<Appointments> getRecentAppointments(@Param("aUserId") Long userId);
 
 }

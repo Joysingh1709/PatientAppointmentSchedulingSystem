@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Appointments;
 import com.passapp.services.AppointmentService;
 import com.passapp.services.PatientService;
@@ -38,7 +40,7 @@ public class AppointmentController {
 	}
 	
 	@DeleteMapping("/appointmentdel/{appointmentId}")
-	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) {
+	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointment deleted successfully!");
@@ -47,7 +49,7 @@ public class AppointmentController {
 	}
 	
 	@DeleteMapping("/appointmentdelete")
-	public ResponseEntity<Void> deleteAppointment(Appointments appointments) {
+	public ResponseEntity<Void> deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointment deleted successfully!");
@@ -56,7 +58,7 @@ public class AppointmentController {
 	}
 	
 	@PutMapping("/appointmentupdate")
-	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments) {
+	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointment updated successfully!");
@@ -65,7 +67,7 @@ public class AppointmentController {
 	}
 	
 	@GetMapping("/appointments/{appointmentId}")
-	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId){
+	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId) throws AppointmentNotFoundException{
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Id!");
@@ -74,7 +76,7 @@ public class AppointmentController {
     }
 	
 	@GetMapping("/appointments/{doctorId}")
-	public ResponseEntity<Appointments> getAllAppointmentsByDocId(@PathVariable Long doctorId){
+	public ResponseEntity<Appointments> getAllAppointmentsByDocId(@PathVariable Long doctorId) throws DoctorNotFoundException{
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Id!");
@@ -83,7 +85,7 @@ public class AppointmentController {
     }
 	
 	@GetMapping("/appointments/{doctorName}")
-	public ResponseEntity<Appointments> getAllAppointmentsByDocName(@PathVariable String name){
+	public ResponseEntity<Appointments> getAllAppointmentsByDocName(@PathVariable String name) throws DoctorNotFoundException{
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Name!");

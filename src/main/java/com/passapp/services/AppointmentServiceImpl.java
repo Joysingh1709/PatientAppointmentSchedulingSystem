@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Appointments;
 import com.passapp.repository.AppointmentRepository;
 
@@ -20,32 +22,32 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public Appointments getAppointmentsById(Long appointmentId) {
+	public Appointments getAppointmentsById(Long appointmentId) throws AppointmentNotFoundException {
 		Optional<Appointments> appointments = appointmentRepository.findById(appointmentId);
 		if(appointments.isPresent()) {
 			return appointments.get();
 		}
-		return null;
+		throw new AppointmentNotFoundException("Appointment Id is invalid!!");
 	}
 
 	@Override
-	public boolean updateAppointments(Appointments appointments) {
+	public boolean updateAppointments(Appointments appointments) throws AppointmentNotFoundException {
 		if(appointmentRepository.existsById(appointments.getAppointmentId())) {
 			Appointments apt= appointmentRepository.save(appointments);
 			if(apt!=null) {
 			return true;
 			}
 		}
-		return false;
+		throw new AppointmentNotFoundException("Appointment Not Found!!");
 	}
 
 	@Override
-	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) {
+	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) throws DoctorNotFoundException {
 		Optional<Appointments> appointments = appointmentRepository.findById(doctorId);
 		if(appointments.isPresent()) {
 			return appointmentRepository.getAllAppointmentsByDocId(doctorId) ;
 		}
-		return null;
+		throw new DoctorNotFoundException("Invalid Doctor Id!!");
 	}
 
 	@Override
@@ -55,30 +57,30 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public boolean deleteAppointmentsById(Long appointmentId) {
+	public boolean deleteAppointmentsById(Long appointmentId) throws AppointmentNotFoundException{
 		appointmentRepository.deleteById(appointmentId);
 		if(appointmentRepository.existsById(appointmentId)) {
 		return false;
 		}
-		return true;
+		throw new AppointmentNotFoundException("Appointment Id is invalid!!");
 	}
 
 	@Override
-	public boolean deleteAppointment(Appointments appointments) {
+	public boolean deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
 		appointmentRepository.delete(appointments);
 		if(appointmentRepository.existsById(appointments.getAppointmentId())){
 		     return false;
 		}
-		return true;
+		throw new AppointmentNotFoundException("Appointment Not Found!!");
 	}
 
 	@Override
-	public List<Appointments> getAllAppointmentsByDocName(String name) {
+	public List<Appointments> getAllAppointmentsByDocName(String name) throws DoctorNotFoundException {
 		List<Appointments> ap = appointmentRepository.getAppointmentByDocName(name);
 		if(ap != null) {
 			return ap;
 		}
-		return null;
+		throw new DoctorNotFoundException("Invalid Doctor Name!!");
 	}
 
 	
