@@ -9,12 +9,15 @@ import org.springframework.data.repository.query.Param;
 import com.passapp.models.Appointments;
 import com.passapp.models.User;
 
-public interface PatientRepository extends JpaRepository<User,Long> {
-  
-	@Query ("From User p WHERE p.email =:pEmail AND p.password =:pPassword")
-  User getPatientByEmailAndPassword(@Param("pEmail") String email, @Param("pPass") String password);
-	
+public interface PatientRepository extends JpaRepository<User, Long> {
+
+	@Query("From User p WHERE p.email =:pEmail AND p.password =:pPass")
+	User getPatientByEmailAndPassword(@Param("pEmail") String email, @Param("pPass") String password);
+
 	@Query("From Appointments a WHERE a.user.userId = :aUserId")
-    List<Appointments> getPatientAppointments(@Param("aUserId") Long userId);
-	
+	List<Appointments> getPatientAppointments(@Param("aUserId") Long userId);
+
+	@Query(value="From Appointments a WHERE a.user.userId=:aUserId ORDER BY appointmentTime LIMIT 5",nativeQuery = true)
+	List<Appointments> getRecentAppointments(@Param("aUserId") Long userId);
+
 }
