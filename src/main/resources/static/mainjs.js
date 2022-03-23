@@ -487,19 +487,3 @@ function resLogin() {
 
 }
 
-function adminLoginPage() {
-
-	var canLogin = false;
-	var email = document.getElementById("adminEmail").value;
-	var password = document.getElementById("adminPassword").value;
-
-	if (email === "joy@capg.com" && password === "@qwerty") {
-		alert("Login Successful");
-		window.location.href = "/admin", true;
-		document.forms['adminLoginForm'].reset();
-		return false;
-	} else {
-		alert("email or password incorrect, please try again");
-	}
-}
-
