@@ -12,68 +12,72 @@
 
 <link rel="stylesheet" href="../static/style.css"
 	th:href="@{/style.css}">
-	<link rel="stylesheet" href="../static/homeStyle.css"
+<link rel="stylesheet" href="../static/homeStyle.css"
 	th:href="@{/homeStyle.css}">
 
 <title>Patient Registration Form</title>
 </head>
 <body>
-		<div class="col">
-			<div class="signup-form">
-				<form name="form1" action="javascript:void(0)" onsubmit="onPatRegister()">
-					<h2>Patient Registration</h2>
-					<p>Please fill in this form to create an account!</p>
-					<hr>
-					<label style="color: black">Name</label><br>
-					<div class="form-group">
-						<div>
-							<input type="text" class="form-control" id="patName"
-								name="name" placeholder="Name" required="required">
-							<div id="validationServer03Feedback" class="invalid-feedback">
-								Please provide a valid Name.</div>
-						</div>
-					</div>
-					<label style="color: black">Email</label><br>
-					<div class="form-group">
-						<input type="email" class="form-control" id="patEmail"
-							name="email" placeholder="Email" required="required">
+	<div class="col">
+		<div class="signup-form">
+			<form name="form1" action="javascript:void(0)"
+				onsubmit="onPatRegister()">
+				<h2>Patient Registration</h2>
+				<p>Please fill in this form to create an account!</p>
+				<hr>
+				<label style="color: black">Name</label><br>
+				<div class="form-group">
+					<div>
+						<input type="text" class="form-control" id="patName" name="name"
+							placeholder="Name" required="required">
 						<div id="validationServer03Feedback" class="invalid-feedback">
-							Please provide a valid Email.</div>
+							Please provide a valid Name.</div>
 					</div>
-					<label style="color: black">Password</label><br>
-					<div class="form-group">
-						<input type="password" class="form-control" id="patPassword"
-							name="password" placeholder="Password" required="required">
-						<div id="validationServer03Feedback" class="invalid-feedback">
-							Password must contain at least one lowercase letter, one
-							uppercase letter, one numeric digit, and one special character</div>
+				</div>
+				<label style="color: black">Email</label><br>
+				<div class="form-group">
+					<input type="email" class="form-control" id="patEmail" name="email"
+						placeholder="Email" required="required">
+					<div id="validationServer03Feedback" class="invalid-feedback">
+						Please provide a valid Email.</div>
+				</div>
+				<label style="color: black">Password</label><br>
+				<div class="form-group">
+					<input type="password" class="form-control" id="patPassword"
+						name="password" placeholder="Password" required="required">
+					<div id="validationServer03Feedback" class="invalid-feedback">
+						Password must contain at least one lowercase letter, one uppercase
+						letter, one numeric digit, and one special character</div>
 
+				</div>
+				<label style="color: black">Date Of Birth</label><br>
+				<div class="form-group">
+					<div>
+						<input type="date" class="form-control" id="patDob" name="dob">
 					</div>
-					<label style="color: black">Date Of Birth</label><br>
-					<div class="form-group">
-						<div>
-							<input type="date" class="form-control" id="patDob" name="dob">
-						</div>
-					</div>
+				</div>
 
-					<label style="color: black">Gender</label><br>
-					<div class="form-group">
-						<div>
-							<select class="form-control" name="gender" id="patGender">
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="other">Other</option>
-							</select>
-						</div>
+				<label style="color: black">Gender</label><br>
+				<div class="form-group">
+					<div>
+						<select class="form-control" name="gender" id="patGender">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							<option value="other">Other</option>
+						</select>
 					</div>
+				</div>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg">Sign
-							Up</button>
-					</div>
-				</form>
-			</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-lg">Sign
+						Up</button>
+				</div>
+			</form>
 		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../static/mainjs.js"
 		th:src="@{/mainjs.js}">
 		
@@ -91,5 +95,4 @@
 		integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 		crossorigin="anonymous"></script>
 </body>
-</html>	
-				
+</html>

@@ -31,7 +31,7 @@
 					class="links_name">Delete </span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-list-ul'></i> <span
-					class="links_name">Reschedule  </span>
+					class="links_name">Reschedule </span>
 			</a></li>
 			<li><a href="#"> <i class='bx bx-pie-chart-alt-2'></i> <span
 					class="links_name"> Print Reciept</span>
@@ -64,7 +64,8 @@
 					class='bx bx-search'></i>
 			</div>
 			<div class="profile-details">
-				<img src="images/profile.jpg" alt=""> <span class="admin_name">Receptionist</span> <i class='bx bx-chevron-down'></i>
+				<img src="images/profile.jpg" alt=""> <span class="admin_name">Receptionist</span>
+				<i class='bx bx-chevron-down'></i>
 			</div>
 		</nav>
 
@@ -105,71 +106,74 @@
 			</div>
 
 
-<div class="container">
-		<div class="col">
-			<div class="signup-form">
-				<form name="form2" action="javascript:void(0)" onsubmit="onPatRegister()">
-					<h2>Delete Appointment</h2>
-					<p>Please fill in this form to Delete an appointment!</p>
-					<hr>
-					
-					<label style="color: black">Appointment Id</label><br>
+			<div class="container">
+				<div class="col">
+					<div class="signup-form">
+						<form name="form2" action="javascript:void(0)"
+							onsubmit="onPatRegister()">
+							<h2>Delete Appointment</h2>
+							<p>Please fill in this form to Delete an appointment!</p>
+							<hr>
+
+							<label style="color: black;">Appointment Id</label><br>
 							<div class="form-group">
-							<div>
-							<input type="number" class="form-control" id="appointmentId" name="problemappointmentId"
-								placeholder="ApointmentId" required="required">
-							<div id="validationServer03Feedback" class="invalid-feedback">
-								Please provide a valid AppointmentID</div>
+								<div>
+									<input type="number" class="form-control" id="appointmentId"
+										name="problemappointmentId" placeholder="ApointmentId"
+										required="required">
+									<div id="validationServer03Feedback" class="invalid-feedback">
+										Please provide a valid AppointmentID</div>
+								</div>
 							</div>
-					
-                                       
-                                        <label style="color: black">Patient's Name</label><br>
-					<div class="form-group">
-						<div>
-							<input type="text" class="form-control" id="patName" name="name"
-								placeholder="Name" required="required">
-							<div id="validationServer03Feedback" class="invalid-feedback">
-								Please provide a valid Name.</div>
-						</div>
-					
-                                        
-					
-            			
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg">Delete Appointment</button>
+
+							<label style="color: black;">Patient's Name</label><br>
+							<div class="form-group">
+								<div>
+									<input type="text" class="form-control" id="patName"
+										name="name" placeholder="Name" required="required">
+									<div id="validationServer03Feedback" class="invalid-feedback">
+										Please provide a valid Name.</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-lg">Delete
+									Appointment</button>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-		</div>
-		
-		
-		
-		
-				
-				
-				<div class="top-sales box">
-					<div class="title">Doctor Available</div>
-					<ul class="top-sales-details">
-						<li><a href="#"><img
-								src="https://img.icons8.com/office/40/000000/administrator-male--v1.png" />
-								<span class="product">Dr Gulati</span> </a> <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-  <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-</div></li>
-						<li><a href="#"><i class="fa-solid fa-user-tie-hair-long"></i>
-								<span class="product">Dr Nidhi</span> </a> <div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-  <label class="form-check-label" for="flexSwitchCheckChecked"></label>
-</div></li>
-					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="top-sales box">
+			<div class="title">Doctor Available</div>
+			<ul class="top-sales-details">
+				<li><a href="#"><img
+						src="https://img.icons8.com/office/40/000000/administrator-male--v1.png" />
+						<span class="product">Dr Gulati</span> </a>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" role="switch"
+							id="flexSwitchCheckChecked" checked> <label
+							class="form-check-label" for="flexSwitchCheckChecked"></label>
+					</div></li>
+				<li><a href="#"><i class="fa-solid fa-user-tie-hair-long"></i>
+						<span class="product">Dr Nidhi</span> </a>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" role="switch"
+							id="flexSwitchCheckChecked" checked> <label
+							class="form-check-label" for="flexSwitchCheckChecked"></label>
+					</div></li>
+			</ul>
+		</div>
 	</section>
-
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/mainjs.js"
+		th:src="@{/mainjs.js}">
+		
+	</script>
 	<script>
 		let sidebar = document.querySelector(".sidebar");
 		let sidebarBtn = document.querySelector(".sidebarBtn");
