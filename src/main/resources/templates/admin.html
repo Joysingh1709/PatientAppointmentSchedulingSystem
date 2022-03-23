@@ -50,9 +50,10 @@
 			<li><a th:href="@{admin/register}"> <i class='bx bx-box'></i>Registration
 					<span class="links_name"></span>
 			</a></li>
-			<li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
-					<span class="links_name">Log out</span>
-			</a></li>
+			<li class="log_out"><button
+					style="outline: none; border: none; background: transparent; color: white; margin-left: 25px; padding-right: 4px;"
+					class="links_name" onclick="logout()">Log out</button> <i
+				style="min-width: 33px;" class='bx bx-log-out'></i></li>
 		</ul>
 	</div>
 	<section class="home-section">
@@ -76,23 +77,19 @@
 					<div class="right-side">
 						<div class="box-topic">Total Doctors</div>
 						<div class="number">500</div>
-						<!-- <div class="indicator">
-							<i class='bx bx-up-arrow-alt'></i> <span class="text">Up
-								from yesterday</span>
-						</div> -->
 					</div>
-					<!-- <i class='bx bx-cart-alt cart'></i> -->
 				</div>
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Confirm Appointments</div>
 						<div class="number">38,876</div>
-						<!-- <div class="indicator">
-							<i class='bx bx-up-arrow-alt'></i> <span class="text">Up
-								from yesterday</span>
-						</div> -->
 					</div>
-					<!-- <i class='bx bxs-cart-add cart two'></i> -->
+				</div>
+				<div class="box">
+					<div class="right-side">
+						<div class="box-topic">Total Users</div>
+						<div class="number">876</div>
+					</div>
 				</div>
 			</div>
 
