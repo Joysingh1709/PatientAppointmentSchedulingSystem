@@ -95,7 +95,7 @@ public class AppointmentController {
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Name!");
 		res.put("data", appointmentService.getAllAppointmentsByDocName(name));
-		return new ResponseEntity<Map<String, Object>(res, HttpStatus.OK);
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
 	}
 
 }
