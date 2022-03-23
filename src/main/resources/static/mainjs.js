@@ -1,7 +1,7 @@
 var toast = $("#myToast");
 var toastMessage = document.getElementById("toast-body-message");
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener('DOMContentLoaded', function (e) {
 	var patient = localStorage.getItem("patient");
 	var doctor = localStorage.getItem("doctor");
 	var receptionist = localStorage.getItem("receptionist");
@@ -32,6 +32,19 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		localStorage.removeItem("doctor");
 		localStorage.removeItem("receptionist");
 		localStorage.removeItem("admin");
+	}
+
+	if (adminData) {
+		document.querySelector(".admin_name").innerHTML = JSON.parse(adminData).name;
+	}
+	else if (receptionist) {
+		document.querySelector(".admin_name").innerHTML = JSON.parse(receptionist).name;
+	}
+	else if (doctor) {
+		document.querySelector(".admin_name").innerHTML = JSON.parse(doctor).name;
+	}
+	else if (patient) {
+		document.querySelector(".admin_name").innerHTML = JSON.parse(patient).name;
 	}
 });
 
