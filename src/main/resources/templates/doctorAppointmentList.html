@@ -73,7 +73,7 @@
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Total Appointments</div>
-						<div class="number">50</div>
+						<div id="docTotalApp" class="number">50</div>
 
 
 					</div>
@@ -144,6 +144,23 @@
 		
 	</script>
 	<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const doctor = JSON.parse(localStorage.getItem('doctor'));
+		
+		fetch("http://localhost:8080/appointment/doctorId/" + doctor.doctorId, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.status){
+				document.getElementById("docTotalApp").innerHTML = parseInt(data.data.length);
+			}
+		})
+	});
+	
 		let sidebar = document.querySelector(".sidebar");
 		let sidebarBtn = document.querySelector(".sidebarBtn");
 		sidebarBtn.onclick = function() {

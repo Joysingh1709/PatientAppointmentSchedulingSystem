@@ -27,8 +27,10 @@ public class AppointmentController {
 
 	@Autowired
 	PatientService patientService;
+
+	@Autowired
 	AppointmentService appointmentService;
-	
+
 	@PostMapping("/saveAppointments")
 	public ResponseEntity<Map<String, Object>> addAppointments(@RequestBody Appointments appointments) {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -38,7 +40,7 @@ public class AppointmentController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
-	
+
 	@DeleteMapping("/appointmentdel/{appointmentId}")
 	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -47,7 +49,7 @@ public class AppointmentController {
 		res.put("data", appointmentService.deleteAppointmentsById(appointmentId));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@DeleteMapping("/appointmentdelete")
 	public ResponseEntity<Void> deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
@@ -56,46 +58,44 @@ public class AppointmentController {
 		res.put("data", appointmentService.deleteAppointment(appointments));
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	@PutMapping("/appointmentupdate")
-	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments) throws AppointmentNotFoundException {
+	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointment updated successfully!");
 		res.put("data", appointmentService.updateAppointments(newAppointments));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/appointments/{appointmentId}")
-	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId) throws AppointmentNotFoundException{
+	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Id!");
-		res.put("data",appointmentService.getAppointmentsById(appointmentId) );
-    	return new ResponseEntity<>(HttpStatus.OK);
-    }
-	
-	@GetMapping("/appointments/{doctorId}")
-	public ResponseEntity<Appointments> getAllAppointmentsByDocId(@PathVariable Long doctorId) throws DoctorNotFoundException{
+		res.put("data", appointmentService.getAppointmentsById(appointmentId));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@GetMapping("/doctorId/{doctorId}")
+	public ResponseEntity<Map<String, Object>> getAllAppointmentsByDocId(@PathVariable Long doctorId) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Id!");
-		res.put("data",appointmentService.getAllAppointmentsByDocId(doctorId));
-    	return new ResponseEntity<>(HttpStatus.OK);
-    }
-	
-	@GetMapping("/appointments/{doctorName}")
-	public ResponseEntity<Appointments> getAllAppointmentsByDocName(@PathVariable String name) throws DoctorNotFoundException{
+		res.put("data", appointmentService.getAllAppointmentsByDocId(doctorId));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
+
+	@GetMapping("/doctorName/{doctorName}")
+	public ResponseEntity<Map<String, Object>> getAllAppointmentsByDocName(@PathVariable String name)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Name!");
-		res.put("data",appointmentService.getAllAppointmentsByDocName(name));
-    	return new ResponseEntity<>(HttpStatus.OK);
-    }
-	
-
-	
-	
-	
+		res.put("data", appointmentService.getAllAppointmentsByDocName(name));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
 
 }

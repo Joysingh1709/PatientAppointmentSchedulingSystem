@@ -17,7 +17,7 @@ public interface AppointmentService {
 	public boolean deleteAppointment(Appointments appointments) throws AppointmentNotFoundException;
 	public boolean updateAppointments(Appointments appointments) throws AppointmentNotFoundException;
 	
-	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) throws DoctorNotFoundException;
-	public List<Appointments> getAllAppointmentsByDocName(String name) throws DoctorNotFoundException;
+	public List<Appointments> getAllAppointmentsByDocId(Long doctorId);
+	public List<Appointments> getAllAppointmentsByDocName(String name) throws AppointmentNotFoundException;
 
 }

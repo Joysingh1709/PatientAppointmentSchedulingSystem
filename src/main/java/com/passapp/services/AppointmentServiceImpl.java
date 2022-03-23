@@ -47,12 +47,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) throws DoctorNotFoundException {
-		Optional<Appointments> appointments = appointmentRepository.findById(doctorId);
-		if (appointments.isPresent()) {
-			return appointmentRepository.getAllAppointmentsByDocId(doctorId);
-		}
-		throw new DoctorNotFoundException("Invalid Doctor Id!!");
+	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) {
+		List<Appointments> appointments = appointmentRepository.getAllAppointmentsByDocId(doctorId);
+			return appointments;
 	}
 
 	@Override
@@ -80,12 +77,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public List<Appointments> getAllAppointmentsByDocName(String name) throws DoctorNotFoundException {
+	public List<Appointments> getAllAppointmentsByDocName(String name) throws AppointmentNotFoundException {
 		List<Appointments> ap = appointmentRepository.getAppointmentByDocName(name);
 		if (ap != null) {
 			return ap;
 		}
-		throw new DoctorNotFoundException("Invalid Doctor Name!!");
+		throw new AppointmentNotFoundException("Invalid Doctor Name!!");
 	}
 
 }
