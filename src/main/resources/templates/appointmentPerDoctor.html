@@ -24,30 +24,30 @@
 				App</span>
 		</div>
 		<ul class="nav-links">
-			<li><a href="#" class="active"> <i class='bx bx-grid-alt'></i>
+			<li><a th:href="@{/receptionist}" class="active"> <i class='bx bx-grid-alt'></i>
 					<span class="links_name">Dashboard</span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-box'></i> <span
+			<li><a th:href="@{/receptionist/deleteAppointment}"> <i class='bx bx-box'></i> <span
 					class="links_name">Delete </span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-list-ul'></i> <span
+			<li><a th:href="@{/receptionist/updateAppointment}"> <i class='bx bx-list-ul'></i> <span
 					class="links_name">Reschedule </span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-pie-chart-alt-2'></i> <span
+			<li><a th:href="@{/receptionist}"> <i class='bx bx-pie-chart-alt-2'></i> <span
 					class="links_name"> Print Receipt</span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-coin-stack'></i> <span
+			<li><a th:href="@{/receptionist/updateSpecialization}"> <i class='bx bx-coin-stack'></i> <span
 					class="links_name">Specialization</span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-book-alt'></i> <span
+			<li><a th:href="@{/receptionist/patientPrescription}"> <i class='bx bx-book-alt'></i> <span
 					class="links_name">Prescriptions</span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-user'></i> <span
+			<li><a href="@{/receptionist}"> <i class='bx bx-user'></i> <span
 					class="links_name">Delayed</span>
-			</a></li>
-			<li><a href="#"> <i class='bx bx-cog'></i> <span
-					class="links_name">Setting</span>
-			</a></li>
+			 </a></li>
+			<li><a href="@{/receptionist/appointmentPerDoctor}"> <i class='bx bx-cog'></i> <span
+					class="links_name">AppointmentperDoctor</span>
+			</a></li> 
 			<li class="log_out"><button
 					style="outline: none; border: none; background: transparent; color: white; margin-left: 25px; padding-right: 4px;"
 					class="links_name" onclick="logout()">Log out</button> <i
@@ -154,8 +154,7 @@
 				<div class="top-sales box">
 					<div class="title">Doctor Available</div>
 					<ul class="top-sales-details">
-						<li><a href="#"><img
-								src="https://img.icons8.com/office/40/000000/administrator-male--v1.png" />
+						<li><a href="#">
 								<span class="product">Dr Gulati</span> </a>
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" role="switch"
