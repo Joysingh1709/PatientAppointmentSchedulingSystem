@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.PatientNotFoundException;
+import com.passapp.exceptions.ReceptionistNotFoundException;
 import com.passapp.models.User;
 import com.passapp.services.DoctorService;
 import com.passapp.services.PatientService;
+import com.passapp.services.ReceptionistService;
 
 @RestController
 
@@ -27,6 +30,9 @@ public class LoginController {
 
 	@Autowired
 	DoctorService doctorService;
+
+	@Autowired
+	ReceptionistService receptionistService;
 
 	@GetMapping()
 	public ModelAndView getHomePage() {
@@ -60,6 +66,29 @@ public class LoginController {
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
 		res.put("data", patientService.getPatient(body.get("email").toString(), body.get("password").toString()));
+
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
+
+	@PostMapping("/doctor/login")
+	public ResponseEntity<Map<String, Object>> doctorLogin(@RequestBody Map<String, Object> body)
+			throws DoctorNotFoundException {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "data inserted successfully!");
+		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
+
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
+
+	@PostMapping("/receptionist/login")
+	public ResponseEntity<Map<String, Object>> receptionistLogin(@RequestBody Map<String, Object> body)
+			throws ReceptionistNotFoundException {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "data inserted successfully!");
+		res.put("data",
+				receptionistService.getReceptionist(body.get("email").toString(), body.get("password").toString()));
 
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
 	}

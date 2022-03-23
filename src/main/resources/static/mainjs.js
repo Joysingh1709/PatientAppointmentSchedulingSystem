@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 		document.querySelector(".admin_name").innerHTML = JSON.parse(receptionist).name;
 	}
 	else if (doctor) {
-		document.querySelector(".admin_name").innerHTML = JSON.parse(doctor).name;
+		document.querySelector(".admin_name").innerHTML = "Dr." + JSON.parse(doctor).name;
 	}
 	else if (patient) {
 		document.querySelector(".admin_name").innerHTML = JSON.parse(patient).name;
@@ -429,6 +429,10 @@ function docLogin() {
 				console.log(data.message);
 				localStorage.setItem("doctor", JSON.stringify(data.data));
 				window.location.href = "/doctor";
+			} else {
+				console.log(data);
+				toastMessage.innerHTML = data.message;
+				toast.toast("show");
 			}
 		}).catch(err => {
 			console.log(err);
@@ -475,6 +479,10 @@ function resLogin() {
 				console.log(data.message);
 				localStorage.setItem("receptionist", JSON.stringify(data.data));
 				window.location.href = "/receptionist";
+			} else {
+				console.log(data);
+				toastMessage.innerHTML = data.message;
+				toast.toast("show");
 			}
 		}).catch(err => {
 			console.log(err);
