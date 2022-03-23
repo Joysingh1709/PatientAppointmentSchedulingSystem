@@ -67,7 +67,16 @@
 						<h2>Appointment Booking</h2>
 						<p>Please fill in this form to book an appointment!</p>
 						<hr>
-						<label style="color: black">Doctor</label><br>
+						<label style="color: black">Doctors's Name</label><br>
+                        <div class="form-group">
+                            <div>
+                                <input type="text" class="form-control" id="docName" name="name"
+                                    placeholder="Name" required="required">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Please provide a valid Name.</div>
+                            </div>
+                            
+                        <label style="color: black" >Doctor's Specification</label><br>
 						<div class="form-group">
 							<select class="form-control" name="specialization"
 								id="docSpecialization">
@@ -77,15 +86,6 @@
 								<option value="Radiologists">Radiologists</option>
 							</select>
 						</div>
-
-						<label style="color: black">Problem</label><br>
-						<div class="form-group">
-							<div>
-								<input type="text" class="form-control" id="problem"
-									name="problem" placeholder="Problem" required="required">
-								<div id="validationServer03Feedback" class="invalid-feedback">
-									Please provide a valid Problem.</div>
-							</div>
 
 							<label style="color: black">Date Of Appointment</label><br>
 							<div class="form-group">
@@ -102,18 +102,32 @@
 									<div id="validationServer03Feedback" class="invalid-feedback">
 										Please provide a valid Name.</div>
 								</div>
-								<label style="color: black">Date Of Birth</label><br>
-								<div class="form-group">
+							<label style="color: black">Problem</label><br>
+							<div class="form-group">
+								<div>
+									<input type="text" class="form-control" id="problem"
+										name="problem" placeholder="Problem" required="required">
+									<div id="validationServer03Feedback" class="invalid-feedback">
+										Please provide a valid Problem.
+									</div>
+								</div>
+							<label style="color: black">Date Of Birth</label><br>
+							<div class="form-group">
 									<div>
 										<input type="date" class="form-control" name="dob">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label style="color: black">Gender</label><br> <input
-										type="radio" name="gender" id="html" value="male"><label>Male</label><br>
-									<input type="radio" name="gender" id="html" value="female"><label>Female</label><br>
-									<input type="radio" name="gender" id="html" value="other"><label>Other</label>
+									<label style="color: black">Gender</label><br> 
+									<select class="form-control" name="gender" id="html">
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+										<option value="other">Other</option>
+									</select>
+									<!-- <input type="radio"  ><label>Male</label><br>
+									<input type="radio" name="gender" id="html" ><label>Female</label><br>
+									<input type="radio" name="gender" id="html" ><label>Other</label> -->
 								</div>
 
 								<div class="form-group">
@@ -129,126 +143,6 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../static/mainjs.js"
 		th:src="@{/mainjs.js}">
-		
-<<<<<<< HEAD
-	</head>
-	<body>
-        <div class="sidebar">
-            <div class="logo-details">
-                <i class='bx bx-plus-medical'></i> <span class="logo_name">PASS App</span>
-            </div>
-            <ul class="nav-links">
-                <li><a th:href="@{/patient}" > <i class='bx bx-grid-alt'></i>
-                        <span class="links_name">Dashboard</span>
-                </a></li>
-                <li><a th:href="@{/patient/patientBookAppointment}" class="active" > <i class='bx bx-user'></i> 
-                	<span class="links_name">Book Appointment</span>
-                </a></li>
-                <li><a th:href="@{/patient/patientTotalAppointment}" > <i class='bx bx-book-alt'></i> 
-                	<span class="links_name">Total Appointments</span>
-                </a></li>
-                <li><a th:href="@{/patient/patientReview}"> <i class='bx bx-message'></i> 
-                	<span class="links_name">Review</span>
-                </a></li>
-                <li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
-                        <span class="links_name">Log out</span>
-                </a></li>
-            </ul>
-        </div>
-        <section class="home-section">
-            <nav>
-                <div id="sidebutton" class="sidebar-button">
-                    <i class='bx bx-menu sidebarBtn'></i> 
-                    <span class="dashboard">Review</span>
-                </div>
-                <div class="search-box">
-                    <input type="text" placeholder="Search..."> 
-                    <i class='bx bx-search'></i>
-                </div>
-                <div class="profile-details">
-                    <img src="../images/profile.jpg" alt=""> 
-                    <span class="admin_name">Prem Shahi</span> 
-                    <i class='bx bx-chevron-down'></i>
-                </div>
-            </nav>
-
-            <div id="appoBook" class="home-content">
-                <div class="patientAppo">
-                    <div class="signup-form">
-                    <form name="form2" action="javascript:void(0)" onsubmit="onPatRegister()">
-                        <h2>Appointment Booking</h2>
-                        <p>Please fill in this form to book an appointment!</p>
-                        <hr>
-                        <label style="color: black" >Doctor</label><br>
-                        <div class="form-group">
-                            <select class="form-control" name="specialization" id="docSpecialization">
-	                            <option value="Anesthesiologists">Anesthesiologists</option>
-	                            <option value="Cardiologists">Cardiologists</option>
-	                            <option value="Neurologists">Neurologists</option>
-	                            <option value="Radiologists">Radiologists</option>
-                            </select>
-                        </div>
-                                           
-                        <label style="color: black">Problem</label><br>
-                        <div class="form-group">
-                            <div>
-                                <input type="text" class="form-control" id="problem" name="problem" placeholder="Problem" required="required">
-                                <div id="validationServer03Feedback" class="invalid-feedback">
-                                    Please provide a valid Problem.
-                                </div>
-                            </div>
-                        
-                        <label style="color: black">Date Of Appointment</label><br>
-                        <div class="form-group">
-                            <div>
-                                <input type="date" class="form-control" name="dob">
-                            </div>
-                        </div>
-
-                        <label style="color: black">Patient's Name</label><br>
-                        <div class="form-group">
-                            <div>
-                                <input type="text" class="form-control" id="patName" name="name"
-                                    placeholder="Name" required="required">
-                                <div id="validationServer03Feedback" class="invalid-feedback">
-                                    Please provide a valid Name.</div>
-                            </div>
-                        <label style="color: black">Date Of Birth</label><br>
-                        <div class="form-group">
-                            <div>
-                                <input type="date" class="form-control" name="dob">
-                            </div>
-                        </div>
-                                            
-                        <div class="form-group">
-                            <label style="color: black">Gender</label><br> 
-                            <input type="radio" name="gender" id="html" value="male"><label>Male</label><br>
-                            <input type="radio" name="gender" id="html" value="female"><label>Female</label><br>
-                            <input type="radio" name="gender" id="html" value="other"><label>Other</label>
-                        </div>
-                            
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg">Book</button>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <script>
-            let sidebar = document.querySelector(".sidebar");
-            let sidebarBtn = document.querySelector(".sidebarBtn");
-            sidebarBtn.onclick = function() {
-                sidebar.classList.toggle("active");
-                if (sidebar.classList.contains("active")) {
-                    sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-                } else
-                    sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-            }
-        </script>
-        <!-- <script>
-=======
 	</script>
 	<script>
 		let sidebar = document.querySelector(".sidebar");
@@ -262,7 +156,6 @@
 		}
 	</script>
 	<!-- <script>
->>>>>>> f22047abcd3c1fbd7518ce9254e456597fc76080
             function dashboard(){
                 document.getElementById("dash").style.display = "block";
                 document.getElementById("appoBook").style.display = "none";
