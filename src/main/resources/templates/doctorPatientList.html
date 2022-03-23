@@ -51,9 +51,10 @@
 			<li><a th:href="@{/doctor/doctorProfile}"> <i
 					class='bx bx-box'></i>Profile <span class="links_name"></span>
 			</a></li>
-			<li class="log_out"><a href="#"> <i class='bx bx-log-out'></i>
-					<span class="links_name">Log out</span>
-			</a></li>
+			<li class="log_out"><button
+					style="outline: none; border: none; background: transparent; color: white; margin-left: 25px; padding-right: 4px;"
+					class="links_name" onclick="logout()">Log out</button> <i
+				style="min-width: 33px;" class='bx bx-log-out'></i></li>
 		</ul>
 	</div>
 	<section class="home-section">
@@ -127,13 +128,16 @@
 						</ul>
 					</div>
 
-					
+
 				</div>
 
-			
+
 			</div>
 		</div>
 	</section>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../static/mainjs.js"
 		th:src="@{/mainjs.js}">
 		
