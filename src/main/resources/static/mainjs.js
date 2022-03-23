@@ -495,3 +495,43 @@ function resLogin() {
 
 }
 
+function onBookAppointment() {
+	var doctorId = document.getElementById("docName").value;
+	var docSpecialization = document.getElementById("docSpecialization").value;
+	var patName = document.getElementById("patName").value;
+	var problem = document.getElementById("problem").value;
+	var datOfApp = document.getElementById("datOfApp").value;
+	var patDob = document.getElementById("patDob").value;
+	var patGender = document.getElementById("patGender").value;
+
+	console.log(doctorId, docSpecialization, patName, problem, patDob, patGender);
+
+	fetch("http://localhost:8080/doctor/getDoctor/" + doctorId)
+		.then(res => res.json())
+		.then(data => {
+			if (data.status) {
+				console.log(data);
+
+				postData('http://localhost:8080/appointment/saveAppointments', {
+					"createdDate": new Date(),
+					"updatedDate": new Date(),
+					"problem": problem,
+					"status": "Pending",
+					"appointmentTime": datOfApp,
+					"patientName": patName,
+					"patientGender": patGender,
+					"patientDOB": patDob,
+					"doctorId": data.data.doctorId,
+					"userId": JSON.parse(localStorage.getItem("patient")).userId
+				}).then(dataRes => {
+					console.log("dataRes : ", dataRes);
+					if (dataRes.status) {
+						console.log(dataRes.message);
+						toastMessage.innerHTML = dataRes.message;
+						toast.toast("show");
+						window.location.href = "/patient";
+					}
+				})
+			}
+		});
+}

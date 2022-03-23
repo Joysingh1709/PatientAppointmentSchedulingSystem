@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,6 +56,15 @@ public class DoctorController {
 		res.put("status", true);
 		res.put("message", "data found!");
 		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
+
+	@GetMapping("/getDoctor/{docId}")
+	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) throws DoctorNotFoundException {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "data found!");
+		res.put("data", doctorService.getDoctorById(docId));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
 	}
 

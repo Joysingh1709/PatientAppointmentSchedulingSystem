@@ -85,4 +85,9 @@ public class DoctorServiceImpl implements DoctorService {
 		return doctorRepository.findAll(Sort.by(Sort.Direction.ASC, "fee"));
 	}
 
+	@Override
+	public Double getTotalFeeRecieved() {
+		return doctorRepository.getTotalFee();
+	}
+
 }
