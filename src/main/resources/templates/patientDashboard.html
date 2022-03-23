@@ -86,8 +86,8 @@
 				<div class="recent-sales box">
 					<div class="title">Recent Appointments Booked</div>
 					<div class="sales-details">
-						<table class="details">
-							<tr onsubmit="addRowHandlers()">
+						<table class="detail" id="detail">
+							<tr>
 								<th class="topic">Appointment ID</th>
 								<th class="topic">Doctor Name</th>
 								<th class="topic">Doctor Speciality</th>
@@ -95,7 +95,7 @@
 								<th class="topic">For Whom</th>
 								<th class="topic">Problem</th>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>876</td>
 								<td>Dr Joy</td>
 								<td>Dermatologist</td>
@@ -103,7 +103,7 @@
 								<td>Mother</td>
 								<td>Suryosis</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>875</td>
 								<td>Dr Nikhar</td>
 								<td>Rheumatologist</td>
@@ -111,7 +111,7 @@
 								<td>Father</td>
 								<td>Leg Arthritis</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>874</td>
 								<td>Dr Fatima</td>
 								<td>Child Specilist</td>
@@ -119,7 +119,7 @@
 								<td>Daughter</td>
 								<td>Child Fever</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>873</td>
 								<td>Dr Nidhi</td>
 								<td>Gastroenterologist</td>
@@ -127,7 +127,7 @@
 								<td>Wife</td>
 								<td>Constant Stomach Pain</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>872</td>
 								<td>Dr Aasaf</td>
 								<td>Cardiologist</td>
@@ -135,7 +135,7 @@
 								<td>Self</td>
 								<td>Routin Heart Check-up</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>871</td>
 								<td>Dr Piyusha</td>
 								<td>Psychiatrist</td>
@@ -143,7 +143,7 @@
 								<td>Servet</td>
 								<td>Servent got mad after hitting his head</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>870</td>
 								<td>Dr Jayesh</td>
 								<td>General Physician</td>
@@ -151,7 +151,7 @@
 								<td>GrandMother</td>
 								<td>Chorona</td>
 							</tr>
-							<tr onsubmit="addRowHandlers()">
+							<tr onclick="addRowHandlers()">
 								<td>869</td>
 								<td>Dr Krutika</td>
 								<td>General Physician</td>
@@ -163,7 +163,7 @@
 					</div>
 					<br>
 					<div class="button">
-						<a href="#">See All</a>
+						<a th:href="@{/patient/patientTotalAppointment}">See All</a>
 					</div>
 				</div>
 				<div class="top-sales box">
@@ -220,12 +220,12 @@
 			</div>
 		</div>
 
-		<div id="appoBook" class="home-content" style="display: block;">
+		<div id="appoBook" class="home-content2" style="display: none;">
 			<div class="patientAppo">
 				<div class="signup-form2">
 					<form name="form3" action="javascript:void(0)">
-						<h2>Appointment Booking</h2>
-						<table class="Appodetails">
+						<h2>Appointment Booked</h2>
+						<table class="Appodetails" id="datareturn">
 							<tr>
 								<th class="topic">Appointment ID</th>
 								<th class="topic">Doctor Name</th>
@@ -235,13 +235,21 @@
 								<th class="topic">Problem</th>
 							</tr>
 							<tr>
+                                <td id="id"></td>
+                                <td id="docName"></td>
+                                <td id="docSpec"></td>
+                                <td id="apDT"></td>
+                                <td id="famMem"></td>
+                                <td id="probl"></td>
+                            </tr>
+							<!-- <tr>
 								<td>876</td>
 								<td>Dr Joy</td>
 								<td>Dermatologist</td>
 								<td>12/3/22 3:00pm</td>
 								<td>Mother</td>
 								<td>Suryosis</td>
-							</tr>
+							</tr> -->
 						</table>
 					</form>
 				</div>
@@ -267,22 +275,44 @@
 		}
 	</script>
 	<script>
-		function addRowHandlers() {
-			var table = document.getElementById("details");
-			var rows = table.getElementsByTagName("tr");
-			for (i = 0; i < rows.length; i++) {
-				var currentRow = table.rows[i];
-				var createClickHandler = function(row) {
-					return function() {
-						var cell = row.getElementsByTagName("td")[0];
-						var id = cell.innerHTML;
-						document.getElementById("appoBook").style.display = "block";
-						// alert("id:" + id);
-					};
-				};
-				currentRow.onclick = createClickHandler(currentRow);
-			}
-		}
+            function addRowHandlers() {
+                var table = document.getElementById("detail");
+                var rows = table.getElementsByTagName("tr");
+                var tables = "";
+                for (i = 0; i < rows.length; i++) {
+                    var currentRow = table.rows[i];
+                    var createClickHandler = function(row) {
+                        return function() {
+                            var id = row.getElementsByTagName("td")[0];
+                            var appoid = id.innerHTML;
+                            var name = row.getElementsByTagName("td")[1];
+                            var docname = name.innerHTML;
+                            var spec = row.getElementsByTagName("td")[2];
+                            var docspec = spec.innerHTML;
+                            var dt = row.getElementsByTagName("td")[3];
+                            var appodt = dt.innerHTML;
+                            var fname = row.getElementsByTagName("td")[4];
+                            var familyname = fname.innerHTML;
+                            var prob = row.getElementsByTagName("td")[5];
+                            var patprob = prob.innerHTML;
+                            // alert(" Appointment Id: " + appoid + "\n Doctor's Name: " + docname + "\n Doctor's Specification: " + docspec + "\n Appointment Date/Time: " + appodt + "\n For Whome: " +familyname+ "\n Problem: " + patprob);
+                            document.getElementById("id").innerHTML = appoid ;
+                            document.getElementById("docName").innerHTML = docname ;
+                            document.getElementById("docSpec").innerHTML = docspec ;
+                            document.getElementById("apDT").innerHTML = appodt ;
+                            document.getElementById("famMem").innerHTML = familyname ;
+                            document.getElementById("probl").innerHTML = patprob ;
+                            var x = document.getElementById("appoBook");
+                            if (x.style.display === "none") {
+                                x.style.display = "block";
+                            } else {
+                                x.style.display = "none";
+                            }
+                            };
+                        };
+                    currentRow.onclick = createClickHandler(currentRow);
+                    }
+                }
 		// function dashboard(){
 		//     document.getElementById("dash").style.display = "block";
 		//     document.getElementById("appoBook").style.display = "none";
