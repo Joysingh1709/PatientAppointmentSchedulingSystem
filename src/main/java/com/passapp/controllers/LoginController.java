@@ -42,6 +42,11 @@ public class LoginController {
 		return modelAndView;
 	}
 
+	@GetMapping("/adminLogin")
+	public ModelAndView getAdminLoginPage(@ModelAttribute User user) {
+		return new ModelAndView("adminLoginPage");
+	}
+
 	@GetMapping("/login")
 	public ModelAndView getLoginPage(@ModelAttribute User user) {
 		ModelAndView modelAndView = new ModelAndView("LoginPage");
