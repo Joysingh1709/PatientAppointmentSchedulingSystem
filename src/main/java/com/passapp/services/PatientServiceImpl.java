@@ -2,12 +2,17 @@ package com.passapp.services;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.PatientNotAddedException;
+import com.passapp.exceptions.PatientNotDeletedException;
 import com.passapp.exceptions.PatientNotFoundException;
+import com.passapp.exceptions.PatientNotUpdatedException;
 import com.passapp.models.Appointments;
 import com.passapp.models.User;
 import com.passapp.repository.PatientRepository;
@@ -27,8 +32,9 @@ public class PatientServiceImpl implements PatientService{
 	
 
 
-	public User addPatient(User user) {
-
+	public User addPatient(User user) throws PatientNotAddedException {
+		if(Objects.isNull(user))
+			throw new PatientNotAddedException("Patient not Added!");
 		return patientRepository.save(user);
 	}
 
@@ -51,62 +57,62 @@ public class PatientServiceImpl implements PatientService{
 	}
 
 	@Override
-	public User getPatientById(Long userId) {
+	public User getPatientById(Long userId) throws PatientNotFoundException {
 		Optional<User> user = patientRepository.findById(userId);
 		if(user.isPresent()) {
 			return user.get();
 		}
-		return null;
+		throw new PatientNotFoundException("Patient Id is incorrect!...");
 	}
 
 	@Override
-	public boolean deleteUserById(Long userId) {
+	public boolean deleteUserById(Long userId) throws PatientNotFoundException {
 		patientRepository.deleteById(userId);
 		if(patientRepository.existsById(userId)) {
 		return false;
 		}
-		return true;
+		throw new PatientNotFoundException("Patient Id is incorrect!...");
 	}
 
 	@Override
-	public boolean deletePatient(User patient) {
+	public boolean deletePatient(User patient) throws PatientNotDeletedException {
 		patientRepository.delete(patient);
 		if(patientRepository.existsById(patient.getUserId())){
 		     return false;
 		}
-		return true;
+		throw new PatientNotDeletedException("Patient cannot be deleted!...");
 	}
 
 	@Override
-	public boolean updateUser(User user) {
+	public boolean updateUser(User user) throws PatientNotUpdatedException {
 		if(patientRepository.existsById(user.getUserId())) {
 			User pat= patientRepository.save(user);
 			if(pat!=null) {
 			return true;
 			}
 		}
-		return false;
+		throw new PatientNotUpdatedException("Patient cannot be updated!...");
 
 	}
 
 	@Override
-	public List<Appointments> getPatientAppointments(Long patientId) {
+	public List<Appointments> getPatientAppointments(Long patientId) throws AppointmentNotFoundException {
 		
 		Optional<User> user = patientRepository.findById(patientId);
 		if(user.isPresent()) {
 			return patientRepository.getPatientAppointments(patientId) ;
 		}
-		return null;
+		throw new AppointmentNotFoundException("Patient Id has no Appointments!...");
 	}
 
-	/*@Override
-	public List<Appointments> getRecentAppointments(Long patientId) {
+	@Override
+	public List<Appointments> getRecentAppointments(Long patientId) throws AppointmentNotFoundException{
 		Optional<User> user = patientRepository.findById(patientId);
 		if(user.isPresent()) {
 			return patientRepository.getRecentAppointments(patientId) ;
 		}
-		return null;
-	}*/
+		throw new AppointmentNotFoundException("Patient Id has no Appointments!...");
+	}
 
 	
 	
