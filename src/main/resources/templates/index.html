@@ -91,7 +91,8 @@
 				<div class="swiper-slide card" th:each="doc : ${doctors}">
 					<div class="card-content">
 						<div class="image">
-							<img src="https://picsum.photos/200/300/?blur" alt="">
+							<img th:src="${'https://i2.wp.com/ui-avatars.com/api//'+doc.name+'/128?ssl=1
+							'}" alt="">
 						</div>
 
 
@@ -124,7 +125,7 @@
 		<div class="swiper-pagination"></div>
 
 		<div class="button" style="margin-top: 150px; align-self: center;">
-			<a href="#">Login as a Doctor <i class="fas fa-location-arrow"></i></a>
+			<a href="/login">Login as a Doctor <i class="fas fa-location-arrow"></i></a>
 		</div>
 
 	</section>
