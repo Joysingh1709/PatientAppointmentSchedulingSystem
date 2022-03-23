@@ -21,6 +21,7 @@ import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.models.Appointments;
 import com.passapp.models.User;
 import com.passapp.services.AppointmentService;
+import com.passapp.services.DoctorService;
 import com.passapp.services.PatientService;
 
 @RestController
@@ -29,16 +30,25 @@ public class PatientController {
 
 	@Autowired
 	PatientService patientService;
+
+	@Autowired
 	AppointmentService appointmentService;
+
+	@Autowired
+	DoctorService doctorService;
 
 	@GetMapping()
 	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
-		return new ModelAndView("patientDashboard");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("topDoctors", doctorService.getAllDoctorsByFee());
+		return new ModelAndView("patientDashboard", model);
 	}
 
 	@GetMapping("/patientReview")
 	public ModelAndView getPatientReview(@ModelAttribute User patient) {
-		return new ModelAndView("patientReview");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("doctors", doctorService.getAllDoctors());
+		return new ModelAndView("patientReview", model);
 	}
 
 	@GetMapping("/patientTotalAppointment")
@@ -48,7 +58,9 @@ public class PatientController {
 
 	@GetMapping("/patientBookAppointment")
 	public ModelAndView getPatientBookAppointment(@ModelAttribute User patient) {
-		return new ModelAndView("patientBookAppointment");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("doctors", doctorService.getAllDoctors());
+		return new ModelAndView("patientBookAppointment", model);
 	}
 
 	@PostMapping("/savePatient")
@@ -61,8 +73,19 @@ public class PatientController {
 
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> getPatientAppointments(@RequestParam Long patientId) throws AppointmentNotFoundException {
+	@GetMapping("/getRecentAppointments/{patientId}")
+	public ResponseEntity<Map<String, Object>> getPatientRecentAppointments(@PathVariable Long patientId)
+			throws AppointmentNotFoundException {
+		Map<String, Object> res = new HashMap<String, Object>();
+		res.put("status", true);
+		res.put("message", "data found!");
+		res.put("data", patientService.getRecentAppointments(patientId));
+		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+	}
+
+	@GetMapping("/appointments/{patientId}")
+	public ResponseEntity<Map<String, Object>> getPatientAppointments(@PathVariable Long patientId)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "data found!");
@@ -79,14 +102,15 @@ public class PatientController {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
 
 	}
-	
+
 	@GetMapping("/recentappointments/{patientId}")
-	public ResponseEntity<Appointments> getRecentAppointments(@PathVariable Long patientId) throws AppointmentNotFoundException{
+	public ResponseEntity<Appointments> getRecentAppointments(@PathVariable Long patientId)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", true);
 		res.put("message", "Recent Appointments!");
-		res.put("data",patientService.getRecentAppointments(patientId));
-    	return new ResponseEntity<>(HttpStatus.OK);
-    }
+		res.put("data", patientService.getRecentAppointments(patientId));
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 }

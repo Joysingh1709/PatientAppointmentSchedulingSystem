@@ -3,7 +3,10 @@ package com.passapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.passapp.exceptions.DoctorNotFoundException;
@@ -11,7 +14,7 @@ import com.passapp.models.Doctor;
 import com.passapp.repository.DoctorRepository;
 
 @Service
-
+@Transactional
 public class DoctorServiceImpl implements DoctorService {
 
 	@Autowired
@@ -33,15 +36,15 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public List<Doctor> getAllDoctors() {
-		
+
 		return doctorRepository.findAll();
 	}
 
 	@Override
 	public Doctor getDoctorById(Long doctorId) {
-		
+
 		Optional<Doctor> doctor = doctorRepository.findById(doctorId);
-		if(doctor.isPresent()) {
+		if (doctor.isPresent()) {
 			return doctor.get();
 		}
 		return null;
@@ -50,8 +53,8 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public boolean deleteDoctorById(Long doctorId) {
 		doctorRepository.deleteById(doctorId);
-		if(doctorRepository.existsById(doctorId)) {
-		return false;
+		if (doctorRepository.existsById(doctorId)) {
+			return false;
 		}
 		return true;
 
@@ -60,21 +63,26 @@ public class DoctorServiceImpl implements DoctorService {
 	@Override
 	public boolean deleteDoctor(Doctor doctor) {
 		doctorRepository.delete(doctor);
-		if(doctorRepository.existsById(doctor.getDoctorId())){
-		     return false;
+		if (doctorRepository.existsById(doctor.getDoctorId())) {
+			return false;
 		}
 		return true;
 	}
 
 	@Override
 	public boolean updateDoctor(Doctor doctor) {
-		if(doctorRepository.existsById(doctor.getDoctorId())) {
-			Doctor doc= doctorRepository.save(doctor);
-			if(doc!=null) {
-			return true;
+		if (doctorRepository.existsById(doctor.getDoctorId())) {
+			Doctor doc = doctorRepository.save(doctor);
+			if (doc != null) {
+				return true;
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public List<Doctor> getAllDoctorsByFee() {
+		return doctorRepository.findAll(Sort.by(Sort.Direction.ASC, "fee"));
 	}
 
 }
