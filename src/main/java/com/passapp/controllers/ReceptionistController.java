@@ -64,7 +64,7 @@ public class ReceptionistController {
 	public ModelAndView getReceptionistPrintReceipt(@ModelAttribute Receptionist receptionist) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("appointments", appointmentService.getAllAppointments());
-		return new ModelAndView("receptionistPrintReceipt");
+		return new ModelAndView("receptionistPrintReceipt", model);
 	}
 
 	@GetMapping("/appointmentPerDoctor")
