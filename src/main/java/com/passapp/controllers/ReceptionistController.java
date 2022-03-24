@@ -30,7 +30,7 @@ public class ReceptionistController {
 	AppointmentService appointmentService;
 	
 
-	@GetMapping()
+	@GetMapping(" ")
 	public ModelAndView getReceptionistDashboard(@ModelAttribute Receptionist receptionist) {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("users", patientService.getAllPatients());
