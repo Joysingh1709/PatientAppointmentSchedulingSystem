@@ -31,7 +31,7 @@ import com.passapp.exceptions.ReceptionistNotUpdatedException;
 public class ApplicationExceptionControllerAdvice {
 
 	@ExceptionHandler(AdminNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> AdminNotFoundHandler(AdminNotFoundException adx) {
+	public ResponseEntity<Map<String, Object>> adminNotFoundHandler(AdminNotFoundException adx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", adx.getMessage());
@@ -39,7 +39,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(AdminNotAddedException.class)
-	public ResponseEntity<Map<String, Object>> AdminNotAddedHandler(AdminNotAddedException anax) {
+	public ResponseEntity<Map<String, Object>> adminNotAddedHandler(AdminNotAddedException anax) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", anax.getMessage());
@@ -47,7 +47,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(AdminNotUpdatedException.class)
-	public ResponseEntity<Map<String, Object>> AdminNotUpdatedHandler(AdminNotUpdatedException anux) {
+	public ResponseEntity<Map<String, Object>> adminNotUpdatedHandler(AdminNotUpdatedException anux) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", anux.getMessage());
@@ -55,7 +55,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(AdminNotDeletedException.class)
-	public ResponseEntity<Map<String, Object>> AdminNotDeletedHandler(AdminNotDeletedException andx) {
+	public ResponseEntity<Map<String, Object>> adminNotDeletedHandler(AdminNotDeletedException andx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", andx.getMessage());
@@ -75,7 +75,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(DoctorNotAddedException.class)
-	public ResponseEntity<Map<String, Object>> DoctorNotAddedHandler(DoctorNotAddedException dnax) {
+	public ResponseEntity<Map<String, Object>> doctorNotAddedHandler(DoctorNotAddedException dnax) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", dnax.getMessage());
@@ -83,7 +83,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(DoctorNotUpdatedException.class)
-	public ResponseEntity<Map<String, Object>> DoctorNotUpdatedHandler(DoctorNotUpdatedException dnux) {
+	public ResponseEntity<Map<String, Object>> doctorNotUpdatedHandler(DoctorNotUpdatedException dnux) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", dnux.getMessage());
@@ -91,7 +91,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(DoctorNotDeletedException.class)
-	public ResponseEntity<Map<String, Object>> DoctorNotDeletedHandler(DoctorNotDeletedException dndx) {
+	public ResponseEntity<Map<String, Object>> doctorNotDeletedHandler(DoctorNotDeletedException dndx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", dndx.getMessage());
@@ -112,7 +112,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(PatientNotAddedException.class)
-	public ResponseEntity<Map<String, Object>> PatientNotAddedHandler(PatientNotAddedException pnax) {
+	public ResponseEntity<Map<String, Object>> patientNotAddedHandler(PatientNotAddedException pnax) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", pnax.getMessage());
@@ -120,7 +120,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(PatientNotUpdatedException.class)
-	public ResponseEntity<Map<String, Object>> PatientNotUpdatedHandler(PatientNotUpdatedException pnux) {
+	public ResponseEntity<Map<String, Object>> patientNotUpdatedHandler(PatientNotUpdatedException pnux) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", pnux.getMessage());
@@ -128,7 +128,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(PatientNotDeletedException.class)
-	public ResponseEntity<Map<String, Object>> PatientNotDeletedHandler(PatientNotDeletedException pndx) {
+	public ResponseEntity<Map<String, Object>> patientNotDeletedHandler(PatientNotDeletedException pndx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", pndx.getMessage());
@@ -141,7 +141,7 @@ public class ApplicationExceptionControllerAdvice {
 	
 	
 	@ExceptionHandler(ReceptionistNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> ReceptionistNotFoundHandler(ReceptionistNotFoundException rx) {
+	public ResponseEntity<Map<String, Object>> receptionistNotFoundHandler(ReceptionistNotFoundException rx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", rx.getMessage());
@@ -150,7 +150,7 @@ public class ApplicationExceptionControllerAdvice {
 	
 	
 	@ExceptionHandler(ReceptionistNotAddedException.class)
-	public ResponseEntity<Map<String, Object>> ReceptionistNotAddedHandler(ReceptionistNotAddedException rnax) {
+	public ResponseEntity<Map<String, Object>> receptionistNotAddedHandler(ReceptionistNotAddedException rnax) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", rnax.getMessage());
@@ -158,7 +158,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(ReceptionistNotUpdatedException.class)
-	public ResponseEntity<Map<String, Object>> ReceptionistNotUpdatedHandler(ReceptionistNotUpdatedException rnux) {
+	public ResponseEntity<Map<String, Object>> receptionistNotUpdatedHandler(ReceptionistNotUpdatedException rnux) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", rnux.getMessage());
@@ -166,7 +166,7 @@ public class ApplicationExceptionControllerAdvice {
 	}
 	
 	@ExceptionHandler(ReceptionistNotDeletedException.class)
-	public ResponseEntity<Map<String, Object>> ReceptionistNotDeletedHandler(ReceptionistNotDeletedException rndx) {
+	public ResponseEntity<Map<String, Object>> receptionistNotDeletedHandler(ReceptionistNotDeletedException rndx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", rndx.getMessage());
@@ -177,7 +177,7 @@ public class ApplicationExceptionControllerAdvice {
 	
 	
 	@ExceptionHandler(AppointmentNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> AppointmentNotFoundHandler(AppointmentNotFoundException apx) {
+	public ResponseEntity<Map<String, Object>> appointmentNotFoundHandler(AppointmentNotFoundException apx) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", apx.getMessage());
@@ -186,17 +186,12 @@ public class ApplicationExceptionControllerAdvice {
 	
 	
 	@ExceptionHandler(AppointmentNotConfirmException.class)
-	public ResponseEntity<Map<String, Object>> AppointmentNotConfirmHanldler(AppointmentNotConfirmException ax) {
+	public ResponseEntity<Map<String, Object>> appointmentNotConfirmHanldler(AppointmentNotConfirmException ax) {
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("status", false);
 		res.put("message", ax.getMessage());
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_ACCEPTABLE);
 	}
-
-	//public String AdminNotFoundHandler() throws AdminNotFoundException {
-		//throw new AdminNotFoundException();
-		
-//	}
 
 
 }
