@@ -1,5 +1,5 @@
-/*const baseUrl = "https://pass-dev.herokuapp.com/";*/
-const baseUrl = "http://localhost:8080/";
+const baseUrl = "https://pass-dev.herokuapp.com/";
+// const baseUrl = "http://localhost:8080/";
 
 document.addEventListener('DOMContentLoaded', function() {
 	var appointmentsTable = document.getElementById("appointmentsTable");

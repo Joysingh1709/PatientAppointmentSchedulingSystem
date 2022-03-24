@@ -145,7 +145,7 @@
 		function onDocChange() {
 			var docId = document.getElementById("docName").value;
 
-			fetch("http://localhost:8080/doctor/getDoctor/" + docId)
+			fetch("https://pass-dev.herokuapp.com/doctor/getDoctor/" + docId)
 				.then(function (response) {
 					return response.json();
 				})

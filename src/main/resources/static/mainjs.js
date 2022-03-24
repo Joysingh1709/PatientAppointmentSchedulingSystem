@@ -1,3 +1,6 @@
+const baseUrl = "https://pass-dev.herokuapp.com/";
+// const baseUrl = "http://localhost:8080/";
+
 var toast = $("#myToast");
 var toastMessage = document.getElementById("toast-body-message");
 
@@ -138,7 +141,7 @@ function onRegister() {
 	}
 
 	if (canSubmit) {
-		postData('http://localhost:8080/admin/saveDoctor', {
+		postData(baseUrl + 'admin/saveDoctor', {
 			"name": name.value,
 			"email": email.value,
 			"password": password.value,
@@ -204,7 +207,7 @@ function onRecepRegister() {
 	}
 
 	if (canSubmit) {
-		postData('http://localhost:8080/admin/saveReceptionist', {
+		postData(baseUrl + 'admin/saveReceptionist', {
 			"name": recepname.value,
 			"email": recepemail.value,
 			"password": receppassword.value,
@@ -264,7 +267,7 @@ function onPatRegister() {
 
 	if (canSubmit) {
 
-		postData('http://localhost:8080/patient/savePatient', {
+		postData(baseUrl + 'patient/savePatient', {
 			"name": patname.value,
 			"email": patemail.value,
 			"password": patpassword.value,
@@ -372,7 +375,7 @@ function patLogin() {
 	}
 
 	if (canLogin) {
-		postData('http://localhost:8080/patient/login', {
+		postData(baseUrl + 'patient/login', {
 			"email": email.value,
 			"password": password.value,
 		}).then(data => {
@@ -421,7 +424,7 @@ function docLogin() {
 
 
 	if (canLogin) {
-		postData('http://localhost:8080/doctor/login', {
+		postData(baseUrl + 'doctor/login', {
 			"email": email.value,
 			"password": password.value,
 		}).then(data => {
@@ -471,7 +474,7 @@ function resLogin() {
 
 
 	if (canLogin) {
-		postData('http://localhost:8080/receptionist/login', {
+		postData(baseUrl + 'receptionist/login', {
 			"email": email.value,
 			"password": password.value,
 		}).then(data => {
@@ -506,13 +509,13 @@ function onBookAppointment() {
 
 	console.log(doctorId, docSpecialization, patName, problem, patDob, patGender);
 
-	fetch("http://localhost:8080/doctor/getDoctor/" + doctorId)
+	fetch(baseUrl + "doctor/getDoctor/" + doctorId)
 		.then(res => res.json())
 		.then(data => {
 			if (data.status) {
 				console.log(data);
 
-				postData('http://localhost:8080/appointment/saveAppointments', {
+				postData(baseUrl + 'appointment/saveAppointments', {
 					"createdDate": new Date(),
 					"updatedDate": new Date(),
 					"problem": problem,

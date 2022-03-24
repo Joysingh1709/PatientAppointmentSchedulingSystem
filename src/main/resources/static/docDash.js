@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const doctor = JSON.parse(localStorage.getItem('doctor'));
 
-    fetch("http://localhost:8080/appointment/doctorId/" + doctor.doctorId, {
+    fetch("https://pass-dev.herokuapp.com/appointment/doctorId/" + doctor.doctorId, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
