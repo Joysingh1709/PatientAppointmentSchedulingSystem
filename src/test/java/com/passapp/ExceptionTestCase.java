@@ -19,7 +19,7 @@ class ExceptionTestCase {
 	@Test
 	void AdminNotFoundHandler() {
 		assertThrows(AdminNotFoundException.class, () -> {
-			methodForExceptionTest.AdminNotFoundHandler((long) 34324);
+			methodForExceptionTest.adminNotFoundHandler((long) 34324);
 		});
 	}
 	
@@ -27,7 +27,7 @@ class ExceptionTestCase {
 	@Test
 	void DoctorNotFoundHandler() {
 		assertThrows(DoctorNotFoundException.class, () -> {
-			methodForExceptionTest.DoctorNotFoundHandler((long) 1);
+			methodForExceptionTest.doctorNotFoundHandler((long) 1);
 		});
 	}
 	
@@ -35,7 +35,7 @@ class ExceptionTestCase {
 		@Test
 		void PatientNotFoundHandler() {
 			assertThrows(PatientNotFoundException.class, () -> {
-				methodForExceptionTest.PatientNotFoundHandler(null);
+				methodForExceptionTest.patientNotFoundHandler(null);
 			});
 	}
 		
@@ -43,7 +43,7 @@ class ExceptionTestCase {
 		@Test
 		void ReceptionistNotFoundHandler() {
 			assertThrows(ReceptionistNotFoundException.class, () -> {
-				methodForExceptionTest.ReceptionistNotFoundHandler((long) 45466);
+				methodForExceptionTest.receptionistNotFoundHandler((long) 45466);
 			});
 		}
 		
@@ -51,7 +51,7 @@ class ExceptionTestCase {
 		@Test
 		void AppointmentNotFoundHandler() {
 			assertThrows(AppointmentNotFoundException.class, () -> {
-				methodForExceptionTest.AppointmentNotFoundHandler((long) 454634341);
+				methodForExceptionTest.appointmentNotFoundHandler((long) 454634341);
 			});
 		}
 		

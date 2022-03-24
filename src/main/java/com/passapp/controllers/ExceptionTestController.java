@@ -8,23 +8,23 @@ import com.passapp.exceptions.ReceptionistNotFoundException;
 
 public class ExceptionTestController {
 
-	public String AdminNotFoundHandler(Long adminId) throws AdminNotFoundException {
+	public String adminNotFoundHandler(Long adminId) throws AdminNotFoundException {
 		throw new AdminNotFoundException();
 	}
 	
-	public String DoctorNotFoundHandler(Long doctorId) throws DoctorNotFoundException {
+	public String doctorNotFoundHandler(Long doctorId) throws DoctorNotFoundException {
 		throw new DoctorNotFoundException();
 	}
 	
-	public String PatientNotFoundHandler(Long userId) throws PatientNotFoundException {
+	public String patientNotFoundHandler(Long userId) throws PatientNotFoundException {
 		throw new PatientNotFoundException();
 	}
 	
-	public String ReceptionistNotFoundHandler(Long receptionistId) throws ReceptionistNotFoundException {
+	public String receptionistNotFoundHandler(Long receptionistId) throws ReceptionistNotFoundException {
 		throw new ReceptionistNotFoundException();
 	}
 	
-	public String AppointmentNotFoundHandler(Long appointmentId) throws AppointmentNotFoundException {
+	public String appointmentNotFoundHandler(Long appointmentId) throws AppointmentNotFoundException {
 		throw new AppointmentNotFoundException();
 	}
 }
