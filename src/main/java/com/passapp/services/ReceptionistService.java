@@ -12,6 +12,7 @@ public interface ReceptionistService {
 
 
 	public Receptionist getReceptionist(String email, String password) throws ReceptionistNotFoundException;
+	
 
 
 	

@@ -72,4 +72,6 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 		return false;
 	}
 
+	
+
 }
