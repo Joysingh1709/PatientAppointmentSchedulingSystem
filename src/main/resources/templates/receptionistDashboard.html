@@ -24,30 +24,32 @@
 				App</span>
 		</div>
 		<ul class="nav-links">
-			<li><a th:href="@{/receptionist}" class="active"> <i class='bx bx-grid-alt'></i>
-					<span class="links_name">Dashboard</span>
+			<li><a th:href="@{/receptionist}" class="active"> <i
+					class='bx bx-grid-alt'></i> <span class="links_name">Dashboard</span>
 			</a></li>
-			<li><a th:href="@{/receptionist/deleteAppointment}"> <i class='bx bx-box'></i> <span
-					class="links_name">Delete </span>
+			<li><a th:href="@{/receptionist/deleteAppointment}"> <i
+					class='bx bx-box'></i> <span class="links_name">Delete </span>
 			</a></li>
-			<li><a th:href="@{/receptionist/updateAppointment}"> <i class='bx bx-list-ul'></i> <span
-					class="links_name">Reschedule </span>
+			<li><a th:href="@{/receptionist/updateAppointment}"> <i
+					class='bx bx-list-ul'></i> <span class="links_name">Reschedule
+				</span>
 			</a></li>
-			<li><a th:href="@{/receptionist}"> <i class='bx bx-pie-chart-alt-2'></i> <span
-					class="links_name"> Print Receipt</span>
+			<li><a th:href="@{/receptionist}"> <i
+					class='bx bx-pie-chart-alt-2'></i> <span class="links_name">
+						Print Receipt</span>
 			</a></li>
-			<li><a th:href="@{/receptionist/updateSpecialization}"> <i class='bx bx-coin-stack'></i> <span
-					class="links_name">Specialization</span>
+			<li><a th:href="@{/receptionist/updateSpecialization}"> <i
+					class='bx bx-coin-stack'></i> <span class="links_name">Specialization</span>
 			</a></li>
-			<li><a th:href="@{/receptionist/patientPrescription}"> <i class='bx bx-book-alt'></i> <span
-					class="links_name">Prescriptions</span>
+			<li><a th:href="@{/receptionist/patientPrescription}"> <i
+					class='bx bx-book-alt'></i> <span class="links_name">Prescriptions</span>
 			</a></li>
-			<li><a href="@{/receptionist}"> <i class='bx bx-user'></i> <span
-					class="links_name">Delayed</span>
-			 </a></li>
-			<li><a href="@{/receptionist/appointmentPerDoctor}"> <i class='bx bx-cog'></i> <span
-					class="links_name">AppointmentperDoctor</span>
-			</a></li> 
+			<li><a th:href="@{/receptionist}"> <i class='bx bx-user'></i>
+					<span class="links_name">Delayed</span>
+			</a></li>
+			<li><a th:href="@{/receptionist/appointmentPerDoctor}"> <i
+					class='bx bx-cog'></i> <span class="links_name">AppointmentperDoctor</span>
+			</a></li>
 			<li class="log_out"><button
 					style="outline: none; border: none; background: transparent; color: white; margin-left: 25px; padding-right: 4px;"
 					class="links_name" onclick="logout()">Log out</button> <i
@@ -59,10 +61,6 @@
 			<div class="sidebar-button">
 				<i class='bx bx-menu sidebarBtn'></i> <span class="dashboard">Dashboard</span>
 			</div>
-			<div class="search-box">
-				<input type="text" placeholder="Search..."> <i
-					class='bx bx-search'></i>
-			</div>
 			<div class="profile-details">
 				<img src="images/profile.jpg" alt=""> <span class="admin_name">Prem
 					Shahi</span> <i class='bx bx-chevron-down'></i>
@@ -73,8 +71,8 @@
 			<div class="overview-boxes">
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Total Users</div>
-						<div class="number">40,876</div>
+						<div class="box-topic">Total Patients</div>
+						<div class="number" th:text="${#lists.size(users)}"></div>
 						<div class="indicator"></div>
 					</div>
 
@@ -82,7 +80,7 @@
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Total Doctors</div>
-						<div class="number">38,876</div>
+						<div class="number" th:text="${#lists.size(doctors)}"></div>
 						<div class="indicator"></div>
 					</div>
 
@@ -90,19 +88,19 @@
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Fees Received</div>
-						<div class="number">$12,876</div>
+						<div class="number" th:text="${'&#8377;' + #lists.size(totalFee)}"></div>
 						<div class="indicator"></div>
 					</div>
 
 				</div>
-				<div class="box">
+				<!-- <div class="box">
 					<div class="right-side">
 						<div class="box-topic">Fees Pending</div>
 						<div class="number">11,086</div>
 						<div class="indicator"></div>
 					</div>
 
-				</div>
+				</div> -->
 			</div>
 
 			<div class="sales-boxes">
@@ -111,51 +109,23 @@
 					<div class="sales-details">
 						<ul class="details">
 							<li class="topic">Date</li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
-							<li><a href="#">02 Jan 2021</a></li>
+							<li th:each="ap: ${appointments}"><a
+								th:text="${ap.appointmentTime}" href="#"></a></li>
 						</ul>
 						<ul class="details">
 							<li class="topic">Patient's Name</li>
-							<li><a href="#">Alex Doe</a></li>
-							<li><a href="#">David Mart</a></li>
-							<li><a href="#">Roe Parter</a></li>
-							<li><a href="#">Diana Penty</a></li>
-							<li><a href="#">Martin Paw</a></li>
-							<li><a href="#">Doe Alex</a></li>
-							<li><a href="#">Aiana Lexa</a></li>
-							<li><a href="#">Rexel Mags</a></li>
-							<li><a href="#">Tiana Loths</a></li>
+							<li th:each="ap: ${appointments}"><a
+								th:text="${ap.patientName}" href="#"></a></li>
 						</ul>
 						<ul class="details">
 							<li class="topic">Status</li>
-							<li><a href="#">Pending</a></li>
-							<li><a href="#">Confirm</a></li>
-							<li><a href="#">Pending</a></li>
-							<li><a href="#">Confirm</a></li>
-							<li><a href="#">Pending</a></li>
-							<li><a href="#">Confirm</a></li>
-							<li><a href="#">Confirm</a></li>
-							<li><a href="#">Confirm</a></li>
-							<li><a href="#">Pending</a></li>
+							<li th:each="ap: ${appointments}"><a th:text="${ap.status}"
+								href="#"></a></li>
 						</ul>
 						<ul class="details">
 							<li class="topic">Fees</li>
-							<li><a href="#">600</a></li>
-							<li><a href="#">465</a></li>
-							<li><a href="#">950</a></li>
-							<li><a href="#">290</a></li>
-							<li><a href="#">1000</a></li>
-							<li><a href="#">500</a></li>
-							<li><a href="#">680</a></li>
-							<li><a href="#">1050</a></li>
-							<li><a href="#">300</a></li>
+							<li th:each="ap: ${appointments}"><a
+								th:text="${ap.doctor.fee}" href="#"></a></li>
 						</ul>
 
 					</div>
@@ -164,21 +134,16 @@
 					</div>
 				</div>
 				<div class="top-sales box">
-					<div class="title">Doctor Available</div>
+					<div class="title">Doctors Available</div>
 					<ul class="top-sales-details">
-						<li><a href="#">
-								<span class="product">Dr Gulati</span> </a>
+
+						<li th:each="doc: ${doctors}"><a href="#"> <span
+								class="product" th:text="${'Dr. '+doc.name}"></span>
+						</a>
 							<div class="form-check form-switch">
 								<input class="form-check-input" type="checkbox" role="switch"
-									id="flexSwitchCheckChecked" checked> <label
-									class="form-check-label" for="flexSwitchCheckChecked"></label>
-							</div></li>
-						<li><a href="#"><i class="fa-solid fa-user-tie-hair-long"></i>
-								<span class="product">Dr Nidhi</span> </a>
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch"
-									id="flexSwitchCheckChecked" checked> <label
-									class="form-check-label" for="flexSwitchCheckChecked"></label>
+									id="flexSwitchCheckChecked" th:checked="${doc.status}">
+								<label class="form-check-label" for="flexSwitchCheckChecked"></label>
 							</div></li>
 					</ul>
 				</div>

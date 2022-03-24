@@ -2,17 +2,20 @@ package com.passapp.models;
 
 import java.time.LocalDate;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="appointments")
+@Table(name = "appointments")
 public class Appointments {
-	
+
 	@Id
 	@GeneratedValue
 	private Long appointmentId;
@@ -24,32 +27,30 @@ public class Appointments {
 	private String patientName;
 	private String patientGender;
 	private Date patientDOB;
-	
-	@ManyToOne
-    @JoinColumn(name = "doctorId")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
-	
-	//ManyToMany
-	@ManyToOne
-    @JoinColumn(name = "userId")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
 	private User user;
-	
-	
-	/*@ManyToMany(mappedBy="appointments")
-	private List<User> user;*/
-	
+
 	public Appointments() {
-		
+
 	}
 
-	public Appointments(Date createdDate, Date updatedDate,
-			String problem,User userId, String status, LocalDate appointmentTime) {
-		
+	public Appointments(Date createdDate, Date updatedDate, String problem, String status, LocalDate appointmentTime,
+			String patientName, String patientGender, Date patientDOB) {
+		super();
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.problem = problem;
 		this.status = status;
 		this.appointmentTime = appointmentTime;
+		this.patientName = patientName;
+		this.patientGender = patientGender;
+		this.patientDOB = patientDOB;
 	}
 
 	public Long getAppointmentId() {
@@ -99,7 +100,6 @@ public class Appointments {
 	public void setAppointmentTime(LocalDate appointmentTime) {
 		this.appointmentTime = appointmentTime;
 	}
-	
 
 	public String getPatientName() {
 		return patientName;
@@ -148,11 +148,5 @@ public class Appointments {
 				+ ", patientName=" + patientName + ", patientGender=" + patientGender + ", patientDOB=" + patientDOB
 				+ ", doctor=" + doctor + ", user=" + user + "]";
 	}
-
-	
-	
-	
-	
-	
 
 }
