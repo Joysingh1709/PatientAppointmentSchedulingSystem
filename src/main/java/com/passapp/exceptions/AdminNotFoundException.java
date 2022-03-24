@@ -1,6 +1,7 @@
 package com.passapp.exceptions;
 
 public class AdminNotFoundException extends Exception {
+	
 	public AdminNotFoundException() {
 	}
 
