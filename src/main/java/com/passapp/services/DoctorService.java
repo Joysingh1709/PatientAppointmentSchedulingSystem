@@ -25,5 +25,7 @@ public interface DoctorService {
 	public boolean updateDoctor(Doctor doctor);
 
 	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException;
+	
+	public List<Doctor> getActiveDoctor(String status) throws DoctorNotFoundException;
 
 }
