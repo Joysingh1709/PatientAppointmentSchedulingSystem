@@ -115,52 +115,8 @@
 	<script type="text/javascript" src="../static/mainjs.js" th:src="@{/mainjs.js}">
 
 	</script>
+	<script type="text/javascript" src="../static/docDash.js" th:src="@{/docDash.js}"></script>
 	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const doctor = JSON.parse(localStorage.getItem('doctor'));
-
-			fetch("http://localhost:8080/appointment/doctorId/" + doctor.doctorId, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			})
-				.then(res => res.json())
-				.then(data => {
-					if (data.status) {
-						document.getElementById("docTotalApp").innerHTML = parseInt(data.data.length);
-						document.getElementById("docScheduleApp").innerHTML = parseInt(data.data.filter(app => app.status === "Confirmed").length);
-						document.getElementById("docPendingApp").innerHTML = parseInt(data.data.filter(app => app.status === "Pending").length);
-
-
-						var patName = document.getElementById("patName");
-						var patGender = document.getElementById("patGender");
-						var appStatus = document.getElementById("appStatus");
-						var appDate = document.getElementById("appDate");
-
-						data.data.forEach(element => {
-							var nameLi = document.createElement("li");
-							nameLi.innerHTML = element.patientName;
-							patName.appendChild(nameLi);
-
-							var genderLi = document.createElement("li");
-							genderLi.innerHTML = element.patientGender;
-							patGender.appendChild(genderLi);
-
-							var statusLi = document.createElement("li");
-							statusLi.innerHTML = element.status;
-							appStatus.appendChild(statusLi);
-
-							var dateLi = document.createElement("li");
-							dateLi.innerHTML = element.appointmentTime;
-							appDate.appendChild(dateLi);
-						});
-
-
-					}
-				})
-		});
-
 		let sidebar = document.querySelector(".sidebar");
 		let sidebarBtn = document.querySelector(".sidebarBtn");
 		sidebarBtn.onclick = function () {
