@@ -1,5 +1,5 @@
-const baseUrl = "https://pass-dev.herokuapp.com/";
-// const baseUrl = "http://localhost:8080/";
+const baseUrl2 = "https://pass-dev.herokuapp.com/";
+// const baseUrl2 = "http://localhost:8080/";
 
 document.addEventListener('DOMContentLoaded', function() {
 	var appointmentsTable = document.getElementById("appointmentsTable");
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var patient = JSON.parse(localStorage.getItem("patient"));
 	var patientId = patient.userId;
 
-	fetch(baseUrl + "patient/appointments/" + patientId, {
+	fetch(baseUrl2 + "patient/appointments/" + patientId, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json'
