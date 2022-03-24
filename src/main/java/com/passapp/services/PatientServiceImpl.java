@@ -71,9 +71,9 @@ public class PatientServiceImpl implements PatientService {
 	public boolean deletePatient(User patient) throws PatientNotDeletedException {
 		patientRepository.delete(patient);
 		if (patientRepository.existsById(patient.getUserId())) {
-			return false;
+			throw new PatientNotDeletedException("Patient cannot be deleted!...");
 		}
-		throw new PatientNotDeletedException("Patient cannot be deleted!...");
+		return true;
 	}
 
 	@Override

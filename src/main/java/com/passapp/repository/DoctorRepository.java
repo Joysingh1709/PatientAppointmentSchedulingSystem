@@ -11,4 +11,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 	@Query("FROM Doctor d where d.email=:dEmail AND d.password=:dPass")
 	Doctor getDoctorByEmailAndPass(@Param("dEmail") String email, @Param("dPass") String pass);
 
+	@Query("SELECT SUM(d.fee) FROM Doctor d")
+	Double getTotalFee();
 }
