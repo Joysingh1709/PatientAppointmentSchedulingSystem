@@ -49,14 +49,14 @@ public class AppointmentController {
 
 		DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Appointments newAppointment = new Appointments();
-		newAppointment.setCreatedDate((Date) simpleDateFormat.parse(body.get("createdDate").toString()));
-		newAppointment.setUpdatedDate((Date) simpleDateFormat.parse(body.get("updatedDate").toString()));
+		newAppointment.setCreatedDate(simpleDateFormat.parse(body.get("createdDate").toString()));
+		newAppointment.setUpdatedDate(simpleDateFormat.parse(body.get("updatedDate").toString()));
 		newAppointment.setProblem(body.get("problem").toString());
 		newAppointment.setStatus(body.get("status").toString());
 		newAppointment.setAppointmentTime(LocalDate.parse(body.get("appointmentTime").toString()));
 		newAppointment.setPatientName(body.get("patientName").toString());
 		newAppointment.setPatientGender(body.get("patientGender").toString());
-		newAppointment.setPatientDOB((Date) simpleDateFormat.parse(body.get("patientDOB").toString()));
+		newAppointment.setPatientDOB(simpleDateFormat.parse(body.get("patientDOB").toString()));
 
 		Doctor doc = doctorService.getDoctorById(Long.valueOf((Integer) body.get("doctorId")));
 		User user = patientService.getPatientById(Long.valueOf((Integer) body.get("userId")));
@@ -67,16 +67,16 @@ public class AppointmentController {
 		patientService.addPatient(user);
 		doctorService.addDoctor(doc);
 
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment booked successfully!");
 		res.put("data", appointmentService.addAppointments(newAppointment));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/appointmentdel/{appointmentId}")
 	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) throws AppointmentNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment deleted successfully!");
 		res.put("data", appointmentService.deleteAppointmentsById(appointmentId));
@@ -85,7 +85,7 @@ public class AppointmentController {
 
 	@DeleteMapping("/appointmentdelete")
 	public ResponseEntity<Void> deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment deleted successfully!");
 		res.put("data", appointmentService.deleteAppointment(appointments));
@@ -95,7 +95,7 @@ public class AppointmentController {
 	@PutMapping("/appointmentupdate")
 	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments)
 			throws AppointmentNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment updated successfully!");
 		res.put("data", appointmentService.updateAppointments(newAppointments));
@@ -105,7 +105,7 @@ public class AppointmentController {
 	@GetMapping("/appointments/{appointmentId}")
 	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId)
 			throws AppointmentNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointments with Id!");
 		res.put("data", appointmentService.getAppointmentsById(appointmentId));
@@ -114,21 +114,21 @@ public class AppointmentController {
 
 	@GetMapping("/doctorId/{doctorId}")
 	public ResponseEntity<Map<String, Object>> getAllAppointmentsByDocId(@PathVariable Long doctorId) {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Id!");
 		res.put("data", appointmentService.getAllAppointmentsByDocId(doctorId));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@GetMapping("/doctorName/{doctorName}")
 	public ResponseEntity<Map<String, Object>> getAllAppointmentsByDocName(@PathVariable String name)
 			throws AppointmentNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointments with Doctor Name!");
 		res.put("data", appointmentService.getAllAppointmentsByDocName(name));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 }

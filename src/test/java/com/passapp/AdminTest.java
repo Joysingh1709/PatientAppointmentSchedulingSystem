@@ -2,7 +2,6 @@ package com.passapp;
 
 import javax.transaction.Transactional;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,49 +10,48 @@ import org.springframework.test.annotation.Rollback;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.passapp.exceptions.AdminNotAddedException;
 import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.models.Admin;
 import com.passapp.services.AdminService;
+
 @SpringBootTest(classes = PatientappointmentschedulingappApplication.class)
 @Transactional
 @Rollback(true)
 public class AdminTest {
-	
+
 	@Autowired
 	private AdminService adminService;
-	
-	public Admin addAdmin(){
+
+	public Admin addAdmin() throws AdminNotAddedException {
 		Admin admin = new Admin();
 		admin.setUserName("Rohit");
 		admin.setPassword("jayesh");
-		Long id =  adminService.addAdmin(admin).getAdminId();
+		Long id = adminService.addAdmin(admin).getAdminId();
 		return adminService.getAdminById(id);
 	}
-	
 
 	@Test
-	public void testAddAdmin() {
+	public void testAddAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		assertEquals("Rohit", admin.getUserName());
-		assertEquals("jayesh",admin.getPassword());
+		assertEquals("jayesh", admin.getPassword());
 	}
-	
-	
+
 	@Test
-	public void testUpdateAdmin(){
+	public void testUpdateAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		admin.setUserName("Kumar");
 		adminService.updateAdmin(admin);
-		assertEquals("Kumar",adminService.getAdminById(admin.getAdminId()).getUserName());
+		assertEquals("Kumar", adminService.getAdminById(admin.getAdminId()).getUserName());
 	}
-	
-	
+
 	@Test
-	public void testDeleteAdmin(){
+	public void testDeleteAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		adminService.deleteAdmin(admin);
-		assertThrows(AdminNotFoundException.class, ()->{
-			adminService.getAdmin(admin.getName(),admin.getPassword());
-			});
+		assertThrows(AdminNotFoundException.class, () -> {
+			adminService.getAdmin(admin.getName(), admin.getPassword());
+		});
 	}
 }
