@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="../static/patientDash.css"
 	th:href="@{/patientDash.css}">
 <link rel="stylesheet" href="style2.css" th:href="@{style2.css}">
-<!-- <link rel="stylesheet" href="style.css"th:href="@{style.css}"> -->
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
 	rel='stylesheet'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,9 +45,9 @@
 			<li><a th:href="@{/patient/patientReview}"> <i
 					class='bx bx-message'></i> <span class="links_name">Review</span>
 			</a></li>
-			<li class="log_out"><a onclick="logout()"> <i class='bx bx-log-out'></i> <span class="links_name">Log
-				out</span>
-		</a></li>
+			<li class="log_out"><a onclick="logout()"> <i
+					class='bx bx-log-out'></i> <span class="links_name">Log out</span>
+			</a></li>
 		</ul>
 	</div>
 	<section class="home-section">
@@ -94,7 +93,7 @@
 								<th class="topic">Doctor Speciality</th>
 								<th class="topic">Appointment Date/Time</th>
 								<th class="topic">For Whom</th>
-								<th class="topic">Problem</th>
+								<th class="topic">Status</th>
 							</tr>
 						</table>
 					</div>
@@ -144,7 +143,7 @@
 								<td id="famMem"></td>
 								<td id="probl"></td>
 							</tr>
-							
+
 						</table>
 					</form>
 				</div>
@@ -210,16 +209,6 @@
 				currentRow.onclick = createClickHandler(currentRow);
 			}
 		}
-		// function dashboard(){
-		//     document.getElementById("dash").style.display = "block";
-		//     document.getElementById("appoBook").style.display = "none";
-		//     // document.getElementById("sidebutton").getElementsByClassName("dashboard").classList.replace("Book Appointment","Dashboard");
-		// }
-		// function bookAppo(){
-		//     document.getElementById("appoBook").style.display = "block";
-		//     document.getElementById("dash").style.display = "none";
-		//     // document.getElementById("sidebutton").getElementsByClassName("dashboard").classList.replace("Dashboard","Book Appointment");
-		// }
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

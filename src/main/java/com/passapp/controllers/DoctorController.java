@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,46 +27,55 @@ public class DoctorController {
 	private DoctorService doctorService;
 
 	@GetMapping()
-	public ModelAndView getDoctorDashboard(@ModelAttribute Doctor doctor) {
-		ModelAndView modelAndView = new ModelAndView("doctorDashboard");
-		return modelAndView;
+	public ModelAndView getDoctorDashboard() {
+		return new ModelAndView("doctorDashboard");
 	}
 
 	@GetMapping("/doctorAppointmentList")
-	public ModelAndView getDoctorAppointmentList(@ModelAttribute Doctor doctor) {
-		ModelAndView modelAndView = new ModelAndView("doctorAppointmentList");
-		return modelAndView;
+	public ModelAndView getDoctorAppointmentList() {
+		return new ModelAndView("doctorAppointmentList");
 	}
 
 	@GetMapping("/doctorPatientList")
-	public ModelAndView getDoctorPatientList(@ModelAttribute Doctor doctor) {
-		ModelAndView modelAndView = new ModelAndView("doctorPatientList");
-		return modelAndView;
+	public ModelAndView getDoctorPatientList() {
+		return new ModelAndView("doctorPatientList");
 	}
 
 	@GetMapping("/doctorProfile")
-	public ModelAndView getDoctorProfile(@ModelAttribute Doctor doctor) {
-		ModelAndView modelAndView = new ModelAndView("doctorProfile");
-		return modelAndView;
+	public ModelAndView getDoctorProfile() {
+		return new ModelAndView("doctorProfile");
 	}
 
 	@GetMapping("/getDoctor")
 	public ResponseEntity<Map<String, Object>> getDoctor(@RequestBody Map<String, Object> body)
 			throws DoctorNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data found!");
 		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	@PostMapping("/changeStatus/{doctorId}")
+	public ResponseEntity<Map<String, Object>> changeDoctorStatus(@PathVariable Long doctorId) {
+
+		Doctor doc = doctorService.getDoctorById(doctorId);
+		doc.setStatus(false);
+
+		Map<String, Object> res = new HashMap<>();
+		res.put("status", true);
+		res.put("message", "data found!");
+		res.put("data", doctorService.updateDoctor(doc));
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@GetMapping("/getDoctor/{docId}")
-	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) throws DoctorNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) {
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data found!");
 		res.put("data", doctorService.getDoctorById(docId));
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 }

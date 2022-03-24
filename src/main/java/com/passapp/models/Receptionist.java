@@ -8,9 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="receptionist")
+@Table(name = "receptionist")
 public class Receptionist {
-	
+
 	@Id
 	@GeneratedValue
 	private Long receptionistId;
@@ -19,11 +19,9 @@ public class Receptionist {
 	private String password;
 	private Date dob;
 	private String gender;
-	
-	public Receptionist() {
-		// TODO Auto-generated constructor stub
-	}
 
+	public Receptionist() {
+	}
 
 	public Receptionist(Long receptionistId, String name, String email, String password, Date dob, String gender) {
 		this.receptionistId = receptionistId;
@@ -41,7 +39,7 @@ public class Receptionist {
 	public void setReceptionistId(Long receptionistId) {
 		this.receptionistId = receptionistId;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -65,7 +63,7 @@ public class Receptionist {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Date getDob() {
 		return dob;
 	}
@@ -82,16 +80,10 @@ public class Receptionist {
 		this.gender = gender;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Receptionist [receptionistId=" + receptionistId + ", name=" + name + ", email=" + email + ", password="
 				+ password + ", dob=" + dob + ", gender=" + gender + "]";
 	}
-	
-	
-	
-	
 
 }

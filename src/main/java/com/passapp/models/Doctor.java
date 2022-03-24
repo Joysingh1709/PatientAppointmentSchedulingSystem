@@ -27,18 +27,14 @@ public class Doctor {
 	private Double fee;
 	private Boolean isASpecialist;
 	private Date dob;
-	private String status;
-
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
-//	private List<Appointments> appointments;
+	private Boolean status;
 
 	public Doctor() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Doctor(String email, String password, String name, String specialization, String gender, String about,
-			String experience, Double fee, Boolean isASpecialist, Date dob, String status) {
-
+			String experience, Double fee, Boolean isASpecialist, Date dob, Boolean status) {
+		super();
 		this.email = email;
 		this.password = password;
 		this.name = name;
@@ -140,11 +136,11 @@ public class Doctor {
 		this.dob = dob;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
