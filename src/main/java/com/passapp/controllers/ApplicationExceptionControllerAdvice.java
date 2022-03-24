@@ -193,4 +193,10 @@ public class ApplicationExceptionControllerAdvice {
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.NOT_ACCEPTABLE);
 	}
 
+	//public String AdminNotFoundHandler() throws AdminNotFoundException {
+		//throw new AdminNotFoundException();
+		
+//	}
+
+
 }
