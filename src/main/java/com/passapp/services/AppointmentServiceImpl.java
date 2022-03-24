@@ -49,7 +49,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) {
 		List<Appointments> appointments = appointmentRepository.getAllAppointmentsByDocId(doctorId);
-			return appointments;
+		return appointments;
 	}
 
 	@Override
@@ -62,18 +62,18 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public boolean deleteAppointmentsById(Long appointmentId) throws AppointmentNotFoundException {
 		appointmentRepository.deleteById(appointmentId);
 		if (appointmentRepository.existsById(appointmentId)) {
-			return false;
+			throw new AppointmentNotFoundException("Appointment not deleted!!");
 		}
-		throw new AppointmentNotFoundException("Appointment Id is invalid!!");
+		return true;
 	}
 
 	@Override
 	public boolean deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
 		appointmentRepository.delete(appointments);
 		if (appointmentRepository.existsById(appointments.getAppointmentId())) {
-			return false;
+			throw new AppointmentNotFoundException("Appointment Not deleted!!");
 		}
-		throw new AppointmentNotFoundException("Appointment Not Found!!");
+		return true;
 	}
 
 	@Override
