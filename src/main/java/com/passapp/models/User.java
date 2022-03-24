@@ -23,14 +23,6 @@ public class User {
 	private String gender;
 	private Date dob;
 
-	// oneToMany
-//	@ManyToMany(cascade = CascadeType.ALL)
-//	@JoinTable(name = "user_appointments", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
-//			@JoinColumn(name = "appointmentId") })
-
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//	private List<Appointments> appointments;
-
 	public User() {
 	}
 
@@ -41,7 +33,6 @@ public class User {
 		this.name = name;
 		this.gender = gender;
 		this.dob = dob;
-//		this.appointments = appointments;
 	}
 
 	public Long getUserId() {

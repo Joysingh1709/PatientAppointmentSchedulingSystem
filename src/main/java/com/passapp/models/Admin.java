@@ -6,26 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="admin")
+@Table(name = "admin")
 public class Admin {
-	
+
 	@Id
 	@GeneratedValue
 	private Long adminId;
 	private String name;
 	private String userName;
 	private String password;
-	
-	
-	
-	
-	
+
 	public Admin() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Admin(String name, String userName, String password) {
-		
+
 		this.name = name;
 		this.userName = userName;
 		this.password = password;
@@ -68,8 +63,5 @@ public class Admin {
 		return "Admin [adminId=" + adminId + ", name=" + name + ", userName=" + userName + ", password=" + password
 				+ "]";
 	}
-	
-	
-	
-	
+
 }
