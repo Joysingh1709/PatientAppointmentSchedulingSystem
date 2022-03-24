@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Receptionist;
 import com.passapp.services.AppointmentService;
 import com.passapp.services.DoctorService;
@@ -27,6 +28,7 @@ public class ReceptionistController {
 
 	@Autowired
 	AppointmentService appointmentService;
+	
 
 	@GetMapping()
 	public ModelAndView getReceptionistDashboard(@ModelAttribute Receptionist receptionist) {
@@ -66,8 +68,11 @@ public class ReceptionistController {
 	}
 
 	@GetMapping("/appointmentPerDoctor")
-	public ModelAndView getReceptionistPppointmentPerDoctor(@ModelAttribute Receptionist receptionist) {
-		return new ModelAndView("appointmentPerDoctor");
+	public ModelAndView getReceptionistPppointmentPerDoctor(@ModelAttribute String status) throws DoctorNotFoundException {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("appointments", appointmentService.getAllAppointments());
+		model.put("doctors", doctorService.getActiveDoctor(status));
+		return new ModelAndView("appointmentPerDoctor",model);
 	}
 
 }
