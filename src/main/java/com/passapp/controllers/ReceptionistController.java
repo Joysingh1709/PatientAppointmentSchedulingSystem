@@ -58,6 +58,13 @@ public class ReceptionistController {
 		return new ModelAndView("patientPrescription");
 	}
 
+	@GetMapping("/receptionistPrintReceipt")
+	public ModelAndView getReceptionistPrintReceipt(@ModelAttribute Receptionist receptionist) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("appointments", appointmentService.getAllAppointments());
+		return new ModelAndView("receptionistPrintReceipt");
+	}
+
 	@GetMapping("/appointmentPerDoctor")
 	public ModelAndView getReceptionistPppointmentPerDoctor(@ModelAttribute Receptionist receptionist) {
 		return new ModelAndView("appointmentPerDoctor");
