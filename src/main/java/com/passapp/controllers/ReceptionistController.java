@@ -31,7 +31,7 @@ public class ReceptionistController {
 
 	@GetMapping()
 	public ModelAndView getReceptionistDashboard(@ModelAttribute Receptionist receptionist) {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("users", patientService.getAllPatients());
 		model.put("doctors", doctorService.getAllDoctors());
 		model.put("appointments", appointmentService.getAllAppointments());
@@ -61,7 +61,7 @@ public class ReceptionistController {
 
 	@GetMapping("/receptionistPrintReceipt")
 	public ModelAndView getReceptionistPrintReceipt(@ModelAttribute Receptionist receptionist) {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("appointments", appointmentService.getAllAppointments());
 		return new ModelAndView("receptionistPrintReceipt", model);
 	}
@@ -69,7 +69,7 @@ public class ReceptionistController {
 	@GetMapping("/appointmentPerDoctor")
 	public ModelAndView getReceptionistPppointmentPerDoctor(@ModelAttribute String status)
 			throws DoctorNotFoundException {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("appointments", appointmentService.getAllAppointments());
 		model.put("doctors", doctorService.getActiveDoctor(status));
 		return new ModelAndView("appointmentPerDoctor", model);

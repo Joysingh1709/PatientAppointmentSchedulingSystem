@@ -100,7 +100,6 @@ public class PatientController {
 		res.put("message", "Appointment booked successfully!");
 		res.put("data", appointmentService.addAppointments(appointments));
 		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.CREATED);
-
 	}
 
 	@GetMapping("/recentappointments/{patientId}")
