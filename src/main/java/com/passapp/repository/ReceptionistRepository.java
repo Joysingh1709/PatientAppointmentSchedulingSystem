@@ -6,10 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.passapp.models.Receptionist;
 
-public interface ReceptionistRepository extends JpaRepository<Receptionist,Long> {
-	
+public interface ReceptionistRepository extends JpaRepository<Receptionist, Long> {
+
 	@Query("FROM Receptionist r where r.email=:rEmail AND r.password=:rPass")
 	Receptionist getReceptionistByEmailAndPass(@Param("rEmail") String email, @Param("rPass") String pass);
-	
 
 }

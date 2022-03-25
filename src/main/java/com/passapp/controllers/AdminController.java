@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.exceptions.ReceptionistNotAddedException;
 import com.passapp.models.Doctor;
 import com.passapp.models.Receptionist;
 import com.passapp.services.DoctorService;
@@ -48,7 +49,8 @@ public class AdminController {
 	}
 
 	@PostMapping("/saveReceptionist")
-	public ResponseEntity<Map<String, Object>> addReceptionist(@RequestBody Receptionist receptionist) {
+	public ResponseEntity<Map<String, Object>> addReceptionist(@RequestBody Receptionist receptionist)
+			throws ReceptionistNotAddedException {
 		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");

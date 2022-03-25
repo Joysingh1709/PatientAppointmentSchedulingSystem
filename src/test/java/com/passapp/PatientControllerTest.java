@@ -14,41 +14,35 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest()
 @AutoConfigureMockMvc
 class PatientControllerTest {
-	
+
 	@Autowired
 	MockMvc mvc;
-	
+
 	@Test
 	void testRecentAppointments() {
 		try {
-			mvc.perform(get("/getRecentAppointments/{patientId}"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
+			mvc.perform(get("/getRecentAppointments/{patientId}")).andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	void testGetAppointmentByPatientId() {
 		try {
-			mvc.perform(get("/appointments/{patientId}"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
+			mvc.perform(get("/appointments/{patientId}")).andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	/*@Test
-	void testBookAppointments() {
-		try {
-			mvc.perform(get("/patientBookAppointment"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}*/
+
+	/*
+	 * @Test void testBookAppointments() { try {
+	 * mvc.perform(get("/patientBookAppointment")) .andExpect(status().isOk())
+	 * .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+	 * }catch(Exception e) { e.printStackTrace(); } }
+	 */
 
 }

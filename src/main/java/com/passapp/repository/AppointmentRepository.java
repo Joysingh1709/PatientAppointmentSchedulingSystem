@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 import com.passapp.models.Appointments;
 
-public interface AppointmentRepository extends JpaRepository<Appointments, Long>{
-	
+public interface AppointmentRepository extends JpaRepository<Appointments, Long> {
+
 	@Query("From Appointments a WHERE a.doctor.doctorId = :aDoctorId")
-    List<Appointments> getAllAppointmentsByDocId(@Param("aDoctorId") Long doctorId);
-	
-	@Query ("From Appointments a WHERE a.doctor.name =:pName")
+	List<Appointments> getAllAppointmentsByDocId(@Param("aDoctorId") Long doctorId);
+
+	@Query("From Appointments a WHERE a.doctor.name =:pName")
 	List<Appointments> getAppointmentByDocName(@Param("pName") String name);
 
 }

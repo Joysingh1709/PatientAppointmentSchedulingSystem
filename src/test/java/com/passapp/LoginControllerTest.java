@@ -9,40 +9,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
- class LoginControllerTest {
-	
+class LoginControllerTest {
+
 	@Autowired
 	MockMvc mvc;
-	
+
 	@Test
 	void testReceptionistLogin() {
 		try {
-			mvc.perform(post("/receptionist/login"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
+			mvc.perform(post("/receptionist/login")).andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	void testDoctorLogin() {
 		try {
-			mvc.perform(post("/doctor/login"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
+			mvc.perform(post("/doctor/login")).andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	void testPatientLogin() {
 		try {
-			mvc.perform(post("/patient/login"))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType(MediaType.APPLICATION_JSON));
-		}catch(Exception e) {
+			mvc.perform(post("/patient/login")).andExpect(status().isOk())
+					.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

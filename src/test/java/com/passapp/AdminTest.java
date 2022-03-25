@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.passapp.exceptions.AdminNotAddedException;
+import com.passapp.exceptions.AdminNotDeletedException;
 import com.passapp.exceptions.AdminNotFoundException;
+import com.passapp.exceptions.AdminNotUpdatedException;
 import com.passapp.models.Admin;
 import com.passapp.services.AdminService;
 
@@ -23,7 +25,7 @@ class AdminTest {
 	@Autowired
 	private AdminService adminService;
 
-	public Admin addAdmin() throws AdminNotAddedException {
+	public Admin addAdmin() throws AdminNotAddedException, AdminNotFoundException {
 		Admin admin = new Admin();
 		admin.setUserName("Rohit");
 		admin.setPassword("jayesh");
@@ -32,14 +34,14 @@ class AdminTest {
 	}
 
 	@Test
-	void testAddAdmin() throws AdminNotAddedException {
+	void testAddAdmin() throws AdminNotAddedException, AdminNotFoundException {
 		Admin admin = addAdmin();
 		assertEquals("Rohit", admin.getUserName());
 		assertEquals("jayesh", admin.getPassword());
 	}
 
 	@Test
-	void testUpdateAdmin() throws AdminNotAddedException {
+	void testUpdateAdmin() throws AdminNotAddedException, AdminNotUpdatedException, AdminNotFoundException {
 		Admin admin = addAdmin();
 		admin.setUserName("Kumar");
 		adminService.updateAdmin(admin);
@@ -47,7 +49,7 @@ class AdminTest {
 	}
 
 	@Test
-	void testDeleteAdmin() throws AdminNotAddedException {
+	void testDeleteAdmin() throws AdminNotAddedException, AdminNotFoundException, AdminNotDeletedException {
 		Admin admin = addAdmin();
 		adminService.deleteAdmin(admin);
 		assertThrows(AdminNotFoundException.class, () -> {

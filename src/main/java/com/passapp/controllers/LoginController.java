@@ -38,9 +38,9 @@ public class LoginController {
 
 	@Autowired
 	ReceptionistService receptionistService;
-	
-	private static final String status="status";
-	private static final String message="message";
+
+	private static final String status = "status";
+	private static final String message = "message";
 
 	@GetMapping()
 	public ModelAndView getHomePage() {

@@ -28,15 +28,15 @@ class ExceptionTestCase {
 	public String adminNotFoundHandler(Long adminId) throws AdminNotFoundException {
 		throw new AdminNotFoundException();
 	}
-	
+
 	public String adminNotAddedHandler(Long adminId) throws AdminNotAddedException {
 		throw new AdminNotAddedException();
 	}
-	
+
 	public String adminNotUpdatedHandler(Long adminId) throws AdminNotUpdatedException {
 		throw new AdminNotUpdatedException();
 	}
-	
+
 	public String adminNotDeletedHandler(Long adminId) throws AdminNotDeletedException {
 		throw new AdminNotDeletedException();
 	}
@@ -44,7 +44,7 @@ class ExceptionTestCase {
 	public String doctorNotFoundHandler(Long doctorId) throws DoctorNotFoundException {
 		throw new DoctorNotFoundException();
 	}
-	
+
 	public String doctorNotAddedHandler(Long userId) throws DoctorNotAddedException {
 		throw new DoctorNotAddedException();
 	}
@@ -73,11 +73,10 @@ class ExceptionTestCase {
 		throw new PatientNotDeletedException();
 	}
 
-
 	public String receptionistNotFoundHandler(Long receptionistId) throws ReceptionistNotFoundException {
 		throw new ReceptionistNotFoundException();
 	}
-	
+
 	public String receptionistNotAddedHandler(Long userId) throws ReceptionistNotAddedException {
 		throw new ReceptionistNotAddedException();
 	}
@@ -93,7 +92,7 @@ class ExceptionTestCase {
 	public String appointmentNotFoundHandler(Long appointmentId) throws AppointmentNotFoundException {
 		throw new AppointmentNotFoundException();
 	}
-	
+
 	public String appointmentNotConfirmHandler(Long appointmentId) throws AppointmentNotConfirmException {
 		throw new AppointmentNotConfirmException();
 	}
@@ -104,7 +103,7 @@ class ExceptionTestCase {
 			adminNotFoundHandler((long) 34324);
 		});
 	}
-	
+
 	@Test
 	void AdminNotAddedHandler() {
 		assertThrows(AdminNotAddedException.class, () -> {
@@ -132,7 +131,7 @@ class ExceptionTestCase {
 			doctorNotFoundHandler((long) 1);
 		});
 	}
-	
+
 	@Test
 	void DoctorNotAddedHandler() {
 		assertThrows(DoctorNotAddedException.class, () -> {
@@ -188,7 +187,7 @@ class ExceptionTestCase {
 			receptionistNotFoundHandler((long) 6556);
 		});
 	}
-	
+
 	@Test
 	void ReceptionistNotAddedHandler() {
 		assertThrows(ReceptionistNotAddedException.class, () -> {
@@ -216,7 +215,7 @@ class ExceptionTestCase {
 			appointmentNotFoundHandler((long) 454634341);
 		});
 	}
-	
+
 	@Test
 	void AppointmentNotConfirmHandler() {
 		assertThrows(AppointmentNotConfirmException.class, () -> {

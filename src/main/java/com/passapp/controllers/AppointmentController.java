@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.passapp.exceptions.AppointmentNotDeletedException;
 import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.exceptions.PatientNotFoundException;
 import com.passapp.models.Appointments;
@@ -32,8 +34,8 @@ import com.passapp.services.PatientService;
 @RestController
 @RequestMapping("/appointment")
 public class AppointmentController {
-	private static final String status="status";
-	private static final String message="message";
+	private static final String status = "status";
+	private static final String message = "message";
 
 	@Autowired
 	PatientService patientService;
@@ -46,7 +48,7 @@ public class AppointmentController {
 
 	@PostMapping("/saveAppointments")
 	public ResponseEntity<Map<String, Object>> addAppointments(@RequestBody Map<String, Object> body)
-			throws PatientNotAddedException, ParseException, PatientNotFoundException {
+			throws PatientNotAddedException, ParseException, PatientNotFoundException, DoctorNotFoundException {
 
 		DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Appointments newAppointment = new Appointments();
@@ -77,7 +79,7 @@ public class AppointmentController {
 
 	@DeleteMapping("/appointmentdel/{appointmentId}")
 	public ResponseEntity<Map<String, Object>> deleteAppointmentById(@PathVariable Long appointmentId)
-			throws AppointmentNotFoundException {
+			throws AppointmentNotDeletedException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "Appointment deleted successfully!");
@@ -86,7 +88,7 @@ public class AppointmentController {
 	}
 
 	@DeleteMapping("/appointmentdelete")
-	public ResponseEntity<Void> deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
+	public ResponseEntity<Void> deleteAppointment(Appointments appointments) throws AppointmentNotDeletedException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "Appointment deleted successfully!");
@@ -96,7 +98,8 @@ public class AppointmentController {
 
 	@PutMapping("/appointmentUpdate")
 	public ResponseEntity<Map<String, Object>> updateAppointments(@RequestBody Map<String, Object> body)
-			throws AppointmentNotFoundException, ParseException, PatientNotFoundException, PatientNotAddedException {
+			throws AppointmentNotFoundException, ParseException, PatientNotFoundException, PatientNotAddedException,
+			DoctorNotFoundException {
 
 		DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Appointments newAppointment = new Appointments();
