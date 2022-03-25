@@ -67,11 +67,11 @@ public class ReceptionistController {
 	}
 
 	@GetMapping("/appointmentPerDoctor")
-	public ModelAndView getReceptionistPppointmentPerDoctor(@ModelAttribute String status)
-			throws DoctorNotFoundException {
+	public ModelAndView getReceptionistPppointmentPerDoctor() throws DoctorNotFoundException {
 		Map<String, Object> model = new HashMap<>();
 		model.put("appointments", appointmentService.getAllAppointments());
-		model.put("doctors", doctorService.getActiveDoctor(status));
+		model.put("doctors", doctorService.getActiveDoctor());
+		System.out.println(model);
 		return new ModelAndView("appointmentPerDoctor", model);
 	}
 

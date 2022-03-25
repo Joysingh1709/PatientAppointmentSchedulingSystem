@@ -6,12 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.passapp.models.Admin;
 
+public interface AdminRepository extends JpaRepository<Admin, Long> {
 
-public interface AdminRepository extends JpaRepository<Admin,Long> {
-
-	
-	 @Query("From Admin a WHERE a.userName =:aAdminuser AND a.password =:aPass")
+	@Query("From Admin a WHERE a.userName =:aAdminuser AND a.password =:aPass")
 	Admin getAdminByEmailAndPass(@Param("aAdminuser") String userName, @Param("aPass") String pass);
-	
-	
+
 }
