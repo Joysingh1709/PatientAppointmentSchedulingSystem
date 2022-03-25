@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		!path.includes("registration") ? window.location.href = "/registration" : null;
 	}
 	else if (path.includes("adminLogin") && !patient && !doctor && !receptionist && !adminData) {
-		window.location.href = "/adminLogin";
+		!path.includes("adminLogin") ? window.location.href = "/adminLogin" : null;
 	}
 	else {
 		if (!path.includes("login")) {
@@ -496,6 +496,89 @@ function resLogin() {
 
 	document.forms['resForm'].reset();
 
+}
+
+function onAppointmentUpdate() {
+	var userId = document.getElementById("userId").value;
+	var appId = document.getElementById("appId").value;
+	var createdDate = document.getElementById("appCreatedDate").value;
+	var doctorId = document.getElementById("docName").value;
+	var docSpecialization = document.getElementById("docSpecialization").value;
+	var patName = document.getElementById("patName").value;
+	var problem = document.getElementById("problem").value;
+	var datOfApp = document.getElementById("datOfApp").value;
+	var patDob = document.getElementById("dob").value;
+	var patGender = document.getElementById("patGender").value;
+
+	putData('http://localhost:8080/appointment/appointmentUpdate', {
+		"appointmentId": parseInt(appId),
+		"createdDate": new Date(createdDate),
+		"updatedDate": new Date(),
+		"problem": problem,
+		"status": "Pending",
+		"appointmentTime": datOfApp,
+		"patientName": patName,
+		"patientGender": patGender,
+		"patientDOB": patDob,
+		"doctorId": parseInt(doctorId),
+		"userId": parseInt(userId)
+	}).then(dataRes => {
+		console.log("dataRes : ", dataRes);
+		if (dataRes.status) {
+			console.log(dataRes.message);
+			window.location.href = "/receptionist";
+		}
+	})
+}
+
+function onUpdateAppStatus(appId) {
+	var appStatus = document.getElementById("appStatus").value;
+
+	fetch("http://localhost:8080/appointment/appointments/" + appId)
+		.then(res => res.json())
+		.then(data => {
+			if (data.status) {
+
+				putData('http://localhost:8080/appointment/appointmentUpdate', {
+					"appointmentId": parseInt(appId),
+					"createdDate": data.data.createdDate,
+					"updatedDate": new Date(),
+					"problem": data.data.problem,
+					"status": appStatus,
+					"appointmentTime": data.data.appointmentTime,
+					"patientName": data.data.patientName,
+					"patientGender": data.data.patientGender,
+					"patientDOB": data.data.patientDOB,
+					"doctorId": data.data.doctor.doctorId,
+					"userId": data.data.user.userId
+				}).then(dataRes => {
+					console.log("dataRes : ", dataRes);
+					if (dataRes.status) {
+						console.log(dataRes.message);
+						window.location.href = "/receptionist";
+					}
+				})
+
+			}
+		});
+}
+
+function onDeleteAppointment() {
+	var appId = document.getElementById("appId").value;
+	var patName = document.getElementById("patName").value;
+
+	console.log("appId : ", appId);
+	console.log("patName : ", patName);
+
+	// need to get user and then 
+
+	deleteData('http://localhost:8080/appointment/appointmentdel/' + appId, {}).then(dataRes => {
+		console.log("dataRes : ", dataRes);
+		if (dataRes.status) {
+			console.log(dataRes.message);
+			window.location.href = "/receptionist";
+		}
+	});
 }
 
 function onBookAppointment() {

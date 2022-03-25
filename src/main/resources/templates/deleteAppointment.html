@@ -6,7 +6,6 @@
 <title>Delete Appointment</title>
 <link rel="stylesheet" href="../static/patientDash.css"
 	th:href="@{/patientDash.css}">
-<!-- <link rel="stylesheet" href="../static/style2.css" th:href="@{/style2.css}"> -->
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css'
 	rel='stylesheet'>
 <link
@@ -73,19 +72,22 @@
 				<div class="col ">
 					<div class="signup-form">
 						<form name="form2" action="javascript:void(0)"
-							onsubmit="onPatRegister()">
+							onsubmit="onDeleteAppointment()">
 							<h2>Delete Appointment</h2>
 							<p>Please fill in this form to Delete an appointment!</p>
 							<hr>
 
 							<label style="color: black;">Appointment Id</label><br>
 							<div class="form-group">
-								<div>
-									<input type="number" class="form-control" id="appointmentId"
-										name="problemappointmentId" placeholder="ApointmentId"
-										required="required">
-									<div id="validationServer03Feedback" class="invalid-feedback">
-										Please provide a valid AppointmentID</div>
+								<div class="form-group">
+									<div class="form-group">
+										<select required="required" class="form-control" name="appId"
+											id="appId">
+											<option value="">Select Appointment Id</option>
+											<option th:each="a : ${appointments}"
+												th:value="${a.appointmentId}" th:text="${a.appointmentId}"></option>
+										</select>
+									</div>
 								</div>
 							</div>
 

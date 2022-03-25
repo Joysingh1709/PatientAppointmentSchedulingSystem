@@ -75,12 +75,13 @@ public class AppointmentController {
 	}
 
 	@DeleteMapping("/appointmentdel/{appointmentId}")
-	public ResponseEntity<Void> deleteAppointmentById(Long appointmentId) throws AppointmentNotFoundException {
+	public ResponseEntity<Map<String, Object>> deleteAppointmentById(@PathVariable Long appointmentId)
+			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment deleted successfully!");
 		res.put("data", appointmentService.deleteAppointmentsById(appointmentId));
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/appointmentdelete")
@@ -92,24 +93,46 @@ public class AppointmentController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@PutMapping("/appointmentupdate")
-	public ResponseEntity<Appointments> updateAppointments(Appointments newAppointments)
-			throws AppointmentNotFoundException {
+	@PutMapping("/appointmentUpdate")
+	public ResponseEntity<Map<String, Object>> updateAppointments(@RequestBody Map<String, Object> body)
+			throws AppointmentNotFoundException, ParseException, PatientNotFoundException, PatientNotAddedException {
+
+		DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Appointments newAppointment = new Appointments();
+		newAppointment.setAppointmentId(((Number) body.get("appointmentId")).longValue());
+		newAppointment.setCreatedDate(simpleDateFormat.parse(body.get("createdDate").toString()));
+		newAppointment.setUpdatedDate(simpleDateFormat.parse(body.get("updatedDate").toString()));
+		newAppointment.setProblem(body.get("problem").toString());
+		newAppointment.setStatus(body.get("status").toString());
+		newAppointment.setAppointmentTime(LocalDate.parse(body.get("appointmentTime").toString()));
+		newAppointment.setPatientName(body.get("patientName").toString());
+		newAppointment.setPatientGender(body.get("patientGender").toString());
+		newAppointment.setPatientDOB(simpleDateFormat.parse(body.get("patientDOB").toString()));
+
+		Doctor doc = doctorService.getDoctorById(Long.valueOf((Integer) body.get("doctorId")));
+		User user = patientService.getPatientById(Long.valueOf((Integer) body.get("userId")));
+
+		newAppointment.setUser(user);
+		newAppointment.setDoctor(doc);
+
+		patientService.addPatient(user);
+		doctorService.addDoctor(doc);
+
 		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointment updated successfully!");
-		res.put("data", appointmentService.updateAppointments(newAppointments));
-		return new ResponseEntity<>(HttpStatus.OK);
+		res.put("data", appointmentService.updateAppointments(newAppointment));
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@GetMapping("/appointments/{appointmentId}")
-	public ResponseEntity<Appointments> getAppointmentsById(@PathVariable Long appointmentId)
+	public ResponseEntity<Map<String, Object>> getAppointmentsById(@PathVariable Long appointmentId)
 			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "Appointments with Id!");
 		res.put("data", appointmentService.getAppointmentsById(appointmentId));
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@GetMapping("/doctorId/{doctorId}")
