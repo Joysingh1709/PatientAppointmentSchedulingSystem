@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.passapp.exceptions.DoctorNotFoundException;
-import com.passapp.models.Receptionist;
 import com.passapp.services.AppointmentService;
 import com.passapp.services.DoctorService;
 import com.passapp.services.PatientService;
