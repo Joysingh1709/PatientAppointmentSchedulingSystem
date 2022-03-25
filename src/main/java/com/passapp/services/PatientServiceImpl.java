@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.exceptions.PatientNotDeletedException;
 import com.passapp.exceptions.PatientNotFoundException;
@@ -17,6 +19,7 @@ import com.passapp.exceptions.PatientNotUpdatedException;
 import com.passapp.models.Appointments;
 import com.passapp.models.User;
 import com.passapp.repository.PatientRepository;
+import com.passapp.utils.Validations;
 
 @Service
 @Transactional
@@ -24,6 +27,9 @@ public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	PatientRepository patientRepository;
+
+	@Autowired
+	Validations validation;
 
 	@Override
 
@@ -34,7 +40,17 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public User getPatient(String email, String password) throws PatientNotFoundException {
+	public User getPatient(String email, String password)
+			throws PatientNotFoundException, EmailNotValidException, PasswordNotValidException {
+
+		if (!validation.isEmailValid(email)) {
+			throw new EmailNotValidException("Please provide a valid email address..!");
+		}
+
+		if (!validation.isPasswordValid(password)) {
+			throw new PasswordNotValidException("Please provide a valid Password..!");
+		}
+
 		User pa = patientRepository.getPatientByEmailAndPassword(email, password);
 		if (pa != null)
 			return pa;

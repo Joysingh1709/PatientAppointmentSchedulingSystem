@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.exceptions.DoctorNotFoundException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.PatientNotFoundException;
 import com.passapp.exceptions.ReceptionistNotFoundException;
 import com.passapp.models.User;
@@ -66,7 +68,7 @@ public class LoginController {
 
 	@PostMapping("/patient/login")
 	public ResponseEntity<Map<String, Object>> patientLogin(@RequestBody Map<String, Object> body)
-			throws PatientNotFoundException {
+			throws PatientNotFoundException, EmailNotValidException, PasswordNotValidException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data inserted successfully!");
@@ -77,7 +79,7 @@ public class LoginController {
 
 	@PostMapping("/doctor/login")
 	public ResponseEntity<Map<String, Object>> doctorLogin(@RequestBody Map<String, Object> body)
-			throws DoctorNotFoundException {
+			throws DoctorNotFoundException, EmailNotValidException, PasswordNotValidException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data inserted successfully!");
@@ -88,7 +90,7 @@ public class LoginController {
 
 	@PostMapping("/receptionist/login")
 	public ResponseEntity<Map<String, Object>> receptionistLogin(@RequestBody Map<String, Object> body)
-			throws ReceptionistNotFoundException {
+			throws ReceptionistNotFoundException, EmailNotValidException, PasswordNotValidException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data inserted successfully!");
@@ -100,7 +102,7 @@ public class LoginController {
 
 	@PostMapping("/admin/login")
 	public ResponseEntity<Map<String, Object>> adminLogin(@RequestBody Map<String, Object> body)
-			throws AdminNotFoundException {
+			throws AdminNotFoundException, PasswordNotValidException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data inserted successfully!");

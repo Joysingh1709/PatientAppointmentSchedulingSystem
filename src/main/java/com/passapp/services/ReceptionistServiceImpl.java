@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.ReceptionistNotAddedException;
 import com.passapp.exceptions.ReceptionistNotDeletedException;
 import com.passapp.exceptions.ReceptionistNotFoundException;
 import com.passapp.exceptions.ReceptionistNotUpdatedException;
 import com.passapp.models.Receptionist;
 import com.passapp.repository.ReceptionistRepository;
+import com.passapp.utils.Validations;
 
 @Service
 @Transactional
@@ -21,6 +24,9 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 
 	@Autowired
 	ReceptionistRepository receptionistRepository;
+
+	@Autowired
+	Validations validation;
 
 	@Override
 	public Receptionist addReceptionist(Receptionist receptionist) throws ReceptionistNotAddedException {
@@ -32,7 +38,15 @@ public class ReceptionistServiceImpl implements ReceptionistService {
 	}
 
 	@Override
-	public Receptionist getReceptionist(String email, String password) throws ReceptionistNotFoundException {
+	public Receptionist getReceptionist(String email, String password)
+			throws ReceptionistNotFoundException, EmailNotValidException, PasswordNotValidException {
+		if (!validation.isEmailValid(email)) {
+			throw new EmailNotValidException("Please provide a valid email address..!");
+		}
+
+		if (!validation.isPasswordValid(password)) {
+			throw new PasswordNotValidException("Please provide a valid Password..!");
+		}
 		Receptionist recptn = receptionistRepository.getReceptionistByEmailAndPass(email, password);
 		if (recptn != null) {
 			return recptn;

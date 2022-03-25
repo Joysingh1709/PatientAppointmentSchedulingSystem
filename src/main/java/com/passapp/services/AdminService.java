@@ -4,11 +4,12 @@ import com.passapp.exceptions.AdminNotAddedException;
 import com.passapp.exceptions.AdminNotDeletedException;
 import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.exceptions.AdminNotUpdatedException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.models.Admin;
 
 public interface AdminService {
 
-	public Admin getAdmin(String username, String password) throws AdminNotFoundException;
+	public Admin getAdmin(String username, String password) throws AdminNotFoundException, PasswordNotValidException;
 
 	public Admin addAdmin(Admin admin) throws AdminNotAddedException;
 
