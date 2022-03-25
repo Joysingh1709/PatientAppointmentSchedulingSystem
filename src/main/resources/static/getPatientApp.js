@@ -1,4 +1,3 @@
-/*const baseUrl = "https://pass-dev.herokuapp.com/";*/
 const baseUrl = "http://localhost:8080/";
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -40,32 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			if (recentAppointmentsTable) {
 				document.getElementById("totalAppBooked").innerHTML = res.data.length;
-				for (var i = 0; i < res.data.length; i++) {
+				for (var j = 0; j < res.data.length; j++) {
 
-					var row = recentAppointmentsTable.insertRow(i + 1);
-					var cell1 = row.insertCell(0);
-					var cell2 = row.insertCell(1);
-					var cell3 = row.insertCell(2);
-					var cell4 = row.insertCell(3);
-					var cell5 = row.insertCell(4);
-					var cell6 = row.insertCell(5);
+					var rrow = recentAppointmentsTable.insertRow(j + 1);
+					var rcell1 = rrow.insertCell(0);
+					var rcell2 = rrow.insertCell(1);
+					var rcell3 = rrow.insertCell(2);
+					var rcell4 = rrow.insertCell(3);
+					var rcell5 = rrow.insertCell(4);
+					var rcell6 = rrow.insertCell(5);
 
-					cell1.innerHTML = res.data[i].appointmentId;
-					cell2.innerHTML = res.data[i].doctor.name;
-					cell3.innerHTML = res.data[i].doctor.specialization;
-					cell4.innerHTML = res.data[i].appointmentTime.toString();
-					cell5.innerHTML = res.data[i].patientName;
-					cell6.innerHTML = res.data[i].status;
+					rcell1.innerHTML = res.data[j].appointmentId;
+					rcell2.innerHTML = res.data[j].doctor.name;
+					rcell3.innerHTML = res.data[j].doctor.specialization;
+					rcell4.innerHTML = res.data[j].appointmentTime.toString();
+					rcell5.innerHTML = res.data[j].patientName;
+					rcell6.innerHTML = res.data[j].status;
 				}
 			}
 
 		}
 	});
-
-
-	// fetch(baseUrl + "patient/getRecentAppointments/" + patientId).then(res => res.json()).then(data => {
-	// 	if (data.status) {
-	// 		console.log("getRecentAppointments : ", data.data);
-	// 	}
-	// });
 });
