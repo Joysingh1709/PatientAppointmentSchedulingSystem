@@ -107,7 +107,7 @@ public class AppointmentController {
 		newAppointment.setCreatedDate(simpleDateFormat.parse(body.get("createdDate").toString()));
 		newAppointment.setUpdatedDate(simpleDateFormat.parse(body.get("updatedDate").toString()));
 		newAppointment.setProblem(body.get("problem").toString());
-		newAppointment.setStatus(body.get("status").toString());
+		newAppointment.setStatus(body.get(status).toString());
 		newAppointment.setAppointmentTime(LocalDate.parse(body.get("appointmentTime").toString()));
 		newAppointment.setPatientName(body.get("patientName").toString());
 		newAppointment.setPatientGender(body.get("patientGender").toString());
@@ -123,8 +123,8 @@ public class AppointmentController {
 		doctorService.addDoctor(doc);
 
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "Appointment updated successfully!");
+		res.put(status, true);
+		res.put(message, "Appointment updated successfully!");
 		res.put("data", appointmentService.updateAppointments(newAppointment));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}

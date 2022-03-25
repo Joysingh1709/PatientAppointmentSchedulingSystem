@@ -101,7 +101,6 @@ public class LoginController {
 	@PostMapping("/admin/login")
 	public ResponseEntity<Map<String, Object>> adminLogin(@RequestBody Map<String, Object> body)
 			throws AdminNotFoundException {
-		System.out.println("body : " + body);
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data inserted successfully!");

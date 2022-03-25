@@ -87,8 +87,8 @@ public class DoctorController {
 	public ResponseEntity<Map<String, Object>> deleteDoctorById(@PathVariable Long docId)
 			throws DoctorNotDeletedException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", doctorService.deleteDoctorById(docId));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
