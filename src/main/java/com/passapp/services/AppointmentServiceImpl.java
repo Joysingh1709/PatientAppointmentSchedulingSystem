@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.passapp.exceptions.AppointmentNotDeletedException;
 import com.passapp.exceptions.AppointmentNotFoundException;
 import com.passapp.models.Appointments;
 import com.passapp.repository.AppointmentRepository;
@@ -21,7 +22,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public Appointments addAppointments(Appointments appointments) {
-
 		return appointmentRepository.save(appointments);
 	}
 
@@ -47,30 +47,28 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public List<Appointments> getAllAppointmentsByDocId(Long doctorId) {
-		List<Appointments> appointments = appointmentRepository.getAllAppointmentsByDocId(doctorId);
-		return appointments;
+		return appointmentRepository.getAllAppointmentsByDocId(doctorId);
 	}
 
 	@Override
 	public List<Appointments> getAllAppointments() {
-
 		return appointmentRepository.findAll();
 	}
 
 	@Override
-	public boolean deleteAppointmentsById(Long appointmentId) throws AppointmentNotFoundException {
+	public boolean deleteAppointmentsById(Long appointmentId) throws AppointmentNotDeletedException {
 		appointmentRepository.deleteById(appointmentId);
 		if (appointmentRepository.existsById(appointmentId)) {
-			throw new AppointmentNotFoundException("Appointment not deleted!!");
+			throw new AppointmentNotDeletedException("Appointment not deleted!!");
 		}
 		return true;
 	}
 
 	@Override
-	public boolean deleteAppointment(Appointments appointments) throws AppointmentNotFoundException {
+	public boolean deleteAppointment(Appointments appointments) throws AppointmentNotDeletedException {
 		appointmentRepository.delete(appointments);
 		if (appointmentRepository.existsById(appointments.getAppointmentId())) {
-			throw new AppointmentNotFoundException("Appointment Not deleted!!");
+			throw new AppointmentNotDeletedException("Appointment Not deleted!!");
 		}
 		return true;
 	}

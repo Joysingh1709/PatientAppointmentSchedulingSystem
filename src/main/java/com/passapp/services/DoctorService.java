@@ -2,12 +2,13 @@ package com.passapp.services;
 
 import java.util.List;
 
+import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
+import com.passapp.exceptions.DoctorNotUpdatedException;
 import com.passapp.models.Doctor;
 
 public interface DoctorService {
 
-	// CRUD Operations
 	public Doctor addDoctor(Doctor doctor);
 
 	public List<Doctor> getAllDoctors();
@@ -16,13 +17,13 @@ public interface DoctorService {
 
 	public List<Doctor> getAllDoctorsByFee();
 
-	public Doctor getDoctorById(Long doctorId);
+	public Doctor getDoctorById(Long doctorId) throws DoctorNotFoundException;
 
-	public boolean deleteDoctorById(Long doctorId);
+	public boolean deleteDoctorById(Long doctorId) throws DoctorNotDeletedException;
 
-	public boolean deleteDoctor(Doctor doctor);
+	public boolean deleteDoctor(Doctor doctor) throws DoctorNotDeletedException;
 
-	public boolean updateDoctor(Doctor doctor);
+	public boolean updateDoctor(Doctor doctor) throws DoctorNotUpdatedException;
 
 	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException;
 
