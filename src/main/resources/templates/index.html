@@ -3,6 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
+<title>PASS APP</title>
 <link rel="stylesheet" href="../static/homeStyle.css"
 	th:href="@{/homeStyle.css}">
 <link rel="stylesheet" href="../static/swipe.css"
@@ -120,11 +121,8 @@
 		</div>
 
 	</section>
-	</script>
-	<!-- Swiper JS -->
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<!-- Initialize Swiper -->
 	<script>
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 3,
@@ -152,7 +150,6 @@
     colorIcons.classList.toggle("open");
   })
 
-  // getting all .btn elements
   let buttons = document.querySelectorAll(".btn");
 
   for (var button of buttons) {
@@ -165,12 +162,10 @@
       document.querySelector(".active").classList.remove("active");
       target.classList.add("active");
 
-      // js code to switch colors (also day night mode)
       let root = document.querySelector(":root");
       let dataColor = target.getAttribute("data-color"); //getting data-color values of clicked button
       let color = dataColor.split(" "); //splitting each color from space and make them array
 
-      //passing particular value to a particular root variable
       root.style.setProperty("--white", color[0]);
       root.style.setProperty("--black", color[1]);
       root.style.setProperty("--nav-main", color[2]);
