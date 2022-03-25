@@ -30,7 +30,7 @@ public class ReceptionistController {
 	AppointmentService appointmentService;
 
 	@GetMapping()
-	public ModelAndView getReceptionistDashboard(@ModelAttribute Receptionist receptionist) {
+	public ModelAndView getReceptionistDashboard() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("users", patientService.getAllPatients());
 		model.put("doctors", doctorService.getAllDoctors());
@@ -40,38 +40,44 @@ public class ReceptionistController {
 	}
 
 	@GetMapping("/deleteAppointment")
-	public ModelAndView getReceptionistDeleteAppointment(@ModelAttribute Receptionist receptionist) {
-		return new ModelAndView("deleteAppointment");
+	public ModelAndView getReceptionistDeleteAppointment() {
+		Map<String, Object> model = new HashMap<>();
+		model.put("appointments", appointmentService.getAllAppointments());
+		return new ModelAndView("deleteAppointment", model);
 	}
 
 	@GetMapping("/updateAppointment")
-	public ModelAndView getReceptionistUpdateAppointment(@ModelAttribute Receptionist receptionist) {
-		return new ModelAndView("updateAppointment");
+	public ModelAndView getReceptionistUpdateAppointment() throws DoctorNotFoundException {
+		Map<String, Object> model = new HashMap<>();
+		model.put("appointments", appointmentService.getAllAppointments());
+		model.put("doctors", doctorService.getActiveDoctor());
+		return new ModelAndView("updateAppointment", model);
 	}
 
 	@GetMapping("/updateSpecialization")
-	public ModelAndView getReceptionistUpdateSpecialization(@ModelAttribute Receptionist receptionist) {
-		return new ModelAndView("updateSpecialization");
+	public ModelAndView getReceptionistUpdateSpecialization() throws DoctorNotFoundException {
+		Map<String, Object> model = new HashMap<>();
+		model.put("appointments", appointmentService.getAllAppointments());
+		model.put("doctors", doctorService.getActiveDoctor());
+		return new ModelAndView("updateSpecialization", model);
 	}
 
 	@GetMapping("/patientPrescription")
-	public ModelAndView getReceptionistPatientPrescription(@ModelAttribute Receptionist receptionist) {
+	public ModelAndView getReceptionistPatientPrescription() {
 		return new ModelAndView("patientPrescription");
 	}
 
 	@GetMapping("/receptionistPrintReceipt")
-	public ModelAndView getReceptionistPrintReceipt(@ModelAttribute Receptionist receptionist) {
+	public ModelAndView getReceptionistPrintReceipt() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("appointments", appointmentService.getAllAppointments());
 		return new ModelAndView("receptionistPrintReceipt", model);
 	}
 
 	@GetMapping("/appointmentPerDoctor")
-	public ModelAndView getReceptionistPppointmentPerDoctor() throws DoctorNotFoundException {
+	public ModelAndView getReceptionistPppointmentPerDoctor() {
 		Map<String, Object> model = new HashMap<>();
 		model.put("appointments", appointmentService.getAllAppointments());
-		model.put("doctors", doctorService.getActiveDoctor());
-		System.out.println(model);
 		return new ModelAndView("appointmentPerDoctor", model);
 	}
 

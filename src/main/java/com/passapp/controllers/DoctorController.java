@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -76,6 +77,15 @@ public class DoctorController {
 		res.put(status, true);
 		res.put(message, "data found!");
 		res.put("data", doctorService.getDoctorById(docId));
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{docId}")
+	public ResponseEntity<Map<String, Object>> deleteDoctorById(@PathVariable Long docId) {
+		Map<String, Object> res = new HashMap<>();
+		res.put("status", true);
+		res.put("message", "data found!");
+		res.put("data", doctorService.deleteDoctorById(docId));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
