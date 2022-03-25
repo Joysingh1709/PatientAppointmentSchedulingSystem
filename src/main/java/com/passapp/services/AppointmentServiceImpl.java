@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.passapp.exceptions.AppointmentNotFoundException;
-import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Appointments;
 import com.passapp.repository.AppointmentRepository;
 

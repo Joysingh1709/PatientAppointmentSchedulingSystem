@@ -16,7 +16,7 @@ import com.passapp.services.ReceptionistService;
 @SpringBootTest(classes = PatientappointmentschedulingappApplication.class)
 @Transactional
 @Rollback(true)
-public class ReceptionistTest {
+ class ReceptionistTest {
 	
 
 	@Autowired
@@ -32,7 +32,7 @@ public class ReceptionistTest {
 	
 
 	@Test
-	public void testAddReceptionist(){
+	 void testAddReceptionist(){
 		Receptionist receptionist = addReceptionist();
 		assertEquals("Rohit", receptionist.getName());
 		assertEquals("jayesh",receptionist.getPassword());
@@ -40,7 +40,7 @@ public class ReceptionistTest {
 	
 
 	@Test
-	public void testUpdateAdmin(){
+	 void testUpdateAdmin(){
 		Receptionist receptionist = addReceptionist();
 		receptionist.setName("Kumar");
 		receptionistService.updateReceptionist(receptionist);
@@ -49,7 +49,7 @@ public class ReceptionistTest {
 	
 	
 	@Test
-	public void testDeleteAdmin() {
+	 void testDeleteAdmin() {
 		Receptionist receptionist = addReceptionist();
 		receptionistService.deleteReceptionist(receptionist);
 		assertThrows(ReceptionistNotFoundException.class, ()->{

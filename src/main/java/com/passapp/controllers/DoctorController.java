@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +24,8 @@ public class DoctorController {
 
 	@Autowired
 	private DoctorService doctorService;
+	private static final String status="status";
+	private static final String message="message";
 
 	@GetMapping()
 	public ModelAndView getDoctorDashboard() {
@@ -50,8 +51,8 @@ public class DoctorController {
 	public ResponseEntity<Map<String, Object>> getDoctor(@RequestBody Map<String, Object> body)
 			throws DoctorNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
@@ -63,8 +64,8 @@ public class DoctorController {
 		doc.setStatus(false);
 
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", doctorService.updateDoctor(doc));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
@@ -72,8 +73,8 @@ public class DoctorController {
 	@GetMapping("/getDoctor/{docId}")
 	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", doctorService.getDoctorById(docId));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}

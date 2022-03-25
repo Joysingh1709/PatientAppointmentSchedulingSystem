@@ -18,7 +18,7 @@ import com.passapp.services.AdminService;
 @SpringBootTest(classes = PatientappointmentschedulingappApplication.class)
 @Transactional
 @Rollback(true)
-public class AdminTest {
+class AdminTest {
 
 	@Autowired
 	private AdminService adminService;
@@ -32,14 +32,14 @@ public class AdminTest {
 	}
 
 	@Test
-	public void testAddAdmin() throws AdminNotAddedException {
+	void testAddAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		assertEquals("Rohit", admin.getUserName());
 		assertEquals("jayesh", admin.getPassword());
 	}
 
 	@Test
-	public void testUpdateAdmin() throws AdminNotAddedException {
+	void testUpdateAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		admin.setUserName("Kumar");
 		adminService.updateAdmin(admin);
@@ -47,7 +47,7 @@ public class AdminTest {
 	}
 
 	@Test
-	public void testDeleteAdmin() throws AdminNotAddedException {
+	void testDeleteAdmin() throws AdminNotAddedException {
 		Admin admin = addAdmin();
 		adminService.deleteAdmin(admin);
 		assertThrows(AdminNotFoundException.class, () -> {
