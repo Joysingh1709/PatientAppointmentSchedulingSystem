@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.passapp.exceptions.ReceptionistNotAddedException;
 import com.passapp.models.Doctor;
 import com.passapp.models.Receptionist;
+import com.passapp.services.AppointmentService;
 import com.passapp.services.DoctorService;
+import com.passapp.services.PatientService;
 import com.passapp.services.ReceptionistService;
 
 @RestController
@@ -27,11 +29,21 @@ public class AdminController {
 	private DoctorService doctorService;
 
 	@Autowired
+	private PatientService patientService;
+
+	@Autowired
+	private AppointmentService appService;
+
+	@Autowired
 	private ReceptionistService receptionistService;
 
 	@GetMapping()
 	public ModelAndView adminHome() {
-		return new ModelAndView("admin");
+		Map<String, Object> model = new HashMap<>();
+		model.put("doctors", doctorService.getAllDoctors());
+		model.put("patients", patientService.getAllPatients());
+		model.put("appointments", appService.getAllAppointments());
+		return new ModelAndView("admin", model);
 	}
 
 	@GetMapping("/register")

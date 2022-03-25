@@ -75,19 +75,19 @@
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Total Doctors</div>
-						<div class="number">500</div>
+						<div class="number" th:text="${#lists.size(doctors)}"></div>
 					</div>
 				</div>
 				<div class="box">
 					<div class="right-side">
-						<div class="box-topic">Confirm Appointments</div>
-						<div class="number">38,876</div>
+						<div class="box-topic">Appointments</div>
+						<div class="number" th:text="${#lists.size(appointments)}"></div>
 					</div>
 				</div>
 				<div class="box">
 					<div class="right-side">
 						<div class="box-topic">Total Users</div>
-						<div class="number">876</div>
+						<div class="number" th:text="${#lists.size(patients)}"></div>
 					</div>
 				</div>
 			</div>
@@ -96,10 +96,12 @@
 				<div class="top-sales box">
 					<div class="title">Top Doctors</div>
 					<ul class="top-sales-details">
-						<li><span class="product">Dr Gulati</span> </a> <span
-							class="price">Active</span></li>
-						<li><a href="#"> <span class="product">Dr Nidhi</span>
-						</a> <span class="price">In-Active</span></li>
+						<li th:each="doc : ${doctors}"><span
+							th:text="${'Dr. '+ doc.name}" class="product"></span> <span
+							th:switch="${doc.status}" class="price"> <span
+								th:case="true">Active</span> <span th:case="false">In
+									Active</span>
+						</span></li>
 					</ul>
 				</div>
 			</div>
