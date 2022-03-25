@@ -111,7 +111,7 @@
 							<li th:each="ap: ${appointments}"><select
 								th:onchange="'javascript:onUpdateAppStatus(' + ${ap.appointmentId} + ');'"
 								class="form-select" id="appStatus">
-									<option selected>Select status</option>
+									<option value="" selected>Select status</option>
 									<option th:selected="(${ap.status} == 'Pending')"
 										value="Pending">Pending</option>
 									<option th:selected="(${ap.status} == 'Confirmed')"
