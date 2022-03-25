@@ -1,7 +1,7 @@
 var toast = $("#myToast");
 var toastMessage = document.getElementById("toast-body-message");
 
-document.addEventListener('DOMContentLoaded', function (e) {
+document.addEventListener('DOMContentLoaded', function(e) {
 	var patient = localStorage.getItem("patient");
 	var doctor = localStorage.getItem("doctor");
 	var receptionist = localStorage.getItem("receptionist");
@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function (e) {
 	}
 	else if (path.includes("registration") && !patient && !doctor && !receptionist && !adminData) {
 		!path.includes("registration") ? window.location.href = "/registration" : null;
+	}
+	else if (path.includes("adminLogin") && !patient && !doctor && !receptionist && !adminData) {
+		window.location.href = "/adminLogin";
 	}
 	else {
 		if (!path.includes("login")) {
@@ -534,4 +537,30 @@ function onBookAppointment() {
 				})
 			}
 		});
+}
+
+function adminLoginPage() {
+
+	var email = document.getElementById("adminEmail").value;
+	var password = document.getElementById("adminPassword").value;
+
+	postData('http://localhost:8080/admin/login', {
+		"username": email.value,
+		"password": password.value
+	})
+		.then(data => {
+			console.log(data);
+			if (data.status) {
+				console.log(data.message);
+				localStorage.setItem("admin", JSON.stringify(data.data));
+				window.location.href = "/admin";
+			} else {
+				console.log(data);
+				toastMessage.innerHTML = data.message;
+				toast.toast("show");
+			}
+		}).catch(err => {
+			console.log(err);
+			localStorage.removeItem("admin");
+		})
 }

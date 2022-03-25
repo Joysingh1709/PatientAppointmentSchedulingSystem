@@ -89,15 +89,14 @@ public class DoctorServiceImpl implements DoctorService {
 	public Double getTotalFeeRecieved() {
 		return doctorRepository.getTotalFee();
 	}
-	
+
 	@Override
-	public List<Doctor> getActiveDoctor(String status) throws DoctorNotFoundException {
-		List<Doctor> acDoc= doctorRepository.getActiveDoctor(status);
+	public List<Doctor> getActiveDoctor() throws DoctorNotFoundException {
+		List<Doctor> acDoc = doctorRepository.getActiveDoctor(true);
 		if (acDoc != null) {
 			return acDoc;
 		}
 		throw new DoctorNotFoundException("Doctor not found!!");
-	
 	}
 
 }
