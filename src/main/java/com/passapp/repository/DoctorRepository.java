@@ -15,7 +15,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
 	@Query("SELECT SUM(d.fee) FROM Doctor d")
 	Double getTotalFee();
-	
+
 	@Query("From Doctor d WHERE d.status = :dStatus")
-    List<Doctor> getActiveDoctor(@Param("dStatus") String status);
+	List<Doctor> getActiveDoctor(@Param("dStatus") Boolean status);
 }
