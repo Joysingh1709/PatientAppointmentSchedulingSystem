@@ -20,7 +20,7 @@ import com.passapp.services.DoctorService;
 @SpringBootTest(classes = PatientappointmentschedulingappApplication.class)
 @Transactional
 @Rollback(true)
-public class DoctorTest {
+class DoctorTest {
 
 	@Autowired
 	private DoctorService doctorService;
@@ -35,7 +35,7 @@ public class DoctorTest {
 	}
 
 	@Test
-	public void testAddDoctor() throws DuplicateMappingException, DoctorNotFoundException,
+	 void testAddDoctor() throws DuplicateMappingException, DoctorNotFoundException,
 			DuplicateFormatFlagsException, DoctorNotFoundException {
 		Doctor doctor = addDoctor();
 		assertEquals("Rohit", doctor.getEmail());
@@ -44,7 +44,7 @@ public class DoctorTest {
 	}
 
 	@Test
-	public void testUpdateDoctor() throws DuplicateMappingException, DoctorNotFoundException {
+	 void testUpdateDoctor() throws DuplicateMappingException, DoctorNotFoundException {
 		Doctor doctor = addDoctor();
 		doctor.setName("Kumar");
 		doctorService.updateDoctor(doctor);
@@ -52,7 +52,7 @@ public class DoctorTest {
 	}
 
 	@Test
-	public void testDeleteDoctor() throws DuplicateMappingException, DoctorNotFoundException {
+	 void testDeleteDoctor() throws DuplicateMappingException, DoctorNotFoundException {
 		Doctor doctor = addDoctor();
 		doctorService.deleteDoctor(doctor);
 		assertThrows(DoctorNotFoundException.class, () -> {

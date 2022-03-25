@@ -36,7 +36,7 @@ public class LoginController {
 
 	@GetMapping()
 	public ModelAndView getHomePage() {
-		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> model = new HashMap<>();
 		model.put("doctors", doctorService.getAllDoctors());
 		ModelAndView modelAndView = new ModelAndView("index", model);
 		return modelAndView;
@@ -67,30 +67,30 @@ public class LoginController {
 		res.put("message", "data inserted successfully!");
 		res.put("data", patientService.getPatient(body.get("email").toString(), body.get("password").toString()));
 
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@PostMapping("/doctor/login")
 	public ResponseEntity<Map<String, Object>> doctorLogin(@RequestBody Map<String, Object> body)
 			throws DoctorNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
 		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
 
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@PostMapping("/receptionist/login")
 	public ResponseEntity<Map<String, Object>> receptionistLogin(@RequestBody Map<String, Object> body)
 			throws ReceptionistNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
+		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data inserted successfully!");
 		res.put("data",
 				receptionistService.getReceptionist(body.get("email").toString(), body.get("password").toString()));
 
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 }

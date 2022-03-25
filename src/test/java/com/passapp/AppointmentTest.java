@@ -18,7 +18,7 @@ import com.passapp.services.AppointmentService;
 @Transactional
 @Rollback(true)
 
-public class AppointmentTest {
+ class AppointmentTest {
 	
 	@Autowired
 	private AppointmentService appointmentService;
@@ -35,7 +35,7 @@ public class AppointmentTest {
 	
 
 	@Test
-	public void testAddAppointments() throws AppointmentNotFoundException {
+	 void testAddAppointments() throws AppointmentNotFoundException {
 		Appointments appointments = addAppointments();
 		assertEquals("Rohit", appointments.getPatientName());
 		assertEquals("Pending",appointments.getStatus());
@@ -43,7 +43,7 @@ public class AppointmentTest {
 	
 	
 	@Test
-	public void testUpdateAppointments() throws AppointmentNotFoundException{
+	 void testUpdateAppointments() throws AppointmentNotFoundException{
 		Appointments appointments = addAppointments();
 		appointments.setPatientName("Kumar");
 		appointmentService.updateAppointments(appointments);
@@ -52,7 +52,7 @@ public class AppointmentTest {
 	
 	
 	@Test
-	public void testDeleteAdmin() throws AppointmentNotFoundException{
+	void testDeleteAdmin() throws AppointmentNotFoundException{
 		Appointments appointments = addAppointments();
 		appointmentService.deleteAppointment(appointments);
 		assertThrows(AppointmentNotFoundException.class, ()->{

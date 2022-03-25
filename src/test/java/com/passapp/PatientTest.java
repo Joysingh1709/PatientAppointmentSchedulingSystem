@@ -20,7 +20,7 @@ import com.passapp.services.PatientService;
 @SpringBootTest(classes = PatientappointmentschedulingappApplication.class)
 @Transactional
 @Rollback(true)
-public class PatientTest {
+ class PatientTest {
 
 	@Autowired
 	private PatientService patientService;
@@ -37,7 +37,7 @@ public class PatientTest {
 
 	
 	@Test
-	public void testAddPatient() throws PatientNotAddedException, PatientNotFoundException {
+	 void testAddPatient() throws PatientNotAddedException, PatientNotFoundException {
 		User user = addPatient();
 		assertEquals("Rohit", user.getEmail());
 		assertEquals("mickey",user.getPassword());
@@ -45,7 +45,7 @@ public class PatientTest {
 	}
 	
 	@Test
-	public void testUpdatePatient() throws PatientNotAddedException, PatientNotFoundException,PatientNotUpdatedException {
+	 void testUpdatePatient() throws PatientNotAddedException, PatientNotFoundException,PatientNotUpdatedException {
 		User user = addPatient();
 		user.setName("Kumar");
 		patientService.updateUser(user);
@@ -54,7 +54,7 @@ public class PatientTest {
 	
 
 	@Test
-	public void testDeletePatient() throws PatientNotAddedException,PatientNotFoundException,PatientNotDeletedException {
+	 void testDeletePatient() throws PatientNotAddedException,PatientNotFoundException,PatientNotDeletedException {
 		User patient = addPatient();
 		patientService.deletePatient(patient);
 		assertThrows(PatientNotFoundException.class,()->{

@@ -3,7 +3,6 @@ package com.passapp.services;
 import java.util.List;
 
 import com.passapp.exceptions.AppointmentNotFoundException;
-import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.models.Appointments;
 
 
