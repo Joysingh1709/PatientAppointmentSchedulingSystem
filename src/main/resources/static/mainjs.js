@@ -532,7 +532,10 @@ function onAppointmentUpdate() {
 }
 
 function onUpdateAppStatus(appId) {
-	var appStatus = document.getElementById("appStatus").value;
+	var appStatus = document.getElementById("appStatus");
+
+	console.log(appStatus.value);
+	console.log(appStatus.options);
 
 	fetch("http://localhost:8080/appointment/appointments/" + appId)
 		.then(res => res.json())
@@ -544,7 +547,7 @@ function onUpdateAppStatus(appId) {
 					"createdDate": data.data.createdDate,
 					"updatedDate": new Date(),
 					"problem": data.data.problem,
-					"status": appStatus,
+					"status": appStatus.value,
 					"appointmentTime": data.data.appointmentTime,
 					"patientName": data.data.patientName,
 					"patientGender": data.data.patientGender,
@@ -555,7 +558,7 @@ function onUpdateAppStatus(appId) {
 					console.log("dataRes : ", dataRes);
 					if (dataRes.status) {
 						console.log(dataRes.message);
-						window.location.href = "/receptionist";
+						alert(dataRes.message);
 					}
 				})
 
