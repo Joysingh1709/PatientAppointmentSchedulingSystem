@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.passapp.exceptions.AdminNotAddedException;
+import com.passapp.exceptions.AdminNotDeletedException;
 import com.passapp.exceptions.AdminNotFoundException;
+import com.passapp.exceptions.AdminNotUpdatedException;
 import com.passapp.models.Admin;
 import com.passapp.repository.AdminRepository;
 
@@ -38,42 +40,41 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Admin getAdminById(Long adminId) {
-
+	public Admin getAdminById(Long adminId) throws AdminNotFoundException {
 		Optional<Admin> admin = adminRepository.findById(adminId);
 		if (admin.isPresent()) {
 			return admin.get();
 		}
-		return null;
+		throw new AdminNotFoundException("admin not found");
 	}
 
 	@Override
-	public boolean deleteAdminById(Long adminId) {
+	public boolean deleteAdminById(Long adminId) throws AdminNotDeletedException {
 		adminRepository.deleteById(adminId);
 		if (adminRepository.existsById(adminId)) {
-			return false;
+			throw new AdminNotDeletedException("error deleting admin");
 		}
 		return true;
 	}
 
 	@Override
-	public boolean deleteAdmin(Admin admin) {
+	public boolean deleteAdmin(Admin admin) throws AdminNotDeletedException {
 		adminRepository.delete(admin);
 		if (adminRepository.existsById(admin.getAdminId())) {
-			return false;
+			throw new AdminNotDeletedException("error deleting admin");
 		}
 		return true;
 	}
 
 	@Override
-	public boolean updateAdmin(Admin admin) {
+	public boolean updateAdmin(Admin admin) throws AdminNotUpdatedException {
 		if (adminRepository.existsById(admin.getAdminId())) {
 			Admin adm = adminRepository.save(admin);
 			if (adm != null) {
 				return true;
 			}
 		}
-		return false;
+		throw new AdminNotUpdatedException("error updating admin");
 	}
 
 }

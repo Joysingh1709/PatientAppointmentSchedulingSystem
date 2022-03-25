@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
+import com.passapp.exceptions.DoctorNotUpdatedException;
 import com.passapp.models.Doctor;
 import com.passapp.repository.DoctorRepository;
 
@@ -36,48 +38,46 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public List<Doctor> getAllDoctors() {
-
 		return doctorRepository.findAll();
 	}
 
 	@Override
-	public Doctor getDoctorById(Long doctorId) {
-
+	public Doctor getDoctorById(Long doctorId) throws DoctorNotFoundException {
 		Optional<Doctor> doctor = doctorRepository.findById(doctorId);
 		if (doctor.isPresent()) {
 			return doctor.get();
 		}
-		return null;
+		throw new DoctorNotFoundException("no doctor found");
 	}
 
 	@Override
-	public boolean deleteDoctorById(Long doctorId) {
+	public boolean deleteDoctorById(Long doctorId) throws DoctorNotDeletedException {
 		doctorRepository.deleteById(doctorId);
 		if (doctorRepository.existsById(doctorId)) {
-			return false;
+			throw new DoctorNotDeletedException("doctor not deleted");
 		}
 		return true;
 
 	}
 
 	@Override
-	public boolean deleteDoctor(Doctor doctor) {
+	public boolean deleteDoctor(Doctor doctor) throws DoctorNotDeletedException {
 		doctorRepository.delete(doctor);
 		if (doctorRepository.existsById(doctor.getDoctorId())) {
-			return false;
+			throw new DoctorNotDeletedException("error deleting doctor");
 		}
 		return true;
 	}
 
 	@Override
-	public boolean updateDoctor(Doctor doctor) {
+	public boolean updateDoctor(Doctor doctor) throws DoctorNotUpdatedException {
 		if (doctorRepository.existsById(doctor.getDoctorId())) {
 			Doctor doc = doctorRepository.save(doctor);
 			if (doc != null) {
 				return true;
 			}
 		}
-		return false;
+		throw new DoctorNotUpdatedException("error updating doctor");
 	}
 
 	@Override

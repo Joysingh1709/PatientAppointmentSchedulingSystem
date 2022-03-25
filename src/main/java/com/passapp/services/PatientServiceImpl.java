@@ -34,17 +34,14 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-
 	public User getPatient(String email, String password) throws PatientNotFoundException {
 		User pa = patientRepository.getPatientByEmailAndPassword(email, password);
 		if (pa != null)
 			return pa;
 		throw new PatientNotFoundException("Email or Password is incorrect!...");
-
 	}
 
 	@Override
-
 	public List<User> getAllPatients() {
 		return patientRepository.findAll();
 	}
@@ -59,10 +56,14 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public boolean deleteUserById(Long userId) throws PatientNotFoundException {
-		patientRepository.deleteById(userId);
-		if (patientRepository.existsById(userId)) {
-			return false;
+	public boolean deleteUserById(Long userId) throws PatientNotFoundException, PatientNotDeletedException {
+		User pat = patientRepository.getById(userId);
+		if (pat != null) {
+			patientRepository.deleteById(userId);
+			if (patientRepository.existsById(userId)) {
+				throw new PatientNotDeletedException("error deleting patient");
+			}
+			return true;
 		}
 		throw new PatientNotFoundException("Patient Id is incorrect!...");
 	}
@@ -90,7 +91,6 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public List<Appointments> getPatientAppointments(Long patientId) throws AppointmentNotFoundException {
-
 		Optional<User> user = patientRepository.findById(patientId);
 		if (user.isPresent()) {
 			return patientRepository.getPatientAppointments(patientId);

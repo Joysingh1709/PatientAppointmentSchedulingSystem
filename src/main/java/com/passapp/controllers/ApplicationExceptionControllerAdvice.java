@@ -13,6 +13,7 @@ import com.passapp.exceptions.AdminNotDeletedException;
 import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.exceptions.AdminNotUpdatedException;
 import com.passapp.exceptions.AppointmentNotConfirmException;
+import com.passapp.exceptions.AppointmentNotDeletedException;
 import com.passapp.exceptions.AppointmentNotFoundException;
 import com.passapp.exceptions.DoctorNotAddedException;
 import com.passapp.exceptions.DoctorNotDeletedException;
@@ -29,15 +30,15 @@ import com.passapp.exceptions.ReceptionistNotUpdatedException;
 
 @RestControllerAdvice
 public class ApplicationExceptionControllerAdvice {
-	
-	private static final String status="status";
-	private static final String message="message";
+
+	private static final String status = "status";
+	private static final String message = "message";
 
 	@ExceptionHandler(AdminNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> adminNotFoundHandler(AdminNotFoundException adx) {
+	public ResponseEntity<Map<String, Object>> adminNotFoundHandler(AdminNotFoundException anf) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, adx.getMessage());
+		res.put(message, anf.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 	}
 
@@ -66,10 +67,10 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(DoctorNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> doctorNotFoundHandler(DoctorNotFoundException dx) {
+	public ResponseEntity<Map<String, Object>> doctorNotFoundHandler(DoctorNotFoundException dnfx) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, dx.getMessage());
+		res.put(message, dnfx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 	}
 
@@ -98,10 +99,10 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(PatientNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> patientNotFoundHandler(PatientNotFoundException px) {
+	public ResponseEntity<Map<String, Object>> patientNotFoundHandler(PatientNotFoundException pnfx) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, px.getMessage());
+		res.put(message, pnfx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 	}
 
@@ -130,10 +131,10 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(ReceptionistNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> receptionistNotFoundHandler(ReceptionistNotFoundException rx) {
+	public ResponseEntity<Map<String, Object>> receptionistNotFoundHandler(ReceptionistNotFoundException rnfx) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, rx.getMessage());
+		res.put(message, rnfx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 	}
 
@@ -162,18 +163,26 @@ public class ApplicationExceptionControllerAdvice {
 	}
 
 	@ExceptionHandler(AppointmentNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> appointmentNotFoundHandler(AppointmentNotFoundException apx) {
+	public ResponseEntity<Map<String, Object>> appointmentNotFoundHandler(AppointmentNotFoundException apnfx) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, apx.getMessage());
+		res.put(message, apnfx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 	}
 
-	@ExceptionHandler(AppointmentNotConfirmException.class)
-	public ResponseEntity<Map<String, Object>> appointmentNotConfirmHanldler(AppointmentNotConfirmException ax) {
+	@ExceptionHandler(AppointmentNotDeletedException.class)
+	public ResponseEntity<Map<String, Object>> appointmentNotDeletedHanldler(AppointmentNotDeletedException andx) {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, false);
-		res.put(message, ax.getMessage());
+		res.put(message, andx.getMessage());
+		return new ResponseEntity<>(res, HttpStatus.NOT_ACCEPTABLE);
+	}
+
+	@ExceptionHandler(AppointmentNotConfirmException.class)
+	public ResponseEntity<Map<String, Object>> appointmentNotConfirmHanldler(AppointmentNotConfirmException ancx) {
+		Map<String, Object> res = new HashMap<>();
+		res.put(status, false);
+		res.put(message, ancx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.NOT_ACCEPTABLE);
 	}
 
