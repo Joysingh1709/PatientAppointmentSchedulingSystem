@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.DoctorNotUpdatedException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.models.Doctor;
 import com.passapp.services.DoctorService;
 
@@ -52,7 +54,7 @@ public class DoctorController {
 
 	@GetMapping("/getDoctor")
 	public ResponseEntity<Map<String, Object>> getDoctor(@RequestBody Map<String, Object> body)
-			throws DoctorNotFoundException {
+			throws DoctorNotFoundException, EmailNotValidException, PasswordNotValidException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data found!");

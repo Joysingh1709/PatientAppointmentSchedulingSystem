@@ -5,6 +5,8 @@ import java.util.List;
 import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.DoctorNotUpdatedException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.models.Doctor;
 
 public interface DoctorService {
@@ -25,7 +27,7 @@ public interface DoctorService {
 
 	public boolean updateDoctor(Doctor doctor) throws DoctorNotUpdatedException;
 
-	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException;
+	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException, EmailNotValidException, PasswordNotValidException;
 
 	public List<Doctor> getActiveDoctor() throws DoctorNotFoundException;
 

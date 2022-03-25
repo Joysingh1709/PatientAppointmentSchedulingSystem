@@ -3,6 +3,8 @@ package com.passapp.services;
 import java.util.List;
 
 import com.passapp.exceptions.AppointmentNotFoundException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.exceptions.PatientNotDeletedException;
 import com.passapp.exceptions.PatientNotFoundException;
@@ -12,7 +14,7 @@ import com.passapp.models.User;
 
 public interface PatientService {
 
-	public User getPatient(String email, String password) throws PatientNotFoundException;
+	public User getPatient(String email, String password) throws PatientNotFoundException, EmailNotValidException, PasswordNotValidException;
 
 	public List<Appointments> getPatientAppointments(Long patientId) throws AppointmentNotFoundException;
 

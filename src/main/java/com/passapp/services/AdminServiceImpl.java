@@ -11,8 +11,11 @@ import com.passapp.exceptions.AdminNotAddedException;
 import com.passapp.exceptions.AdminNotDeletedException;
 import com.passapp.exceptions.AdminNotFoundException;
 import com.passapp.exceptions.AdminNotUpdatedException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.models.Admin;
 import com.passapp.repository.AdminRepository;
+import com.passapp.utils.Validations;
 
 @Service
 @Transactional
@@ -20,9 +23,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminRepository adminRepository;
+	
+	@Autowired
+	Validations validation;
 
 	@Override
-	public Admin getAdmin(String username, String password) throws AdminNotFoundException {
+	public Admin getAdmin(String username, String password) throws AdminNotFoundException, PasswordNotValidException {
+
+		if (!validation.isPasswordValid(password)) {
+			throw new PasswordNotValidException("Please provide a valid Password..!");
+		}
+
 		Admin ad = adminRepository.getAdminByEmailAndPass(username, password);
 		if (ad != null) {
 			return ad;

@@ -2,6 +2,7 @@ package com.passapp.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import javax.transaction.Transactional;
 
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Service;
 import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.DoctorNotUpdatedException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.models.Doctor;
 import com.passapp.repository.DoctorRepository;
+import com.passapp.utils.Validations;
 
 @Service
 @Transactional
@@ -22,13 +26,26 @@ public class DoctorServiceImpl implements DoctorService {
 	@Autowired
 	DoctorRepository doctorRepository;
 
+	@Autowired
+	Validations validation;
+
 	@Override
 	public Doctor addDoctor(Doctor doctor) {
 		return doctorRepository.save(doctor);
 	}
 
 	@Override
-	public Doctor getDoctor(String email, String password) throws DoctorNotFoundException {
+	public Doctor getDoctor(String email, String password)
+			throws DoctorNotFoundException, EmailNotValidException, PasswordNotValidException {
+
+		if (!validation.isEmailValid(email)) {
+			throw new EmailNotValidException("Please provide a valid email address..!");
+		}
+
+		if (!validation.isPasswordValid(password)) {
+			throw new PasswordNotValidException("Please provide a valid Password..!");
+		}
+
 		Doctor doc = doctorRepository.getDoctorByEmailAndPass(email, password);
 		if (doc != null) {
 			return doc;

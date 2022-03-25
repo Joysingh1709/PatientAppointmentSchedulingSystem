@@ -19,6 +19,8 @@ import com.passapp.exceptions.DoctorNotAddedException;
 import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
 import com.passapp.exceptions.DoctorNotUpdatedException;
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.PatientNotAddedException;
 import com.passapp.exceptions.PatientNotDeletedException;
 import com.passapp.exceptions.PatientNotFoundException;
@@ -64,6 +66,22 @@ public class ApplicationExceptionControllerAdvice {
 		res.put(status, false);
 		res.put(message, andx.getMessage());
 		return new ResponseEntity<>(res, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(EmailNotValidException.class)
+	public ResponseEntity<Map<String, Object>> emailNotValidExceptionHandler(EmailNotValidException envx) {
+		Map<String, Object> res = new HashMap<>();
+		res.put(status, false);
+		res.put(message, envx.getMessage());
+		return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+	}
+
+	@ExceptionHandler(PasswordNotValidException.class)
+	public ResponseEntity<Map<String, Object>> passwordNotValidExceptionHandler(PasswordNotValidException pnvx) {
+		Map<String, Object> res = new HashMap<>();
+		res.put(status, false);
+		res.put(message, pnvx.getMessage());
+		return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
 	}
 
 	@ExceptionHandler(DoctorNotFoundException.class)

@@ -1,5 +1,7 @@
 package com.passapp.services;
 
+import com.passapp.exceptions.EmailNotValidException;
+import com.passapp.exceptions.PasswordNotValidException;
 import com.passapp.exceptions.ReceptionistNotAddedException;
 import com.passapp.exceptions.ReceptionistNotDeletedException;
 import com.passapp.exceptions.ReceptionistNotFoundException;
@@ -10,7 +12,8 @@ public interface ReceptionistService {
 
 	public Receptionist addReceptionist(Receptionist receptionist) throws ReceptionistNotAddedException;
 
-	public Receptionist getReceptionist(String email, String password) throws ReceptionistNotFoundException;
+	public Receptionist getReceptionist(String email, String password)
+			throws ReceptionistNotFoundException, EmailNotValidException, PasswordNotValidException;
 
 	public Receptionist getReceptionistById(Long receptionistId) throws ReceptionistNotFoundException;
 
