@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
+import com.passapp.exceptions.DoctorNotUpdatedException;
 import com.passapp.models.Doctor;
 import com.passapp.services.DoctorService;
 
@@ -25,8 +27,8 @@ public class DoctorController {
 
 	@Autowired
 	private DoctorService doctorService;
-	private static final String status="status";
-	private static final String message="message";
+	private static final String status = "status";
+	private static final String message = "message";
 
 	@GetMapping()
 	public ModelAndView getDoctorDashboard() {
@@ -59,7 +61,8 @@ public class DoctorController {
 	}
 
 	@PostMapping("/changeStatus/{doctorId}")
-	public ResponseEntity<Map<String, Object>> changeDoctorStatus(@PathVariable Long doctorId) {
+	public ResponseEntity<Map<String, Object>> changeDoctorStatus(@PathVariable Long doctorId)
+			throws DoctorNotUpdatedException, DoctorNotFoundException {
 
 		Doctor doc = doctorService.getDoctorById(doctorId);
 		doc.setStatus(false);
@@ -72,7 +75,7 @@ public class DoctorController {
 	}
 
 	@GetMapping("/getDoctor/{docId}")
-	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) {
+	public ResponseEntity<Map<String, Object>> getDoctorById(@PathVariable Long docId) throws DoctorNotFoundException {
 		Map<String, Object> res = new HashMap<>();
 		res.put(status, true);
 		res.put(message, "data found!");
@@ -81,7 +84,8 @@ public class DoctorController {
 	}
 
 	@DeleteMapping("/{docId}")
-	public ResponseEntity<Map<String, Object>> deleteDoctorById(@PathVariable Long docId) {
+	public ResponseEntity<Map<String, Object>> deleteDoctorById(@PathVariable Long docId)
+			throws DoctorNotDeletedException {
 		Map<String, Object> res = new HashMap<>();
 		res.put("status", true);
 		res.put("message", "data found!");

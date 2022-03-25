@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
+import com.passapp.exceptions.DoctorNotDeletedException;
 import com.passapp.exceptions.DoctorNotFoundException;
+import com.passapp.exceptions.DoctorNotUpdatedException;
 import com.passapp.models.Doctor;
 import com.passapp.services.DoctorService;
 
@@ -35,8 +37,8 @@ class DoctorTest {
 	}
 
 	@Test
-	 void testAddDoctor() throws DuplicateMappingException, DoctorNotFoundException,
-			DuplicateFormatFlagsException, DoctorNotFoundException {
+	void testAddDoctor() throws DuplicateMappingException, DoctorNotFoundException, DuplicateFormatFlagsException,
+			DoctorNotFoundException {
 		Doctor doctor = addDoctor();
 		assertEquals("Rohit", doctor.getEmail());
 		assertEquals("mickey", doctor.getPassword());
@@ -44,7 +46,7 @@ class DoctorTest {
 	}
 
 	@Test
-	 void testUpdateDoctor() throws DuplicateMappingException, DoctorNotFoundException {
+	void testUpdateDoctor() throws DuplicateMappingException, DoctorNotFoundException, DoctorNotUpdatedException {
 		Doctor doctor = addDoctor();
 		doctor.setName("Kumar");
 		doctorService.updateDoctor(doctor);
@@ -52,7 +54,7 @@ class DoctorTest {
 	}
 
 	@Test
-	 void testDeleteDoctor() throws DuplicateMappingException, DoctorNotFoundException {
+	void testDeleteDoctor() throws DuplicateMappingException, DoctorNotFoundException, DoctorNotDeletedException {
 		Doctor doctor = addDoctor();
 		doctorService.deleteDoctor(doctor);
 		assertThrows(DoctorNotFoundException.class, () -> {

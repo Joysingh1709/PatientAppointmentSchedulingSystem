@@ -35,9 +35,9 @@ public class PatientController {
 
 	@Autowired
 	DoctorService doctorService;
-	
-	private static final String status="status";
-	private static final String message="message";
+
+	private static final String status = "status";
+	private static final String message = "message";
 
 	@GetMapping()
 	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {

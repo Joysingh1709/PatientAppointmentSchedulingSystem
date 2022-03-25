@@ -31,7 +31,7 @@ public class ReceptionistController {
 
 	@GetMapping()
 	public ModelAndView getReceptionistDashboard() {
-		Map<String, Object> model = new HashMap<>();
+		Map<String, Object> model = new HashMap<>();s
 		model.put("users", patientService.getAllPatients());
 		model.put("doctors", doctorService.getAllDoctors());
 		model.put("appointments", appointmentService.getAllAppointments());
