@@ -38,6 +38,9 @@ public class LoginController {
 
 	@Autowired
 	ReceptionistService receptionistService;
+	
+	private static final String status="status";
+	private static final String message="message";
 
 	@GetMapping()
 	public ModelAndView getHomePage() {
@@ -64,20 +67,20 @@ public class LoginController {
 	@PostMapping("/patient/login")
 	public ResponseEntity<Map<String, Object>> patientLogin(@RequestBody Map<String, Object> body)
 			throws PatientNotFoundException {
-		Map<String, Object> res = new HashMap<String, Object>();
-		res.put("status", true);
-		res.put("message", "data inserted successfully!");
+		Map<String, Object> res = new HashMap<>();
+		res.put(status, true);
+		res.put(message, "data inserted successfully!");
 		res.put("data", patientService.getPatient(body.get("email").toString(), body.get("password").toString()));
 
-		return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 	@PostMapping("/doctor/login")
 	public ResponseEntity<Map<String, Object>> doctorLogin(@RequestBody Map<String, Object> body)
 			throws DoctorNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data inserted successfully!");
+		res.put(status, true);
+		res.put(message, "data inserted successfully!");
 		res.put("data", doctorService.getDoctor(body.get("email").toString(), body.get("password").toString()));
 
 		return new ResponseEntity<>(res, HttpStatus.OK);
@@ -87,8 +90,8 @@ public class LoginController {
 	public ResponseEntity<Map<String, Object>> receptionistLogin(@RequestBody Map<String, Object> body)
 			throws ReceptionistNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data inserted successfully!");
+		res.put(status, true);
+		res.put(message, "data inserted successfully!");
 		res.put("data",
 				receptionistService.getReceptionist(body.get("email").toString(), body.get("password").toString()));
 
@@ -100,8 +103,8 @@ public class LoginController {
 			throws AdminNotFoundException {
 		System.out.println("body : " + body);
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data inserted successfully!");
+		res.put(status, true);
+		res.put(message, "data inserted successfully!");
 		res.put("data", adminService.getAdmin(body.get("username").toString(), body.get("password").toString()));
 
 		return new ResponseEntity<>(res, HttpStatus.OK);

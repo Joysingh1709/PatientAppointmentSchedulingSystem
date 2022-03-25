@@ -35,6 +35,9 @@ public class PatientController {
 
 	@Autowired
 	DoctorService doctorService;
+	
+	private static final String status="status";
+	private static final String message="message";
 
 	@GetMapping()
 	public ModelAndView getPatientDashboard(@ModelAttribute User patient) {
@@ -65,8 +68,8 @@ public class PatientController {
 	@PostMapping("/savePatient")
 	public ResponseEntity<Map<String, Object>> addpatient(@RequestBody User user) throws PatientNotAddedException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data inserted successfully!");
+		res.put(status, true);
+		res.put(message, "data inserted successfully!");
 		res.put("data", patientService.addPatient(user));
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 
@@ -76,8 +79,8 @@ public class PatientController {
 	public ResponseEntity<Map<String, Object>> getPatientRecentAppointments(@PathVariable Long patientId)
 			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", patientService.getRecentAppointments(patientId));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
@@ -86,8 +89,8 @@ public class PatientController {
 	public ResponseEntity<Map<String, Object>> getPatientAppointments(@PathVariable Long patientId)
 			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "data found!");
+		res.put(status, true);
+		res.put(message, "data found!");
 		res.put("data", patientService.getPatientAppointments(patientId));
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
@@ -95,8 +98,8 @@ public class PatientController {
 	@PostMapping("/bookAppointments")
 	public ResponseEntity<Map<String, Object>> addAppointments(@RequestBody Appointments appointments) {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "Appointment booked successfully!");
+		res.put(status, true);
+		res.put(message, "Appointment booked successfully!");
 		res.put("data", appointmentService.addAppointments(appointments));
 		return new ResponseEntity<>(res, HttpStatus.CREATED);
 	}
@@ -105,8 +108,8 @@ public class PatientController {
 	public ResponseEntity<Appointments> getRecentAppointments(@PathVariable Long patientId)
 			throws AppointmentNotFoundException {
 		Map<String, Object> res = new HashMap<>();
-		res.put("status", true);
-		res.put("message", "Recent Appointments!");
+		res.put(status, true);
+		res.put(message, "Recent Appointments!");
 		res.put("data", patientService.getRecentAppointments(patientId));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
